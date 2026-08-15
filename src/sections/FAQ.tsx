@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 const faqs = [
@@ -11,7 +11,7 @@ const faqs = [
   {
     question: 'Where can I find JOY?',
     answer:
-      'Visit JOY at Sentul Point. Our next outlet is coming to Kiara Bay.',
+      'Visit us at Sentul Point in Sentul. Kiara Bay is coming soon to Kepong.',
   },
   {
     question: 'When is Kiara Bay opening?',
@@ -19,9 +19,14 @@ const faqs = [
       'The current target opening date is 15 September 2026. Follow JOY for the latest update.',
   },
   {
-    question: 'Can I get directions from this website?',
+    question: 'What are Sentul Point’s opening hours?',
     answer:
-      'Yes. Use the Find Us section above to open either outlet location in Google Maps.',
+      'Sentul Point is open Monday to Sunday, from 8am to 11pm.',
+  },
+  {
+    question: 'How can I get the latest JOY updates?',
+    answer:
+      'Follow @joydimsum.my on Instagram or Facebook for campaigns, menu news and Kiara Bay opening updates.',
   },
 ];
 
@@ -70,20 +75,19 @@ export default function FAQ() {
                   </motion.span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={answerId}
-                      className="joy-faq__answer"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <p>{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <motion.div
+                  id={answerId}
+                  className="joy-faq__answer"
+                  initial={false}
+                  animate={{
+                    height: isOpen ? 'auto' : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden={!isOpen}
+                >
+                  <p>{faq.answer}</p>
+                </motion.div>
               </article>
             );
           })}

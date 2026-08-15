@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, Heart, MapPin } from 'lucide-react';
-import harKau from '../assets/seo/joy-dim-sum-har-kau-kuala-lumpur.png';
-import siewMai from '../assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.png';
+import harKau from '../assets/seo/joy-dim-sum-har-kau-kuala-lumpur.webp';
+import siewMai from '../assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.webp';
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -19,7 +19,7 @@ export default function Hero() {
         >
           <p className="joy-hero__eyebrow">
             <Heart aria-hidden="true" size={17} strokeWidth={2.6} fill="currentColor" />
-            Small bites. Full table.
+            Dim sum in Sentul and Kepong.
           </p>
 
           <h1 id="joy-hero-title" className="joy-hero__headline">
@@ -62,6 +62,8 @@ export default function Hero() {
                 <img
                   src={siewMai}
                   alt="A bamboo basket of four siew mai dumplings at JOY Dim Sum in Sentul, Kuala Lumpur"
+                  width="1184"
+                  height="1070"
                   fetchPriority="high"
                   draggable="false"
                 />
@@ -89,6 +91,8 @@ export default function Hero() {
                 <img
                   src={harKau}
                   alt="A bamboo basket of colourful har kau dumplings at JOY Dim Sum in Sentul, Kuala Lumpur"
+                  width="1210"
+                  height="1084"
                   fetchPriority="high"
                   draggable="false"
                 />

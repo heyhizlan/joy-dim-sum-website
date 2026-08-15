@@ -1,6 +1,6 @@
 # JOY Dim Sum Website
 
-The official website for JOY Dim Sum, a casual dim sum and dining restaurant serving Sentul, Kiara Bay and the Klang Valley in Kuala Lumpur.
+The official website for JOY Dim Sum, serving dim sum, pau and more in Sentul and Kepong, Kuala Lumpur. The current outlets are JOY Dim Sum Sentul Point and the upcoming JOY Dim Sum Kiara Bay, Kepong.
 
 ## Local development
 

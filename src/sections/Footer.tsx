@@ -4,11 +4,11 @@ import logoYellow from '../../assets/Logo Masterfile/joydimsum-primary-yellow--r
 
 const footerNavigation = [
   { label: 'Menu', href: '#menu' },
-  { label: 'Locations', href: '#locations' },
-  { label: 'About', href: '#about' },
+  { label: 'Outlets', href: '#locations' },
+  { label: 'Story', href: '#about' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Reviews', href: '#reviews' },
-  { label: 'Instagram', href: '#instagram' },
+  { label: 'News', href: '#instagram' },
 ];
 
 function FacebookIcon() {
@@ -36,6 +36,8 @@ export default function Footer() {
         className="joy-footer__heart"
         src={footerHeart}
         alt=""
+        width="1167"
+        height="567"
         aria-hidden="true"
       />
 
@@ -43,11 +45,16 @@ export default function Footer() {
         <div className="joy-footer__grid">
           <div className="joy-footer__brand">
             <a className="joy-footer__brand-logo" href="#top" aria-label="Back to JOY Dim Sum home">
-              <img src={logoYellow} alt="JOY Dim Sum Kuala Lumpur restaurant" />
+              <img
+                src={logoYellow}
+                alt="JOY Dim Sum Sentul Point and Kiara Bay, Kepong"
+                width="1080"
+                height="190"
+              />
             </a>
             <p>
-              A casual dim sum and dining restaurant in Kuala Lumpur. Dim sum
-              first, pau next, and more at the table.
+              Dim sum, pau and more in Sentul and Kepong, Klang Valley. Come
+              hungry and stay a little longer.
             </p>
           </div>
 
@@ -80,13 +87,13 @@ export default function Footer() {
                 <h3>Kiara Bay</h3>
                 <a
                   className="joy-footer__detail joy-footer__location"
-                  href="https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Kiara+Bay"
+                  href="https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Kiara+Bay+Kepong"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Open JOY Dim Sum Kiara Bay in Google Maps"
                 >
                   <MapPin aria-hidden="true" />
-                  <span>Kiara Bay, Kuala Lumpur</span>
+                  <span>Kiara Bay, Kepong</span>
                 </a>
                 <p className="joy-footer__detail">
                   <CalendarDays aria-hidden="true" />

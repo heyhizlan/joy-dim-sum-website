@@ -14,7 +14,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-section-kicker">The story</p>
+          <p className="joy-section-kicker">Story</p>
           <h2 id="about-title">A good table with people you like</h2>
         </motion.div>
 

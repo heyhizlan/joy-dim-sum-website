@@ -1,22 +1,24 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowLeft, ArrowRight, FileText } from 'lucide-react';
-import harKau from '../assets/seo/joy-dim-sum-har-kau-kuala-lumpur.png';
-import lohMaiKai from '../assets/seo/joy-dim-sum-loh-mai-kai-kuala-lumpur.png';
-import scallopDumpling from '../assets/seo/joy-dim-sum-scallop-dumpling-kuala-lumpur.png';
-import shanghaiDumpling from '../assets/seo/joy-dim-sum-shanghai-dumpling-kuala-lumpur.png';
-import siewMai from '../assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.png';
-import chickenPau from '../assets/seo/joy-dim-sum-chicken-pau-kuala-lumpur.png';
-import gulaMelakaMantau from '../assets/seo/joy-dim-sum-gula-melaka-mantau-kuala-lumpur.png';
-import pandanKayaPau from '../assets/seo/joy-dim-sum-pandan-kaya-pau-kuala-lumpur.png';
-import redBeanPau from '../assets/seo/joy-dim-sum-red-bean-pau-kuala-lumpur.png';
-import saltedEggPau from '../assets/seo/joy-dim-sum-salted-egg-pau-kuala-lumpur.png';
+import harKau from '../assets/seo/joy-dim-sum-har-kau-kuala-lumpur.webp';
+import lohMaiKai from '../assets/seo/joy-dim-sum-loh-mai-kai-kuala-lumpur.webp';
+import scallopDumpling from '../assets/seo/joy-dim-sum-scallop-dumpling-kuala-lumpur.webp';
+import shanghaiDumpling from '../assets/seo/joy-dim-sum-shanghai-dumpling-kuala-lumpur.webp';
+import siewMai from '../assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.webp';
+import chickenPau from '../assets/seo/joy-dim-sum-chicken-pau-kuala-lumpur.webp';
+import gulaMelakaMantau from '../assets/seo/joy-dim-sum-gula-melaka-mantau-kuala-lumpur.webp';
+import pandanKayaPau from '../assets/seo/joy-dim-sum-pandan-kaya-pau-kuala-lumpur.webp';
+import redBeanPau from '../assets/seo/joy-dim-sum-red-bean-pau-kuala-lumpur.webp';
+import saltedEggPau from '../assets/seo/joy-dim-sum-salted-egg-pau-kuala-lumpur.webp';
 
 const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Siew Mai',
     image: siewMai,
+    width: 1184,
+    height: 1070,
     story: 'Four in the basket. Somehow the last one is always a negotiation.',
     tone: 'yellow',
   },
@@ -24,6 +26,8 @@ const featuredFood = [
     category: 'Dim Sum',
     name: 'Har Kau',
     image: harKau,
+    width: 1210,
+    height: 1084,
     story: 'A basket arrives and everyone pays attention. Best shared while it is still warm.',
     tone: 'pink',
   },
@@ -31,6 +35,8 @@ const featuredFood = [
     category: 'Dim Sum',
     name: 'Loh Mai Kai',
     image: lohMaiKai,
+    width: 1144,
+    height: 1051,
     story: 'A little more filling and a little harder to share. Order one each, can.',
     tone: 'green',
   },
@@ -38,6 +44,8 @@ const featuredFood = [
     category: 'Dim Sum',
     name: 'Scallop Dumpling',
     image: scallopDumpling,
+    width: 1145,
+    height: 1025,
     story: 'Three colours on the table, then three empty spaces. That was quick.',
     tone: 'beige',
   },
@@ -45,6 +53,8 @@ const featuredFood = [
     category: 'Dim Sum',
     name: 'Shanghai Dumpling',
     image: shanghaiDumpling,
+    width: 1184,
+    height: 1067,
     story: 'Careful on the first bite. The rest of the table can wait a second.',
     tone: 'yellow',
   },
@@ -52,6 +62,8 @@ const featuredFood = [
     category: 'Pau',
     name: 'Chicken Pau',
     image: chickenPau,
+    width: 1067,
+    height: 908,
     story: 'Pull one apart while it is warm. The next basket will make sense soon.',
     tone: 'pink',
   },
@@ -59,6 +71,8 @@ const featuredFood = [
     category: 'Pau',
     name: 'Salted Egg Pau',
     image: saltedEggPau,
+    width: 972,
+    height: 821,
     story: 'Bright yellow, soft and gone fast. Better get another basket.',
     tone: 'yellow',
   },
@@ -66,6 +80,8 @@ const featuredFood = [
     category: 'Pau',
     name: 'Pandan Kaya Pau',
     image: pandanKayaPau,
+    width: 1033,
+    height: 864,
     story: 'Green, fluffy and made for the slow part of breakfast.',
     tone: 'green',
   },
@@ -73,6 +89,8 @@ const featuredFood = [
     category: 'Pau',
     name: 'Red Bean Pau',
     image: redBeanPau,
+    width: 986,
+    height: 837,
     story: 'Quietly sweet. Good with tea and a table that is in no rush.',
     tone: 'beige',
   },
@@ -80,6 +98,8 @@ const featuredFood = [
     category: 'Pau',
     name: 'Gula Melaka Mantau',
     image: gulaMelakaMantau,
+    width: 996,
+    height: 848,
     story: 'One big spiral for everyone to tear into. Sharing rules are flexible.',
     tone: 'pink',
   },
@@ -159,6 +179,8 @@ export default function Menu() {
               <img
                 src={food.image}
                 alt={'A bamboo basket of ' + food.name + ' at JOY Dim Sum Kuala Lumpur'}
+                width={food.width}
+                height={food.height}
                 loading="lazy"
               />
             </div>

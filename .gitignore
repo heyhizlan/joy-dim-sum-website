@@ -12,3 +12,4 @@ coverage/
 
 # Internal design reference; not required by the production website.
 reference/
+/og/

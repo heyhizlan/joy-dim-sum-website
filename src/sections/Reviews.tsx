@@ -10,16 +10,31 @@ const googleReviews = [
     author: 'Dennis',
     excerpt: 'The environment is very nice.',
     date: '2 months ago',
+    stars: 5,
   },
   {
     author: 'Melody Saturday',
     excerpt: 'Friendly staff and good environment too.',
-    date: 'Edited a month ago',
+    date: '1 month ago',
+    stars: 5,
   },
   {
     author: 'erlina erlina',
     excerpt: 'I like the lotus leaf bun with the chicken.',
     date: '4 months ago',
+    stars: 5,
+  },
+  {
+    author: 'Moon Low',
+    excerpt: 'The food is tasty and hot. Nice food presentation too.',
+    date: '2 weeks ago',
+    stars: 4,
+  },
+  {
+    author: 'Jimmy G',
+    excerpt: 'The portion is great and the taste is great too!',
+    date: '2 months ago',
+    stars: 5,
   },
 ] as const;
 
@@ -36,9 +51,16 @@ function ReviewCard({
       data-review-card
       aria-hidden={duplicate ? 'true' : undefined}
     >
-      <div className="joy-review-card__stars" aria-label="5 out of 5 stars">
+      <div
+        className="joy-review-card__stars"
+        aria-label={`${review.stars} out of 5 stars`}
+      >
         {Array.from({ length: 5 }).map((_, index) => (
-          <Star key={index} fill="currentColor" aria-hidden="true" />
+          <Star
+            key={index}
+            fill={index < review.stars ? 'currentColor' : 'none'}
+            aria-hidden="true"
+          />
         ))}
       </div>
       <blockquote>“{review.excerpt}”</blockquote>
@@ -133,8 +155,8 @@ export default function Reviews() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-section-kicker">Google Reviews</p>
-          <h2 id="reviews-title">What people are saying</h2>
+          <p className="joy-section-kicker">Reviews</p>
+          <h2 id="reviews-title">What people say</h2>
         </motion.div>
 
         <div

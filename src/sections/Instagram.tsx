@@ -12,26 +12,38 @@ const socialPosts = [
   {
     image: fishAndChips,
     alt: 'JOY Dim Sum Kuala Lumpur fish and chips value deal with iced tea',
+    width: 631,
+    height: 875,
   },
   {
     image: dimSumDeal,
     alt: 'JOY Dim Sum buy four get one free promotion featuring assorted dim sum',
+    width: 631,
+    height: 875,
   },
   {
     image: pauDeal,
     alt: 'JOY Dim Sum buy four get one free promotion featuring assorted pau',
+    width: 631,
+    height: 875,
   },
   {
     image: siewMaiHighlight,
     alt: 'JOY Dim Sum siew mai menu highlight with a bamboo basket of dumplings',
+    width: 1240,
+    height: 1750,
   },
   {
     image: tongSui,
     alt: 'JOY Dim Sum tong sui dessert soup promotion in Kuala Lumpur',
+    width: 631,
+    height: 875,
   },
   {
     image: nasiKawKaw,
     alt: 'JOY Dim Sum Nasi Kaw Kaw value deal in Kuala Lumpur',
+    width: 631,
+    height: 875,
   },
 ];
 
@@ -49,8 +61,11 @@ export default function Instagram() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-section-kicker">Campaigns</p>
-          <h2 id="instagram-title">What is happening at JOY</h2>
+          <p className="joy-section-kicker">News</p>
+          <h2 id="instagram-title">
+            <span>What is happening</span>
+            <span>at JOY Dim Sum</span>
+          </h2>
         </motion.div>
 
         <div className="joy-instagram__grid">
@@ -63,7 +78,13 @@ export default function Instagram() {
               rel="noreferrer"
               aria-label={post.alt + ', open JOY on Instagram'}
             >
-              <img src={post.image} alt={post.alt} loading="lazy" />
+              <img
+                src={post.image}
+                alt={post.alt}
+                width={post.width}
+                height={post.height}
+                loading="lazy"
+              />
             </a>
           ))}
         </div>

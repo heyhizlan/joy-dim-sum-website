@@ -1,26 +1,72 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { CalendarDays, Clock, MapPin, Navigation } from 'lucide-react';
 
 const outlets = [
   {
-    name: 'Sentul',
-    address: 'Sentul Point, Kuala Lumpur',
+    name: 'Sentul Point',
+    address:
+      'AG-26, Sentul Point, Jln Sentul Pasar, Sentul, 51100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur',
+    addressLines: [
+      'AG-26, Sentul Point,',
+      'Jln Sentul Pasar, Sentul,',
+      '51100 Kuala Lumpur',
+    ],
     description: 'Dim sum, pau and casual dining at Sentul Point in Kuala Lumpur.',
     formerName: 'Formerly known as Dim Sum House.',
-    hours: 'Daily, 8am to 10pm',
+    hours: 'Monday–Sunday, 8am to 11pm',
     mapsLink:
-      'https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Sentul+Point',
+      'https://www.google.com/maps/place/Dim+Sum+House+@+Sentul+Point/@3.2019041,101.6893619,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc47ea6c13790f:0x7bcae75188d28cc7!8m2!3d3.2019041!4d101.6893619!16s%2Fg%2F11z2hxfpsd',
   },
   {
     name: 'Kiara Bay',
-    address: 'Kiara Bay, Kuala Lumpur',
-    description: 'A new JOY Dim Sum table is coming to Kiara Bay for the Klang Valley.',
+    address:
+      'The Beat at Kiara Bay, Karya Bayu Metropolitan, 51, Persiaran Putra Bayu, Kepong, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur',
+    addressLines: [
+      'The Beat at Kiara Bay, Karya Bayu Metropolitan,',
+      '51, Persiaran Putra Bayu, Kepong,',
+      '52100 Kuala Lumpur',
+    ],
+    description: 'A new JOY Dim Sum table is coming to Kiara Bay in Kepong, Kuala Lumpur.',
     note: 'Target opening 15 September 2026',
     mapsLink:
-      'https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Kiara+Bay',
+      'https://www.google.com/maps/search/?api=1&query=The+Beat+at+Kiara+Bay+51+Persiaran+Putra+Bayu+Kepong',
   },
 ] as const;
+
+const kiaraBayOpeningDate = new Date('2026-09-15T00:00:00+08:00').getTime();
+
+function getOpeningCountdown() {
+  const difference = kiaraBayOpeningDate - Date.now();
+
+  if (difference <= 0) return 'Opening day is here';
+
+  const days = Math.floor(difference / 86_400_000);
+  const hours = Math.floor((difference / 3_600_000) % 24);
+  const minutes = Math.floor((difference / 60_000) % 60);
+
+  return `${days}d ${hours}h ${minutes}m`;
+}
+
+function KiaraBayCountdown() {
+  const [countdown, setCountdown] = useState('Counting down…');
+
+  useEffect(() => {
+    const updateCountdown = () => setCountdown(getOpeningCountdown());
+
+    updateCountdown();
+    const interval = window.setInterval(updateCountdown, 60_000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="joy-outlet-card__countdown" aria-live="polite">
+      <span>Opening in</span>
+      <strong>{countdown}</strong>
+    </div>
+  );
+}
 
 export default function Locations() {
   const ref = useRef(null);
@@ -45,7 +91,10 @@ export default function Locations() {
           {outlets.map((outlet, index) => (
             <motion.article
               key={outlet.name}
-              className="joy-outlet-card"
+              className={
+                'joy-outlet-card' +
+                ('note' in outlet ? ' joy-outlet-card--opening' : '')
+              }
               initial={{ opacity: 0, y: 28 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -86,7 +135,11 @@ export default function Locations() {
                   aria-label={`Open ${outlet.name} in Google Maps`}
                 >
                   <MapPin aria-hidden="true" />
-                  <span>{outlet.address}</span>
+                  <span className="joy-outlet-card__address">
+                    {outlet.addressLines.map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </span>
                 </a>
                 {'hours' in outlet && (
                   <p>
@@ -102,15 +155,18 @@ export default function Locations() {
                 )}
               </div>
 
-              <a
-                className="joy-outlet-card__button"
-                href={outlet.mapsLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Navigation aria-hidden="true" size={18} />
-                Get directions
-              </a>
+              <div className="joy-outlet-card__footer">
+                <a
+                  className="joy-outlet-card__button"
+                  href={outlet.mapsLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Navigation aria-hidden="true" size={18} />
+                  Get directions
+                </a>
+                {'note' in outlet && <KiaraBayCountdown />}
+              </div>
             </motion.article>
           ))}
         </div>

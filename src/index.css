@@ -496,6 +496,26 @@ button:focus-visible,
   transform-origin: center;
 }
 
+.joy-comic-panel--photo:hover .joy-comic-panel__image-motion {
+  animation: joy-comic-image-wiggle 520ms ease-in-out 1;
+}
+
+@keyframes joy-comic-image-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  55% {
+    transform: rotate(4deg);
+  }
+  78% {
+    transform: rotate(-2deg);
+  }
+}
+
 .joy-comic-panel--photo img {
   position: absolute;
   bottom: 5%;
@@ -825,6 +845,7 @@ button:focus-visible,
   position: relative;
   display: flex;
   height: 100%;
+  min-width: 0;
   flex-direction: column;
   padding: clamp(25px, 3vw, 38px);
   border: 3px solid #2B1F17;
@@ -857,6 +878,10 @@ button:focus-visible,
   line-height: 0.95;
 }
 
+.joy-outlet-card--opening h3 {
+  padding-right: 132px;
+}
+
 .joy-outlet-card__description {
   display: grid;
   min-height: 3em;
@@ -876,6 +901,7 @@ button:focus-visible,
 .joy-outlet-card__details {
   display: grid;
   min-height: 78px;
+  min-width: 0;
   align-content: start;
   gap: 14px;
   margin: 22px 0 24px;
@@ -892,19 +918,30 @@ button:focus-visible,
 }
 
 .joy-outlet-card__map-link {
-  width: max-content;
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
+  justify-self: stretch;
   color: #2B1F17;
   text-decoration: none;
 }
 
-.joy-outlet-card__map-link span {
+.joy-outlet-card__address {
+  display: grid;
+  min-width: 0;
+  max-width: calc(100% - 31px);
+  font-size: clamp(0.82rem, 1.05vw, 0.94rem);
   text-decoration-color: transparent;
   text-underline-offset: 5px;
   transition: text-decoration-color 180ms ease;
 }
 
-.joy-outlet-card__map-link:hover span {
+.joy-outlet-card__address > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.joy-outlet-card__map-link:hover .joy-outlet-card__address {
   text-decoration-line: underline;
   text-decoration-color: #FFCC29;
 }
@@ -932,6 +969,41 @@ button:focus-visible,
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
+}
+
+.joy-outlet-card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: auto;
+}
+
+.joy-outlet-card__footer .joy-outlet-card__button {
+  margin-top: 0;
+}
+
+.joy-outlet-card__countdown {
+  display: grid;
+  justify-items: end;
+  color: #2B1F17;
+  font-family: 'SN Pro', sans-serif;
+  line-height: 1;
+  text-align: right;
+}
+
+.joy-outlet-card__countdown span {
+  margin-bottom: 6px;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.joy-outlet-card__countdown strong {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  font-weight: 780;
+  white-space: nowrap;
 }
 
 .joy-about {
@@ -1146,9 +1218,12 @@ button:focus-visible,
 
 .joy-reviews__scroller {
   display: flex;
+  width: 100%;
+  min-width: 0;
   gap: 22px;
   overflow-x: auto;
-  padding: 6px 0 26px;
+  padding: 6px 3px 26px;
+  scroll-padding-inline: 3px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-inline: contain;
@@ -1223,7 +1298,7 @@ button:focus-visible,
 
 .joy-review-card--cta {
   justify-content: space-between;
-  background: #ED7E8B;
+  background: #F1E8D7;
   color: #2B1F17;
 }
 
@@ -1305,19 +1380,23 @@ button:focus-visible,
 }
 
 .joy-instagram__heading .joy-section-kicker {
-  color: #2B1F17;
+  color: #F1E8D7;
   font-size: clamp(1rem, 1.8vw, 1.3rem);
 }
 
 .joy-instagram__heading h2 {
   max-width: 900px;
   margin: 10px 0 0;
-  color: #2B1F17;
+  color: #F1E8D7;
   font-family: 'SN Pro', sans-serif;
   font-size: clamp(3.5rem, 7vw, 7rem);
   font-weight: 820;
   letter-spacing: -0.045em;
   line-height: 0.88;
+}
+
+.joy-instagram__heading h2 > span {
+  display: block;
 }
 
 .joy-instagram__grid {
@@ -1801,6 +1880,24 @@ a.joy-footer__detail:hover {
     position: static;
     display: inline-flex;
     margin-bottom: 20px;
+  }
+
+  .joy-outlet-card--opening h3 {
+    padding-right: 0;
+  }
+
+  .joy-outlet-card__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .joy-outlet-card__countdown {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .joy-outlet-card__address > span {
+    white-space: normal;
   }
 
   .joy-about__copy {
