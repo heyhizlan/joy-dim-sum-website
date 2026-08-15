@@ -1,0 +1,120 @@
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { CalendarDays, Clock, MapPin, Navigation } from 'lucide-react';
+
+const outlets = [
+  {
+    name: 'Sentul',
+    address: 'Sentul Point, Kuala Lumpur',
+    description: 'Dim sum, pau and casual dining at Sentul Point in Kuala Lumpur.',
+    formerName: 'Formerly known as Dim Sum House.',
+    hours: 'Daily, 8am to 10pm',
+    mapsLink:
+      'https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Sentul+Point',
+  },
+  {
+    name: 'Kiara Bay',
+    address: 'Kiara Bay, Kuala Lumpur',
+    description: 'A new JOY Dim Sum table is coming to Kiara Bay for the Klang Valley.',
+    note: 'Target opening 15 September 2026',
+    mapsLink:
+      'https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Kiara+Bay',
+  },
+] as const;
+
+export default function Locations() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <section id="locations" className="joy-locations" aria-labelledby="locations-title">
+      <div className="joy-locations__pattern" aria-hidden="true" />
+      <div className="joy-section-shell joy-locations__content">
+        <motion.div
+          ref={ref}
+          className="joy-locations__heading"
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="joy-section-kicker">Find our outlets</p>
+          <h2 id="locations-title">Two tables, same JOY</h2>
+        </motion.div>
+
+        <div className="joy-locations__grid">
+          {outlets.map((outlet, index) => (
+            <motion.article
+              key={outlet.name}
+              className="joy-outlet-card"
+              initial={{ opacity: 0, y: 28 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.58,
+                delay: index * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {'note' in outlet && (
+                <motion.span
+                  className="joy-outlet-card__status"
+                  animate={
+                    isInView
+                      ? { rotate: [0, -6, 6, -4, 4, 0], y: [0, -2, 0, -1, 0] }
+                      : {}
+                  }
+                  transition={{ duration: 0.72, delay: 0.6, ease: 'easeInOut' }}
+                >
+                  Opening soon
+                </motion.span>
+              )}
+              <h3>{outlet.name}</h3>
+              <p className="joy-outlet-card__description">
+                <span>{outlet.description}</span>
+                {'formerName' in outlet && (
+                  <span className="joy-outlet-card__former-name">
+                    {outlet.formerName}
+                  </span>
+                )}
+              </p>
+
+              <div className="joy-outlet-card__details">
+                <a
+                  className="joy-outlet-card__map-link"
+                  href={outlet.mapsLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${outlet.name} in Google Maps`}
+                >
+                  <MapPin aria-hidden="true" />
+                  <span>{outlet.address}</span>
+                </a>
+                {'hours' in outlet && (
+                  <p>
+                    <Clock aria-hidden="true" />
+                    <span>{outlet.hours}</span>
+                  </p>
+                )}
+                {'note' in outlet && (
+                  <p>
+                    <CalendarDays aria-hidden="true" />
+                    <span>{outlet.note}</span>
+                  </p>
+                )}
+              </div>
+
+              <a
+                className="joy-outlet-card__button"
+                href={outlet.mapsLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Navigation aria-hidden="true" size={18} />
+                Get directions
+              </a>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
