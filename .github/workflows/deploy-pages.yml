@@ -36,7 +36,7 @@ jobs:
 
       - name: Build website
         env:
-          VITE_BASE_PATH: /joy-dim-sum-website/
+          VITE_BASE_PATH: /
         run: npm run build
 
       - name: Upload GitHub Pages artifact
