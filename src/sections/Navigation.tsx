@@ -105,7 +105,6 @@ export default function Navigation() {
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -24 }}
             transition={{ duration: 0.28 }}
           >
-            <div className="joy-mobile-nav__pattern" aria-hidden="true" />
             <div className="joy-mobile-nav__links">
               {navLinks.map((link, index) => (
                 <motion.a

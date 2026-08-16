@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight, AtSign } from 'lucide-react';
 import fishAndChips from '../assets/seo/joy-dim-sum-fish-and-chips-value-deal-kuala-lumpur.webp';
@@ -49,6 +49,7 @@ const socialPosts = [
 
 export default function Instagram() {
   const ref = useRef(null);
+  const [showAllPosts, setShowAllPosts] = useState(false);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
@@ -68,11 +69,19 @@ export default function Instagram() {
           </h2>
         </motion.div>
 
-        <div className="joy-instagram__grid">
-          {socialPosts.map((post) => (
+        <div
+          className={
+            'joy-instagram__grid' +
+            (showAllPosts ? ' joy-instagram__grid--expanded' : '')
+          }
+        >
+          {socialPosts.map((post, index) => (
             <a
               key={post.alt}
-              className="joy-instagram__tile"
+              className={
+                'joy-instagram__tile' +
+                (index >= 3 ? ' joy-instagram__tile--more' : '')
+              }
               href="https://www.instagram.com/joydimsum.my/"
               target="_blank"
               rel="noreferrer"
@@ -87,6 +96,16 @@ export default function Instagram() {
               />
             </a>
           ))}
+        </div>
+
+        <div className="joy-instagram__more">
+          <button
+            type="button"
+            onClick={() => setShowAllPosts((isExpanded) => !isExpanded)}
+            aria-expanded={showAllPosts}
+          >
+            {showAllPosts ? 'Show less' : 'Show more'}
+          </button>
         </div>
 
         <div className="joy-instagram__follow">
