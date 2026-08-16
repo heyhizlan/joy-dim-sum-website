@@ -8,11 +8,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Dim sum, pau and more at JOY Dim Sum Sentul Point and JOY Dim Sum Kiara Bay, Kepong. Find outlets, hours and menus in Kuala Lumpur." />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- Replaced at build time by scripts/prerender.mjs based on MAINTENANCE_MODE -->
+    <meta name="robots" content="__ROBOTS_DIRECTIVE__" />
     <meta name="theme-color" content="#1D552B" />
     <meta name="geo.region" content="MY-14" />
     <meta name="geo.placename" content="Kuala Lumpur" />
     <link rel="canonical" href="https://joydimsum.com/" />
+    <link rel="manifest" href="/site.webmanifest" />
     <!-- Google Search Console verification tag can be added here once provided -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_MY" />
@@ -37,6 +39,24 @@
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "Organization",
+            "@id": "https://joydimsum.com/#organization",
+            "name": "JOY Dim Sum",
+            "url": "https://joydimsum.com/",
+            "logo": "https://joydimsum.com/apple-touch-icon.png",
+            "sameAs": [
+              "https://www.facebook.com/joydimsum.my/",
+              "https://www.instagram.com/joydimsum.my/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://joydimsum.com/#website",
+            "url": "https://joydimsum.com/",
+            "name": "JOY Dim Sum",
+            "publisher": { "@id": "https://joydimsum.com/#organization" }
+          },
+          {
             "@type": "Restaurant",
             "@id": "https://joydimsum.com/#joy-dim-sum-sentul-point",
             "name": "JOY Dim Sum Sentul Point",
@@ -44,8 +64,15 @@
             "description": "Dim sum, pau and casual dining at JOY Dim Sum Sentul Point in Sentul, Kuala Lumpur. Formerly known as Dim Sum House.",
             "url": "https://joydimsum.com/#locations",
             "image": "https://joydimsum.com/og/joydimsum-ogshare-web.jpg",
-            "logo": "https://joydimsum.com/joy-dim-sum-favicon.svg",
+            "logo": "https://joydimsum.com/apple-touch-icon.png",
+            "priceRange": "$$",
+            "parentOrganization": { "@id": "https://joydimsum.com/#organization" },
             "servesCuisine": ["Dim Sum", "Chinese", "Pau"],
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 3.2019041,
+              "longitude": 101.6893619
+            },
             "areaServed": [
               { "@type": "Place", "name": "Sentul" },
               { "@type": "Place", "name": "Kepong" },
@@ -87,8 +114,15 @@
             "description": "A new JOY Dim Sum outlet is coming to Kiara Bay in Kepong, Kuala Lumpur, with a target opening date of 15 September 2026.",
             "url": "https://joydimsum.com/#locations",
             "image": "https://joydimsum.com/og/joydimsum-ogshare-web.jpg",
-            "logo": "https://joydimsum.com/joy-dim-sum-favicon.svg",
+            "logo": "https://joydimsum.com/apple-touch-icon.png",
+            "priceRange": "$$",
+            "parentOrganization": { "@id": "https://joydimsum.com/#organization" },
             "servesCuisine": ["Dim Sum", "Chinese", "Pau"],
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 3.2255752,
+              "longitude": 101.6505833
+            },
             "areaServed": [
               { "@type": "Place", "name": "Kepong" },
               { "@type": "Place", "name": "Klang Valley" },

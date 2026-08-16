@@ -23,7 +23,7 @@ const outlets = [
     ],
     description: 'Dim sum, pau and casual dining at Sentul Point in Kuala Lumpur.',
     formerName: 'Formerly known as Dim Sum House.',
-    hours: 'Monday–Sunday, 10am to 10pm',
+    hours: 'Monday–Sunday, 8am to 11pm',
     mapsLink:
       'https://www.google.com/maps/place/Dim+Sum+House+@+Sentul+Point/@3.2019041,101.6893619,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc47ea6c13790f:0x7bcae75188d28cc7!8m2!3d3.2019041!4d101.6893619!16s%2Fg%2F11z2hxfpsd',
   },
@@ -45,21 +45,29 @@ const stickers = [
   {
     image: siewMai,
     alt: 'Siew mai dim sum sticker',
+    width: 1184,
+    height: 1070,
     className: 'joy-maintenance__sticker--siew-mai',
   },
   {
     image: harKau,
     alt: 'Har kau dim sum sticker',
+    width: 1210,
+    height: 1084,
     className: 'joy-maintenance__sticker--har-kau',
   },
   {
     image: chickenPau,
     alt: 'Chicken pau sticker',
+    width: 1067,
+    height: 908,
     className: 'joy-maintenance__sticker--chicken-pau',
   },
   {
     image: gulaMelakaMantau,
     alt: 'Gula Melaka mantau sticker',
+    width: 996,
+    height: 848,
     className: 'joy-maintenance__sticker--mantau',
   },
 ] as const;
@@ -187,7 +195,13 @@ export default function MaintenancePage() {
                 whileDrag={{ scale: 1.08, zIndex: 10 }}
                 aria-label={`Move the ${sticker.alt.toLowerCase()}`}
               >
-                <img src={sticker.image} alt={sticker.alt} draggable="false" />
+                <img
+                  src={sticker.image}
+                  alt={sticker.alt}
+                  width={sticker.width}
+                  height={sticker.height}
+                  draggable="false"
+                />
               </motion.button>
             ))}
           </div>
@@ -303,7 +317,7 @@ export default function MaintenancePage() {
               <span>Facebook</span>
             </a>
           </nav>
-          <p>© {new Date().getFullYear()} JOY Dim Sum. All rights reserved.</p>
+          <p suppressHydrationWarning>© {new Date().getFullYear()} JOY Dim Sum. All rights reserved.</p>
         </div>
       </footer>
     </div>

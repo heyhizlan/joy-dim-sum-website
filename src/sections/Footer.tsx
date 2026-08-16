@@ -127,7 +127,7 @@ export default function Footer() {
         </div>
 
         <div className="joy-footer__bottom">
-          <p>&copy; {new Date().getFullYear()} JOY Dim Sum. All rights reserved.</p>
+          <p suppressHydrationWarning>&copy; {new Date().getFullYear()} JOY Dim Sum. All rights reserved.</p>
         </div>
       </div>
     </footer>
