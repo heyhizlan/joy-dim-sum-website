@@ -1729,7 +1729,7 @@ a.joy-footer__detail:hover {
 .joy-maintenance__playground {
   position: relative;
   min-height: 590px;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .joy-maintenance__drag-note {
@@ -1750,6 +1750,15 @@ a.joy-footer__detail:hover {
   padding: 0;
   border: 0;
   background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.joy-maintenance__playground[data-drag-enabled='true'] {
+  touch-action: none;
+}
+
+.joy-maintenance__playground[data-drag-enabled='true'] .joy-maintenance__sticker {
   cursor: grab;
   touch-action: none;
 }
@@ -1929,7 +1938,9 @@ a.joy-footer__detail:hover {
   .joy-maintenance__hero {
     min-height: auto;
     grid-template-columns: 1fr;
-    padding-top: 6rem;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    padding-top: clamp(2.75rem, 6vw, 4rem);
+    padding-bottom: clamp(4rem, 8vw, 5rem);
   }
 
   .joy-maintenance__intro {
@@ -1938,8 +1949,17 @@ a.joy-footer__detail:hover {
 
   .joy-maintenance__playground {
     width: min(100%, 680px);
-    min-height: 560px;
+    min-height: 480px;
     margin: 0 auto;
+  }
+
+  .joy-maintenance__drag-note {
+    display: none;
+  }
+
+  .joy-maintenance__outlets {
+    padding-top: clamp(4rem, 7vw, 5rem);
+    padding-bottom: clamp(3rem, 7vw, 5rem);
   }
 }
 
@@ -1957,13 +1977,13 @@ a.joy-footer__detail:hover {
   }
 
   .joy-maintenance__hero {
-    gap: 3.5rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    gap: 2.25rem;
+    padding-top: 2.25rem;
+    padding-bottom: 3rem;
   }
 
   .joy-maintenance h1 {
-    font-size: 4.2rem;
+    font-size: 3.2rem;
     line-height: 0.94;
   }
 
@@ -1978,7 +1998,7 @@ a.joy-footer__detail:hover {
   }
 
   .joy-maintenance__playground {
-    min-height: 390px;
+    min-height: 330px;
   }
 
   .joy-maintenance__drag-note {
@@ -2011,6 +2031,15 @@ a.joy-footer__detail:hover {
 
   .joy-maintenance__outlet-heading h2 {
     font-size: clamp(3.7rem, 18vw, 5rem);
+  }
+
+  .joy-maintenance__outlets {
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .joy-maintenance__outlet-heading {
+    margin-bottom: 34px;
   }
 
   .joy-maintenance__footer-inner {

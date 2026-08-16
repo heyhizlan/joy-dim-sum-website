@@ -118,6 +118,19 @@ function KiaraBayCountdown() {
 
 export default function MaintenancePage() {
   const heroSectionRef = useRef<HTMLElement>(null);
+  const [dragEnabled, setDragEnabled] = useState(false);
+
+  useEffect(() => {
+    const dragMedia = window.matchMedia(
+      '(min-width: 981px) and (hover: hover) and (pointer: fine)',
+    );
+    const updateDragSupport = () => setDragEnabled(dragMedia.matches);
+
+    updateDragSupport();
+    dragMedia.addEventListener('change', updateDragSupport);
+
+    return () => dragMedia.removeEventListener('change', updateDragSupport);
+  }, []);
 
   return (
     <div className="joy-maintenance">
@@ -157,14 +170,17 @@ export default function MaintenancePage() {
             </a>
           </div>
 
-          <div className="joy-maintenance__playground">
+          <div
+            className="joy-maintenance__playground"
+            data-drag-enabled={dragEnabled ? 'true' : 'false'}
+          >
             <p className="joy-maintenance__drag-note">Drag a basket while you wait</p>
             {stickers.map((sticker) => (
               <motion.button
                 key={sticker.alt}
                 type="button"
                 className={`joy-maintenance__sticker ${sticker.className}`}
-                drag
+                drag={dragEnabled}
                 dragConstraints={heroSectionRef}
                 dragElastic={0.08}
                 dragMomentum={false}
