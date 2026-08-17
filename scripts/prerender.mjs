@@ -7,42 +7,23 @@ const serverBundlePath = new URL('../dist/server/entry-server.js', import.meta.u
 const serverOutputPath = new URL('../dist/server/', import.meta.url);
 
 const template = await readFile(indexPath, 'utf8');
+
 const { render, MAINTENANCE_MODE } = await import(serverBundlePath.href);
 const appHtml = render();
 
 if (!template.includes('<div id="root"></div>')) {
-  throw new Error(`Could not find the empty React root in ${projectRoot}dist/index.html`);
+  throw new Error(
+    `Could not find the empty React root in ${projectRoot}dist/index.html`,
+  );
 }
 
-// Maintenance pages must stay out of the index; the live site should be crawled.
 const robotsDirective = MAINTENANCE_MODE
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large';
 
 const prerendered = template
-  .replace(
-    '<div id="root"></div>',
-    `<div id="root">${appHtml}</div>`,
-  )
+  .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
   .replace('__ROBOTS_DIRECTIVE__', robotsDirective);
 
 await writeFile(indexPath, prerendered);
 await rm(serverOutputPath, { recursive: true, force: true });
-import { readdir } from "node:fs/promises";
-import path from "node:path";
-import { pathToFileURL } from "node:url";
-
-const serverDir = path.resolve("dist/server");
-const files = await readdir(serverDir);
-
-const entryFile = files.find(
-  (file) => file.startsWith("entry-server-") && file.endsWith(".js")
-);
-
-if (!entryFile) {
-  throw new Error("Could not find built server entry file.");
-}
-
-const { render } = await import(
-  pathToFileURL(path.join(serverDir, entryFile)).href
-);
