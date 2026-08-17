@@ -3,26 +3,47 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
-const indexPath = path.join(projectRoot, 'dist', 'index.html');
-const serverDirectory = path.join(projectRoot, 'dist', 'server');
+const distDir = path.join(projectRoot, 'dist');
+const serverDirectory = path.join(distDir, 'server');
 
-// Dynamically discover the entry-server file (handles hashed filenames + assets/ subdir)
-let serverFiles;
-try {
-  serverFiles = await readdir(serverDirectory, { recursive: true });
-} catch {
-  throw new Error(`SSR output directory not found: ${serverDirectory}`);
+async function findEntryServer(startDir) {
+  try {
+    const files = await readdir(startDir, { recursive: true });
+    console.log(
+      `[prerender] Files in ${path.relative(projectRoot, startDir)}:`,
+      files
+    );
+    const match = files.find(
+      (f) => path.basename(f).startsWith('entry-server') && f.endsWith('.js')
+    );
+    return match ? { file: match, baseDir: startDir } : null;
+  } catch (err) {
+    console.log(
+      `[prerender] Could not read ${startDir}: ${err.message}`
+    );
+    return null;
+  }
 }
 
-const entryFile = serverFiles.find(
-  (f) => path.basename(f).startsWith('entry-server') && f.endsWith('.js')
-);
+// 1. Look in dist/server (normal case)
+let found = await findEntryServer(serverDirectory);
 
-if (!entryFile) {
-  throw new Error(`Could not find an entry-server bundle in ${serverDirectory}`);
+// 2. Fallback: look anywhere in dist (when wrangler moves things)
+if (!found) {
+  console.log('[prerender] Not found in dist/server, scanning dist/...');
+  found = await findEntryServer(distDir);
 }
 
-const serverEntryPath = path.join(serverDirectory, entryFile);
+if (!found) {
+  throw new Error(
+    `Could not find an entry-server .js bundle in ${serverDirectory} or ${distDir}`
+  );
+}
+
+const serverEntryPath = path.join(found.baseDir, found.file);
+console.log('[prerender] Loading SSR bundle from:', serverEntryPath);
+
+const indexPath = path.join(distDir, 'index.html');
 const template = await readFile(indexPath, 'utf8');
 
 if (!template.includes('<div id="root"></div>')) {
@@ -48,3 +69,4 @@ const prerendered = template
 
 await writeFile(indexPath, prerendered, 'utf8');
 await rm(serverDirectory, { recursive: true, force: true });
+console.log('[prerender] Done. index.html prerendered.');
