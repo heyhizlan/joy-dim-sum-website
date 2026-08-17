@@ -14,7 +14,7 @@ const outlets = [
     ],
     description: 'Dim sum, pau and casual dining at Sentul Point in Kuala Lumpur.',
     formerName: 'Formerly known as Dim Sum House.',
-    hours: 'Monday–Sunday, 8am to 11pm',
+    hours: 'Monday–Sunday, 10am to 10pm',
     mapsLink:
       'https://www.google.com/maps/place/Dim+Sum+House+@+Sentul+Point/@3.2019041,101.6893619,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc47ea6c13790f:0x7bcae75188d28cc7!8m2!3d3.2019041!4d101.6893619!16s%2Fg%2F11z2hxfpsd',
   },

@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'What are Sentul Point’s opening hours?',
     answer:
-      'Sentul Point is open Monday to Sunday, from 8am to 11pm.',
+      'Sentul Point is open Monday to Sunday, from 10am to 10pm.',
   },
   {
     question: 'How can I get the latest JOY updates?',
