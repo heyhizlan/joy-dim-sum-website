@@ -28,3 +28,21 @@ const prerendered = template
 
 await writeFile(indexPath, prerendered);
 await rm(serverOutputPath, { recursive: true, force: true });
+import { readdir } from "node:fs/promises";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
+
+const serverDir = path.resolve("dist/server");
+const files = await readdir(serverDir);
+
+const entryFile = files.find(
+  (file) => file.startsWith("entry-server-") && file.endsWith(".js")
+);
+
+if (!entryFile) {
+  throw new Error("Could not find built server entry file.");
+}
+
+const { render } = await import(
+  pathToFileURL(path.join(serverDir, entryFile)).href
+);
