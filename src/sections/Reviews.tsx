@@ -11,32 +11,48 @@ const googleReviews = [
     excerpt: 'The environment is very nice.',
     date: '2 months ago',
     stars: 5,
+    reviewLink: 'https://maps.app.goo.gl/wUhYKmccA7RKcUkT6',
   },
   {
     author: 'Melody Saturday',
     excerpt: 'Friendly staff and good environment too.',
     date: '1 month ago',
     stars: 5,
+    reviewLink: 'https://maps.app.goo.gl/YvjkjeJCFXrNrAk7A',
   },
   {
     author: 'erlina erlina',
     excerpt: 'I like the lotus leaf bun with the chicken.',
     date: '4 months ago',
     stars: 5,
+    reviewLink: 'https://maps.app.goo.gl/eQbxwab1M67AsYWp6',
   },
   {
     author: 'Moon Low',
     excerpt: 'The food is tasty and hot. Nice food presentation too.',
     date: '2 weeks ago',
     stars: 4,
+    reviewLink: 'https://maps.app.goo.gl/g4VbUWrE5XCFBftE7',
   },
   {
     author: 'Jimmy G',
     excerpt: 'The portion is great and the taste is great too!',
     date: '2 months ago',
     stars: 5,
+    reviewLink: 'https://maps.app.goo.gl/P7oJAHKQU94VpxMM9',
   },
 ] as const;
+
+function GoogleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M21.6 12.23c0-.71-.06-1.4-.18-2.07H12v3.92h5.38a4.6 4.6 0 0 1-2 3.02v2.54h3.24c1.9-1.75 2.98-4.33 2.98-7.41Z" />
+      <path fill="currentColor" d="M12 22c2.7 0 4.98-.9 6.64-2.36l-3.24-2.54c-.9.6-2.05.96-3.4.96-2.61 0-4.82-1.77-5.61-4.15H3.04v2.62A10 10 0 0 0 12 22Z" />
+      <path fill="currentColor" d="M6.39 13.91A6 6 0 0 1 6.08 12c0-.66.11-1.31.31-1.91V7.47H3.04A10 10 0 0 0 2 12c0 1.61.38 3.14 1.04 4.53l3.35-2.62Z" />
+      <path fill="currentColor" d="M12 5.94c1.47 0 2.79.5 3.83 1.5l2.87-2.87A9.63 9.63 0 0 0 12 2a10 10 0 0 0-8.96 5.47l3.35 2.62C7.18 7.71 9.39 5.94 12 5.94Z" />
+    </svg>
+  );
+}
 
 function ReviewCard({
   review,
@@ -68,6 +84,16 @@ function ReviewCard({
         <strong>{review.author}</strong>
         <span>{review.date} on Google</span>
       </footer>
+      <a
+        className="joy-review-card__google"
+        href={review.reviewLink}
+        target="_blank"
+        rel="noreferrer"
+        tabIndex={duplicate ? -1 : undefined}
+        aria-label={`Read ${review.author}'s review on Google`}
+      >
+        <GoogleIcon />
+      </a>
     </article>
   );
 }
@@ -82,9 +108,9 @@ function ReviewCta({ duplicate = false }: { duplicate?: boolean }) {
       <div>
         <p>30+ reviews on Google</p>
         <h3>
-          4.5+ stars. Big JOY<span className="joy-punctuation">!</span>
+          4.5+ Stars. Wah, Big JOY<span className="joy-punctuation">!</span>
         </h3>
-        <span>See what guests are sharing about their table at Sentul Point.</span>
+        <span>See what our guests are saying about JOY Dim Sum at Sentul Point.</span>
       </div>
       <a
         className="joy-reviews__button"
@@ -93,7 +119,7 @@ function ReviewCta({ duplicate = false }: { duplicate?: boolean }) {
         rel="noreferrer"
         tabIndex={duplicate ? -1 : undefined}
       >
-        Open Google Reviews
+        Read Our Google Reviews
         <ArrowUpRight aria-hidden="true" />
       </a>
     </article>
@@ -155,8 +181,9 @@ export default function Reviews() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-section-kicker">Reviews</p>
-          <h2 id="reviews-title">What people say</h2>
+          <p className="joy-section-kicker">Customer Reviews</p>
+          <h2 id="reviews-title">What People Say</h2>
+          <p>Good food tastes even better when people share the JOY.</p>
         </motion.div>
 
         <div

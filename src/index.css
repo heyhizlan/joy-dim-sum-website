@@ -380,6 +380,11 @@ button:focus-visible,
   text-transform: uppercase;
 }
 
+h1.joy-hero__eyebrow {
+  font-family: inherit;
+  line-height: inherit;
+}
+
 .joy-hero__headline {
   margin: 0;
   font-family: 'SN Pro', sans-serif;
@@ -390,13 +395,20 @@ button:focus-visible,
   text-transform: uppercase;
 }
 
-.joy-hero__headline span {
+.joy-hero__headline > span {
   display: block;
   white-space: nowrap;
 }
 
-.joy-hero__headline span:last-child {
+.joy-hero__headline > span:last-child {
   margin-top: 0.18em;
+}
+
+.joy-hero__of {
+  color: #F1E8D7;
+}
+
+.joy-hero__joy {
   color: #FFCC29;
 }
 
@@ -583,6 +595,40 @@ button:focus-visible,
   }
   50% {
     transform: translateY(5px);
+  }
+}
+
+.joy-menu-ticker {
+  width: 100%;
+  overflow: hidden;
+  border-top: 3px solid #2B1F17;
+  border-bottom: 3px solid #2B1F17;
+  background: #ED7E8B;
+  color: #2B1F17;
+}
+
+.joy-menu-ticker__track {
+  display: flex;
+  width: max-content;
+  animation: joy-menu-ticker-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.joy-menu-ticker__track span {
+  display: block;
+  flex: none;
+  padding: 18px 0;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(1.45rem, 2.5vw, 2.45rem);
+  font-weight: 850;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@keyframes joy-menu-ticker-scroll {
+  to {
+    transform: translateX(-50%);
   }
 }
 
@@ -1026,6 +1072,15 @@ button:focus-visible,
   line-height: 0.88;
 }
 
+.joy-about h2 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.joy-about__joy {
+  color: #FFCC29;
+}
+
 .joy-about__copy {
   display: grid;
   gap: 23px;
@@ -1072,6 +1127,11 @@ button:focus-visible,
 .joy-faq__heading {
   margin-bottom: 48px;
   text-align: center;
+}
+
+.joy-faq__heading h2 {
+  font-size: clamp(2.4rem, 4.8vw, 5.2rem);
+  white-space: nowrap;
 }
 
 .joy-faq__heading .joy-section-kicker {
@@ -1195,6 +1255,33 @@ button:focus-visible,
   gap: 0;
 }
 
+.joy-reviews__heading > p:last-child {
+  max-width: 520px;
+  margin: 20px 0 0;
+  color: #2B1F17;
+  font-size: 1.08rem;
+  line-height: 1.55;
+}
+
+.joy-faq__answer a,
+.joy-inline-link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness 160ms ease, text-underline-offset 160ms ease;
+}
+
+.joy-faq__answer a:hover,
+.joy-faq__answer a:focus-visible,
+.joy-inline-link:hover,
+.joy-inline-link:focus-visible {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
 .joy-reviews h2 {
   max-width: 520px;
   margin: 0;
@@ -1224,6 +1311,7 @@ button:focus-visible,
 }
 
 .joy-review-card {
+  position: relative;
   display: flex;
   width: calc((100% - 44px) / 3);
   min-height: 290px;
@@ -1274,7 +1362,7 @@ button:focus-visible,
   display: grid;
   gap: 4px;
   margin-top: auto;
-  padding-top: 26px;
+  padding: 26px 42px 0 0;
 }
 
 .joy-review-card footer strong {
@@ -1284,6 +1372,29 @@ button:focus-visible,
 .joy-review-card footer span {
   color: #6F655C;
   font-size: 0.8rem;
+}
+
+.joy-review-card__google {
+  position: absolute;
+  right: clamp(24px, 3vw, 36px);
+  bottom: clamp(24px, 3vw, 36px);
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: #2B1F17;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.joy-review-card__google:hover,
+.joy-review-card__google:focus-visible {
+  color: #1D552B;
+  transform: translateY(-3px) rotate(-5deg);
+}
+
+.joy-review-card__google svg {
+  width: 100%;
+  height: 100%;
 }
 
 .joy-review-card--cta {
@@ -1371,7 +1482,6 @@ button:focus-visible,
 
 .joy-instagram__heading .joy-section-kicker {
   color: #F1E8D7;
-  font-size: clamp(1rem, 1.8vw, 1.3rem);
 }
 
 .joy-instagram__heading h2 {
@@ -1387,6 +1497,18 @@ button:focus-visible,
 
 .joy-instagram__heading h2 > span {
   display: block;
+}
+
+.joy-instagram__intro {
+  max-width: 700px;
+  margin: 18px 0 0;
+  color: rgb(241 232 215 / 88%);
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.55;
+}
+
+.joy-instagram__intro + .joy-instagram__intro {
+  margin-top: 6px;
 }
 
 .joy-instagram__grid {
@@ -1537,7 +1659,8 @@ button:focus-visible,
 
 .joy-footer__navigation a {
   position: relative;
-  width: max-content;
+  width: fit-content;
+  max-width: 100%;
   padding-bottom: 3px;
 }
 
@@ -1564,6 +1687,14 @@ button:focus-visible,
   height: 18px;
   flex: none;
   color: #F1E8D7;
+}
+
+.joy-footer__location,
+.joy-footer__social {
+  display: flex;
+  width: fit-content;
+  align-items: flex-start;
+  gap: 9px;
 }
 
 a.joy-footer__detail:hover {
@@ -1606,6 +1737,20 @@ a.joy-footer__detail:hover {
   color: rgb(241 232 215 / 48%);
   font-size: 0.75rem;
   text-align: right;
+}
+
+.joy-footer__bottom a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.joy-footer__bottom a:hover,
+.joy-footer__bottom a:focus-visible {
+  color: #F1E8D7;
+  text-decoration-color: #FFCC29;
 }
 
 .joy-maintenance {
@@ -2283,6 +2428,10 @@ a.joy-footer__detail:hover {
     font-size: clamp(3.15rem, 15vw, 4.6rem);
   }
 
+  .joy-faq__heading h2 {
+    font-size: clamp(2rem, 7.2vw, 3rem);
+  }
+
   .joy-reviews__heading {
     display: grid;
     align-items: start;
@@ -2436,6 +2585,10 @@ a.joy-footer__detail:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .joy-menu-ticker__track {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

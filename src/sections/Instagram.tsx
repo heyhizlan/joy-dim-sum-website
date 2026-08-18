@@ -62,11 +62,17 @@ export default function Instagram() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-section-kicker">News</p>
+          <p className="joy-section-kicker">Latest News</p>
           <h2 id="instagram-title">
-            <span>What is happening</span>
+            <span>What&apos;s Happening</span>
             <span>at JOY Dim Sum</span>
           </h2>
+          <p className="joy-instagram__intro">
+            New menu items, promotions and outlet updates. All the good stuff is here.
+          </p>
+          <p className="joy-instagram__intro">
+            Follow <a className="joy-inline-link" href="https://www.instagram.com/joydimsum.my/" target="_blank" rel="noreferrer">@joydimsum.my</a> for the latest JOY Dim Sum news.
+          </p>
         </motion.div>
 
         <div
