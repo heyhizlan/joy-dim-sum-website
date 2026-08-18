@@ -17,29 +17,29 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-hero__eyebrow">
+          <h1 id="joy-hero-title" className="joy-hero__eyebrow">
             <Heart aria-hidden="true" size={17} strokeWidth={2.6} fill="currentColor" />
-            Dim sum in Sentul and Kepong.
-          </p>
-
-          <h1 id="joy-hero-title" className="joy-hero__headline">
-            <span>FULL BITE</span>
-            <span>OF JOY</span>
+            Dim sum in Sentul and Kepong
           </h1>
 
+          <div className="joy-hero__headline">
+            <span>FULL BITE</span>
+            <span><span className="joy-hero__of">OF</span> <span className="joy-hero__joy">JOY</span></span>
+          </div>
+
           <p className="joy-hero__lede">
-            Dim sum first, pau next, and plenty more to share. Come hungry and
-            stay a little longer.
+            Dim sum, pau and plenty more to share. Come hungry, bring your makan
+            gang and stay a bit longer, lah.
           </p>
 
           <div className="joy-hero__actions">
             <a className="joy-button joy-button--primary" href="#menu">
-              View the menu
+              View Our Menu
               <ArrowDownRight aria-hidden="true" size={19} strokeWidth={2.4} />
             </a>
             <a className="joy-button joy-button--secondary" href="#locations">
               <MapPin aria-hidden="true" size={18} strokeWidth={2.4} />
-              Find us
+              Find an Outlet
             </a>
           </div>
         </motion.div>
@@ -71,7 +71,7 @@ export default function Hero() {
             </figure>
 
             <article className="joy-comic-panel joy-comic-panel--copy joy-comic-panel--pink">
-              <p>One more basket?</p>
+              <p>ONE MORE BASKET?</p>
             </article>
 
             <article className="joy-comic-panel joy-comic-panel--copy joy-comic-panel--beige-copy">
@@ -103,7 +103,7 @@ export default function Hero() {
       </div>
 
       <a className="joy-hero__scroll" href="#menu">
-        Keep scrolling
+        See what&apos;s steaming
         <span aria-hidden="true">↓</span>
       </a>
     </section>

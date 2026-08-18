@@ -12,9 +12,9 @@ const outlets = [
       'Jln Sentul Pasar, Sentul,',
       '51100 Kuala Lumpur',
     ],
-    description: 'Dim sum, pau and casual dining at Sentul Point in Kuala Lumpur.',
+    description: 'Enjoy dim sum, pau and casual dining at JOY Dim Sum, Sentul Point, Kuala Lumpur. Come with family, friends or your usual makan gang.',
     formerName: 'Formerly known as Dim Sum House.',
-    hours: 'Monday–Sunday, 10am to 10pm',
+    hours: 'Monday to Sunday, 10am to 10pm',
     mapsLink:
       'https://www.google.com/maps/place/Dim+Sum+House+@+Sentul+Point/@3.2019041,101.6893619,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc47ea6c13790f:0x7bcae75188d28cc7!8m2!3d3.2019041!4d101.6893619!16s%2Fg%2F11z2hxfpsd',
   },
@@ -27,7 +27,7 @@ const outlets = [
       '51, Persiaran Putra Bayu, Kepong,',
       '52100 Kuala Lumpur',
     ],
-    description: 'A new JOY Dim Sum table is coming to Kiara Bay in Kepong, Kuala Lumpur.',
+    description: 'Good news, Kepong! A new JOY Dim Sum outlet is coming soon to Kiara Bay, Kuala Lumpur. More dim sum, more pau, more JOY dekat you.',
     note: 'Target opening 15 September 2026',
     mapsLink:
       'https://www.google.com/maps/search/?api=1&query=The+Beat+at+Kiara+Bay+51+Persiaran+Putra+Bayu+Kepong',
@@ -84,7 +84,7 @@ export default function Locations() {
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="joy-section-kicker">Find our outlets</p>
-          <h2 id="locations-title">Two tables, same JOY</h2>
+          <h2 id="locations-title">Two Outlets, Same JOY</h2>
         </motion.div>
 
         <div className="joy-locations__grid">
@@ -163,7 +163,7 @@ export default function Locations() {
                   rel="noreferrer"
                 >
                   <Navigation aria-hidden="true" size={18} />
-                  Get directions
+                  Get Directions
                 </a>
                 {'note' in outlet && <KiaraBayCountdown />}
               </div>

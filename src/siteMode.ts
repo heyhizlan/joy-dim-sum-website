@@ -1,2 +1,2 @@
-// Flip this to false when the full website is ready to return.
-export const MAINTENANCE_MODE = true;
+// The public landing page is live and indexable.
+export const MAINTENANCE_MODE = false;

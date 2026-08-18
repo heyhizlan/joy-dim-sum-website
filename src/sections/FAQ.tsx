@@ -4,29 +4,40 @@ import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'What does JOY serve?',
+    question: 'What does JOY Dim Sum serve?',
     answer:
-      'Dim sum leads the table, with pau, savoury dishes, mains and more alongside it.',
+      'We serve dim sum favourites, fluffy pau, savoury dishes, mains and more. Plenty to share, but if too sedap, ordering your own also can.',
   },
   {
-    question: 'Where can I find JOY?',
+    question: 'Where can I find JOY Dim Sum?',
     answer:
-      'Visit us at Sentul Point in Sentul. Kiara Bay is coming soon to Kepong.',
+      'Visit JOY Dim Sum at Sentul Point in Sentul, Kuala Lumpur. Our new Kiara Bay outlet is also coming soon to Kepong.',
   },
   {
-    question: 'When is Kiara Bay opening?',
+    question: 'When is the JOY Dim Sum Kiara Bay outlet opening?',
     answer:
-      'The current target opening date is 15 September 2026. Follow JOY for the latest update.',
+      'Our current target opening date is 15 September 2026. Follow JOY Dim Sum for the latest Kiara Bay opening updates.',
   },
   {
-    question: 'What are Sentul Point’s opening hours?',
+    question: 'What are the opening hours at Sentul Point?',
     answer:
-      'Sentul Point is open Monday to Sunday, from 10am to 10pm.',
+      'JOY Dim Sum at Sentul Point is open Monday to Sunday, from 10am to 10pm. Lunch, tea or dinner, come whenever you\'re craving dim sum.',
   },
   {
-    question: 'How can I get the latest JOY updates?',
-    answer:
-      'Follow @joydimsum.my on Instagram or Facebook for campaigns, menu news and Kiara Bay opening updates.',
+    question: 'How can I get the latest JOY Dim Sum updates?',
+    answer: (
+      <>
+        Follow @joydimsum.my on <a href="https://www.instagram.com/joydimsum.my/" target="_blank" rel="noreferrer">Instagram</a> and <a href="https://www.facebook.com/joydimsum.my/" target="_blank" rel="noreferrer">Facebook</a> for promotions, menu news and the latest Kiara Bay opening updates.
+      </>
+    ),
+  },
+  {
+    question: 'Can I make a table reservation?',
+    answer: (
+      <>
+        Can! For table reservations, WhatsApp us at <a href="https://wa.me/60166102688" target="_blank" rel="noreferrer">016-610 2688</a>. Just tell us your date, time and number of pax, then we settle for you, okay?
+      </>
+    ),
   },
 ];
 
@@ -46,7 +57,9 @@ export default function FAQ() {
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="joy-section-kicker">Frequently Asked Questions</p>
-          <h2 id="faq-title">Quick questions</h2>
+          <h2 id="faq-title">
+            Got questions? Kita Settle<span className="joy-punctuation">!</span>
+          </h2>
         </motion.div>
 
         <div className="joy-faq__list">

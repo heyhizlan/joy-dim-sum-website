@@ -1,6 +1,7 @@
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
 import Menu from './sections/Menu';
+import MenuTicker from './sections/MenuTicker';
 import Locations from './sections/Locations';
 import About from './sections/About';
 import FAQ from './sections/FAQ';
@@ -14,6 +15,7 @@ function App() {
     <div className="min-h-screen bg-joy-cream">
       <Navigation />
       <Hero />
+      <MenuTicker />
       <SectionReveal>
         <Menu />
       </SectionReveal>

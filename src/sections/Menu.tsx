@@ -19,7 +19,7 @@ const featuredFood = [
     image: siewMai,
     width: 1184,
     height: 1070,
-    story: 'Four in the basket. Somehow the last one is always a negotiation.',
+    story: 'Four in one basket. Who gets the last one? Settle nicely, okay.',
     tone: 'yellow',
   },
   {
@@ -28,7 +28,7 @@ const featuredFood = [
     image: harKau,
     width: 1210,
     height: 1084,
-    story: 'A basket arrives and everyone pays attention. Best shared while it is still warm.',
+    story: 'Once the Har Kau arrives, everybody suddenly very focused. Best shared while hot, so don\'t wait too long!',
     tone: 'pink',
   },
   {
@@ -37,7 +37,7 @@ const featuredFood = [
     image: lohMaiKai,
     width: 1144,
     height: 1051,
-    story: 'A little more filling and a little harder to share. Order one each, can.',
+    story: 'Warm, savoury and extra satisfying. Sharing is good, but ordering one each also can.',
     tone: 'green',
   },
   {
@@ -46,7 +46,7 @@ const featuredFood = [
     image: scallopDumpling,
     width: 1145,
     height: 1025,
-    story: 'Three colours on the table, then three empty spaces. That was quick.',
+    story: 'Three colourful dumplings arrive. Three empty spots appear. Wah, that was fast.',
     tone: 'beige',
   },
   {
@@ -55,7 +55,7 @@ const featuredFood = [
     image: shanghaiDumpling,
     width: 1184,
     height: 1067,
-    story: 'Careful on the first bite. The rest of the table can wait a second.',
+    story: 'Careful with the first bite. Juicy inside! Take your time, the rest can wait awhile.',
     tone: 'yellow',
   },
   {
@@ -64,7 +64,7 @@ const featuredFood = [
     image: chickenPau,
     width: 1067,
     height: 908,
-    story: 'Pull one apart while it is warm. The next basket will make sense soon.',
+    story: 'Soft, warm and filled with savoury chicken. Pull one apart and enjoy first, lah.',
     tone: 'pink',
   },
   {
@@ -73,7 +73,7 @@ const featuredFood = [
     image: saltedEggPau,
     width: 972,
     height: 821,
-    story: 'Bright yellow, soft and gone fast. Better get another basket.',
+    story: 'Soft pau with rich, creamy salted egg filling. Better order another basket because this one goes fast.',
     tone: 'yellow',
   },
   {
@@ -82,7 +82,7 @@ const featuredFood = [
     image: pandanKayaPau,
     width: 1033,
     height: 864,
-    story: 'Green, fluffy and made for the slow part of breakfast.',
+    story: 'Fluffy pandan pau with sweet kaya filling. Sedap with tea and perfect for a slow breakfast.',
     tone: 'green',
   },
   {
@@ -91,7 +91,7 @@ const featuredFood = [
     image: redBeanPau,
     width: 986,
     height: 837,
-    story: 'Quietly sweet. Good with tea and a table that is in no rush.',
+    story: 'Soft, gently sweet and very comforting. Nice with tea when nobody is rushing anywhere.',
     tone: 'beige',
   },
   {
@@ -100,7 +100,7 @@ const featuredFood = [
     image: gulaMelakaMantau,
     width: 996,
     height: 848,
-    story: 'One big spiral for everyone to tear into. Sharing rules are flexible.',
+    story: 'One big, fluffy spiral with rich Gula Melaka sweetness. Tear, share and makan together. Rules flexible lah.',
     tone: 'pink',
   },
 ] as const;
@@ -132,11 +132,11 @@ export default function Menu() {
           <div>
             <p className="joy-section-kicker">What we serve</p>
             <h2 id="menu-title">
-              Pick a basket<span className="joy-punctuation">!</span>
+              Pick Your Basket<span className="joy-punctuation">!</span>
             </h2>
             <p>
-              <span>Five dim sum favourites lead the way.</span>
-              <span>Five pau follow when there is still room.</span>
+              <span>Five dim sum favourites to start.</span>
+              <span>Then five fluffy pau, because got space for one more, right?</span>
             </p>
           </div>
 
@@ -148,7 +148,7 @@ export default function Menu() {
                 aria-disabled="true"
                 title="Full PDF menu coming soon"
               >
-                See full menu
+                See Full Menu
                 <FileText aria-hidden="true" />
               </button>
             </div>

@@ -7,7 +7,7 @@ import logoGreen from '../../assets/Logo Masterfile/joydimsum-primary-green--rgb
 const navLinks = [
   { label: 'Menu', href: '#menu' },
   { label: 'Outlets', href: '#locations' },
-  { label: 'Story', href: '#about' },
+  { label: 'Our Story', href: '#about' },
   { label: 'News', href: '#instagram' },
 ];
 
@@ -78,7 +78,7 @@ export default function Navigation() {
             </div>
 
             <a className="joy-nav__cta" href="#locations">
-              Find outlets
+              Find an Outlet
             </a>
 
             <button
