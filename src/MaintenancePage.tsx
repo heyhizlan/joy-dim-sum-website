@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   CalendarDays,
   Clock,
@@ -12,6 +12,8 @@ import siewMai from './assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.webp';
 import harKau from './assets/seo/joy-dim-sum-har-kau-kuala-lumpur.webp';
 import chickenPau from './assets/seo/joy-dim-sum-chicken-pau-kuala-lumpur.webp';
 import gulaMelakaMantau from './assets/seo/joy-dim-sum-gula-melaka-mantau-kuala-lumpur.webp';
+import { KIARA_BAY_OPENING_LABEL, KiaraBayCountdown } from './lib/kiaraBay';
+import { FacebookIcon, InstagramIcon } from './lib/SocialIcons';
 
 const outlets = [
   {
@@ -35,7 +37,7 @@ const outlets = [
       '52100 Kuala Lumpur',
     ],
     description: 'A new JOY Dim Sum table is coming to Kiara Bay in Kepong, Kuala Lumpur.',
-    note: 'Target opening 15 September 2026',
+    note: KIARA_BAY_OPENING_LABEL,
     mapsLink:
       'https://www.google.com/maps/search/?api=1&query=The+Beat+at+Kiara+Bay+51+Persiaran+Putra+Bayu+Kepong',
   },
@@ -72,61 +74,10 @@ const stickers = [
   },
 ] as const;
 
-const kiaraBayOpeningDate = new Date('2026-09-15T00:00:00+08:00').getTime();
-
-function FacebookIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M14.5 8.5V6.8c0-.8.5-1 1-1h2.4V2.1L14.6 2C11.3 2 10 4 10 6.5v2H7v4.1h3V22h4.5v-9.4h3.1l.5-4.1h-3.6Z" />
-    </svg>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function getOpeningCountdown() {
-  const difference = kiaraBayOpeningDate - Date.now();
-
-  if (difference <= 0) return 'Opening day is here';
-
-  const days = Math.floor(difference / 86_400_000);
-  const hours = Math.floor((difference / 3_600_000) % 24);
-  const minutes = Math.floor((difference / 60_000) % 60);
-
-  return `${days}d ${hours}h ${minutes}m`;
-}
-
-function KiaraBayCountdown() {
-  const [countdown, setCountdown] = useState('Counting down…');
-
-  useEffect(() => {
-    const updateCountdown = () => setCountdown(getOpeningCountdown());
-
-    updateCountdown();
-    const interval = window.setInterval(updateCountdown, 60_000);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="joy-outlet-card__countdown" aria-live="polite">
-      <span>Opening in</span>
-      <strong>{countdown}</strong>
-    </div>
-  );
-}
-
 export default function MaintenancePage() {
   const heroSectionRef = useRef<HTMLElement>(null);
   const [dragEnabled, setDragEnabled] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const dragMedia = window.matchMedia(
@@ -190,7 +141,7 @@ export default function MaintenancePage() {
                 className={`joy-maintenance__sticker ${sticker.className}`}
                 drag={dragEnabled}
                 dragConstraints={heroSectionRef}
-                dragElastic={0.08}
+                dragElastic={0}
                 dragMomentum={false}
                 whileDrag={{ scale: 1.08, zIndex: 10 }}
                 aria-label={`Move the ${sticker.alt.toLowerCase()}`}
@@ -231,10 +182,14 @@ export default function MaintenancePage() {
                     <motion.span
                       className="joy-outlet-card__status"
                       initial={{ rotate: 0, y: 0 }}
-                      whileInView={{
-                        rotate: [0, -6, 6, -4, 4, 0],
-                        y: [0, -2, 0, -1, 0],
-                      }}
+                      whileInView={
+                        reduceMotion
+                          ? {}
+                          : {
+                              rotate: [0, -6, 6, -4, 4, 0],
+                              y: [0, -2, 0, -1, 0],
+                            }
+                      }
                       viewport={{ once: true, amount: 0.8 }}
                       transition={{ duration: 0.72, ease: 'easeInOut' }}
                     >

@@ -68,5 +68,28 @@ const prerendered = template
   .replace('__ROBOTS_DIRECTIVE__', robotsDirective);
 
 await writeFile(indexPath, prerendered, 'utf8');
+
+// robots.txt has to follow the same flag as the meta tag; a Disallow here is what
+// actually keeps crawlers off the site while it is in maintenance.
+const robotsTxt = MAINTENANCE_MODE
+  ? 'User-agent: *\nDisallow: /\n'
+  : 'User-agent: *\nAllow: /\n\nSitemap: https://joydimsum.com/sitemap.xml\n';
+await writeFile(path.join(distDir, 'robots.txt'), robotsTxt, 'utf8');
+
+// Keep sitemap lastmod in step with the build instead of a hardcoded date.
+const lastmod = new Date().toISOString().slice(0, 10);
+await writeFile(
+  path.join(distDir, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `  <url>\n    <loc>https://joydimsum.com/</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>\n` +
+    `</urlset>\n`,
+  'utf8',
+);
+
 await rm(serverDirectory, { recursive: true, force: true });
-console.log('[prerender] Done. index.html prerendered.');
+console.log(
+  `[prerender] Done. index.html prerendered, robots.txt written (${
+    MAINTENANCE_MODE ? 'disallow' : 'allow'
+  }), sitemap lastmod ${lastmod}.`,
+);

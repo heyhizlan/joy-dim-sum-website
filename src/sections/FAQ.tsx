@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 const faqs = [
@@ -16,7 +16,7 @@ const faqs = [
   {
     question: 'When is the JOY Dim Sum Kiara Bay outlet opening?',
     answer:
-      'Our current target opening date is 15 September 2026. Follow JOY Dim Sum for the latest Kiara Bay opening updates.',
+      'Our current target opening date is 16 September 2026. Follow JOY Dim Sum for the latest Kiara Bay opening updates.',
   },
   {
     question: 'What are the opening hours at Sentul Point?',
@@ -44,6 +44,7 @@ const faqs = [
 export default function FAQ() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const reduceMotion = useReducedMotion();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -52,13 +53,16 @@ export default function FAQ() {
         <motion.div
           ref={ref}
           className="joy-faq__heading"
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="joy-section-kicker">Frequently Asked Questions</p>
           <h2 id="faq-title">
-            Got questions? Kita Settle<span className="joy-punctuation">!</span>
+            <span>Got questions?</span>
+            <span>
+              Kita Settle<span className="joy-punctuation">!</span>
+            </span>
           </h2>
         </motion.div>
 
@@ -98,6 +102,7 @@ export default function FAQ() {
                   }}
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   aria-hidden={!isOpen}
+                  inert={!isOpen}
                 >
                   <p>{faq.answer}</p>
                 </motion.div>

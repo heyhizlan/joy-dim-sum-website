@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, AtSign } from 'lucide-react';
 import fishAndChips from '../assets/seo/joy-dim-sum-fish-and-chips-value-deal-kuala-lumpur.webp';
 import dimSumDeal from '../assets/seo/joy-dim-sum-buy-four-free-one-dim-sum.webp';
@@ -51,6 +51,7 @@ export default function Instagram() {
   const ref = useRef(null);
   const [showAllPosts, setShowAllPosts] = useState(false);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const reduceMotion = useReducedMotion();
 
   return (
     <section id="instagram" className="joy-instagram" aria-labelledby="instagram-title">
@@ -58,7 +59,7 @@ export default function Instagram() {
         <motion.div
           ref={ref}
           className="joy-instagram__heading"
-          initial={{ opacity: 0, y: 24 }}
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >

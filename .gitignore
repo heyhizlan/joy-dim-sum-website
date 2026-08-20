@@ -13,3 +13,6 @@ coverage/
 # Internal design reference; not required by the production website.
 reference/
 /og/
+
+# Local Claude Code session config.
+.claude/

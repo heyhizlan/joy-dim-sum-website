@@ -34,6 +34,32 @@
     <meta name="twitter:image" content="https://joydimsum.com/og/joydimsum-ogshare-web.jpg" />
     <meta name="twitter:image:alt" content="JOY Dim Sum siew mai held with chopsticks on a yellow brand background" />
     <title>JOY Dim Sum | Dim Sum in Sentul &amp; Kepong, Kuala Lumpur</title>
+    <!-- The prerender bakes framer-motion's initial styles (opacity:0, transforms)
+         into the HTML, so without JS the page would render effectively blank.
+         This only applies when scripting is off; it never affects normal visitors. -->
+    <noscript>
+      <style>
+        .joy-nav,
+        .joy-hero__content,
+        .joy-hero__visual,
+        .joy-section-reveal,
+        .joy-menu__heading,
+        .joy-locations__heading,
+        .joy-outlet-card,
+        .joy-about__content > div,
+        .joy-faq__heading,
+        .joy-reviews__heading,
+        .joy-instagram__heading {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        .joy-faq__answer {
+          height: auto !important;
+          opacity: 1 !important;
+        }
+      </style>
+    </noscript>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -111,7 +137,7 @@
             "@type": "Restaurant",
             "@id": "https://joydimsum.com/#joy-dim-sum-kiara-bay-kepong",
             "name": "JOY Dim Sum Kiara Bay, Kepong",
-            "description": "A new JOY Dim Sum outlet is coming to Kiara Bay in Kepong, Kuala Lumpur, with a target opening date of 15 September 2026.",
+            "description": "A new JOY Dim Sum outlet is coming to Kiara Bay in Kepong, Kuala Lumpur, with a target opening date of 16 September 2026.",
             "url": "https://joydimsum.com/#locations",
             "image": "https://joydimsum.com/og/joydimsum-ogshare-web.jpg",
             "logo": "https://joydimsum.com/apple-touch-icon.png",
@@ -167,7 +193,7 @@
                 "name": "When is the JOY Dim Sum Kiara Bay outlet opening?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Our current target opening date is 15 September 2026. Follow JOY Dim Sum for the latest Kiara Bay opening updates."
+                  "text": "Our current target opening date is 16 September 2026. Follow JOY Dim Sum for the latest Kiara Bay opening updates."
                 }
               },
               {
