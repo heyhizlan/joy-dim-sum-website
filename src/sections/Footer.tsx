@@ -2,13 +2,14 @@ import { CalendarDays, MapPin } from 'lucide-react';
 import footerHeart from '../assets/seo/joy-dim-sum-yellow-half-heart-footer.svg';
 import logoYellow from '../../assets/Logo Masterfile/joydimsum-primary-yellow--rgb.svg';
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '../lib/SocialIcons';
-import { KIARA_BAY_OPENING_LABEL } from '../lib/kiaraBay';
+import { outlets, socialLinks } from '../lib/siteData';
 
 const footerNavigation = [
-  { label: 'Menu', href: '#menu' },
-  { label: 'Outlets', href: '#locations' },
-  { label: 'Our Story', href: '#about' },
-  { label: 'News', href: '#instagram' },
+  { label: 'Menu', href: '/menu/' },
+  { label: 'Outlets', href: '/locations/' },
+  { label: 'Story', href: '/#about' },
+  { label: 'FAQs', href: '/faqs/' },
+  { label: 'News', href: '/#instagram' },
 ];
 
 export default function Footer() {
@@ -26,7 +27,7 @@ export default function Footer() {
       <div className="joy-section-shell joy-footer__content">
         <div className="joy-footer__grid">
           <div className="joy-footer__brand">
-            <a className="joy-footer__brand-logo" href="#top" aria-label="Back to JOY Dim Sum home">
+            <a className="joy-footer__brand-logo" href="/" aria-label="Back to JOY Dim Sum home">
               <img
                 src={logoYellow}
                 alt="JOY Dim Sum Sentul Point and Kiara Bay, Kepong"
@@ -52,44 +53,44 @@ export default function Footer() {
 
             <div className="joy-footer__outlets">
               <div>
-                <h3>Sentul</h3>
+                <h3><a href={outlets.sentul.path}>Sentul</a></h3>
                 <a
                   className="joy-footer__detail joy-footer__location"
-                  href="https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Sentul+Point"
+                  href={outlets.sentul.mapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Open JOY Dim Sum Sentul Point in Google Maps"
+                  aria-label={`Open ${outlets.sentul.schemaName} in Google Maps`}
                 >
                   <MapPin aria-hidden="true" />
-                  <span>Sentul Point, Kuala Lumpur</span>
+                  <span>{outlets.sentul.shortName}, Kuala Lumpur</span>
                 </a>
                 <a
                   className="joy-footer__detail joy-footer__social"
-                  href="https://wa.me/60166102688"
+                  href={outlets.sentul.whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="WhatsApp JOY Dim Sum at 016-610 2688"
+                  aria-label={`WhatsApp JOY Dim Sum at ${outlets.sentul.phone}`}
                 >
                   <WhatsAppIcon />
-                  <span>016-610 2688</span>
+                  <span>{outlets.sentul.phone}</span>
                 </a>
               </div>
 
               <div>
-                <h3>Kiara Bay</h3>
+                <h3><a href={outlets.kiaraBay.path}>Kiara Bay</a></h3>
                 <a
                   className="joy-footer__detail joy-footer__location"
-                  href="https://www.google.com/maps/search/?api=1&query=JOY+Dim+Sum+Kiara+Bay+Kepong"
+                  href={outlets.kiaraBay.mapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Open JOY Dim Sum Kiara Bay in Google Maps"
+                  aria-label={`Open ${outlets.kiaraBay.schemaName} in Google Maps`}
                 >
                   <MapPin aria-hidden="true" />
-                  <span>Kiara Bay, Kepong</span>
+                  <span>{outlets.kiaraBay.shortName}, Kepong</span>
                 </a>
                 <p className="joy-footer__detail">
                   <CalendarDays aria-hidden="true" />
-                  <span>{KIARA_BAY_OPENING_LABEL}</span>
+                  <span>{outlets.kiaraBay.openingLabel}</span>
                 </p>
               </div>
             </div>
@@ -98,7 +99,7 @@ export default function Footer() {
               <h3>Social media</h3>
               <a
                 className="joy-footer__detail joy-footer__social"
-                href="https://www.facebook.com/joydimsum.my/"
+                href={socialLinks.facebook}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -107,7 +108,7 @@ export default function Footer() {
               </a>
               <a
                 className="joy-footer__detail joy-footer__social"
-                href="https://www.instagram.com/joydimsum.my/"
+                href={socialLinks.instagram}
                 target="_blank"
                 rel="noreferrer"
               >

@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, Heart, MapPin } from 'lucide-react';
-import harKau from '../assets/seo/joy-dim-sum-har-kau-kuala-lumpur.webp';
-import siewMai from '../assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.webp';
+import chickenGreenDumpling from '../assets/seo/joy-dim-sum-chicken-green-dumpling-top-view.webp';
+import scallopDumpling from '../assets/seo/joy-dim-sum-scallop-dumpling-top-view.webp';
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -23,7 +23,7 @@ export default function Hero() {
           <h1 id="joy-hero-title" className="joy-hero__title">
             <span className="joy-hero__eyebrow">
               <Heart aria-hidden="true" size={17} strokeWidth={2.6} fill="currentColor" />
-              Dim sum in Sentul and Kepong
+              Dim Sum Restaurant in Kuala Lumpur
             </span>
 
             <span className="joy-hero__headline">
@@ -33,16 +33,16 @@ export default function Hero() {
           </h1>
 
           <p className="joy-hero__lede">
-            Dim sum, pau and plenty more to share. Come hungry, bring your makan
-            gang and stay a bit longer, lah.
+            Dim sum, pau and plenty more to share at Sentul Point and Kiara Bay,
+            Kepong. Come hungry, bring your makan gang and stay a bit longer, lah.
           </p>
 
           <div className="joy-hero__actions">
-            <a className="joy-button joy-button--primary" href="#menu">
+            <a className="joy-button joy-button--primary" href="/menu/">
               View Our Menu
               <ArrowDownRight aria-hidden="true" size={19} strokeWidth={2.4} />
             </a>
-            <a className="joy-button joy-button--secondary" href="#locations">
+            <a className="joy-button joy-button--secondary" href="/locations/">
               <MapPin aria-hidden="true" size={18} strokeWidth={2.4} />
               Find an Outlet
             </a>
@@ -60,15 +60,15 @@ export default function Hero() {
               <motion.div
                 className="joy-comic-panel__image-motion"
                 animate={
-                  reduceMotion ? undefined : { rotate: [0, -3, 3, -2, 2, 0] }
+                  reduceMotion ? undefined : { rotate: [0, 360] }
                 }
-                transition={{ duration: 0.82, delay: 0.9, ease: 'easeInOut' }}
+                transition={{ duration: 4.2, delay: 0.45, ease: 'linear' }}
               >
                 <img
-                  src={siewMai}
-                  alt="A bamboo basket of four siew mai dumplings at JOY Dim Sum in Sentul, Kuala Lumpur"
-                  width="1184"
-                  height="1070"
+                  src={chickenGreenDumpling}
+                  alt="Top view of green chicken dumplings in a bamboo basket at JOY Dim Sum"
+                  width="1789"
+                  height="1800"
                   fetchPriority="high"
                   draggable="false"
                 />
@@ -89,15 +89,15 @@ export default function Hero() {
               <motion.div
                 className="joy-comic-panel__image-motion"
                 animate={
-                  reduceMotion ? undefined : { rotate: [0, 3, -3, 2, -2, 0] }
+                  reduceMotion ? undefined : { rotate: [0, -360] }
                 }
-                transition={{ duration: 0.82, delay: 1.04, ease: 'easeInOut' }}
+                transition={{ duration: 4.2, delay: 0.6, ease: 'linear' }}
               >
                 <img
-                  src={harKau}
-                  alt="A bamboo basket of colourful har kau dumplings at JOY Dim Sum in Sentul, Kuala Lumpur"
-                  width="1210"
-                  height="1084"
+                  src={scallopDumpling}
+                  alt="Top view of colourful scallop dumplings in a bamboo basket at JOY Dim Sum"
+                  width="540"
+                  height="540"
                   fetchPriority="high"
                   draggable="false"
                 />

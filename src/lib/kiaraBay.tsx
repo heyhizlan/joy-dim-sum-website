@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
+import { KIARA_BAY_OPENING_ISO } from './siteData';
 
 // Single source of truth for the Kiara Bay opening; it was previously duplicated
 // between Locations and MaintenancePage.
-export const KIARA_BAY_OPENING_DATE = new Date('2026-09-16T00:00:00+08:00');
-export const KIARA_BAY_OPENING_LABEL = 'Target opening 16 September 2026';
+export { KIARA_BAY_OPENING_LABEL } from './siteData';
+
+export const KIARA_BAY_OPENING_DATE = new Date(
+  `${KIARA_BAY_OPENING_ISO}T00:00:00+08:00`,
+);
 
 const openingTime = KIARA_BAY_OPENING_DATE.getTime();
 
@@ -19,7 +23,7 @@ export function getOpeningCountdown() {
   return `${days}d ${hours}h ${minutes}m`;
 }
 
-export function KiaraBayCountdown() {
+function useOpeningCountdown() {
   const [countdown, setCountdown] = useState('Counting down…');
 
   useEffect(() => {
@@ -31,10 +35,26 @@ export function KiaraBayCountdown() {
     return () => window.clearInterval(interval);
   }, []);
 
+  return countdown;
+}
+
+export function KiaraBayCountdown() {
+  const countdown = useOpeningCountdown();
+
   return (
     <div className="joy-outlet-card__countdown" aria-live="polite">
       <span>Opening in</span>
       <strong>{countdown}</strong>
     </div>
+  );
+}
+
+export function KiaraBayCountdownHeadline() {
+  const countdown = useOpeningCountdown();
+
+  return (
+    <>
+      Opening in <span>{countdown}</span>
+    </>
   );
 }

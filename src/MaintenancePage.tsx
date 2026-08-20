@@ -134,18 +134,8 @@ export default function MaintenancePage() {
             data-drag-enabled={dragEnabled ? 'true' : 'false'}
           >
             <p className="joy-maintenance__drag-note">Drag a basket while you wait</p>
-            {stickers.map((sticker) => (
-              <motion.button
-                key={sticker.alt}
-                type="button"
-                className={`joy-maintenance__sticker ${sticker.className}`}
-                drag={dragEnabled}
-                dragConstraints={heroSectionRef}
-                dragElastic={0}
-                dragMomentum={false}
-                whileDrag={{ scale: 1.08, zIndex: 10 }}
-                aria-label={`Move the ${sticker.alt.toLowerCase()}`}
-              >
+            {stickers.map((sticker) => {
+              const image = (
                 <img
                   src={sticker.image}
                   alt={sticker.alt}
@@ -153,8 +143,37 @@ export default function MaintenancePage() {
                   height={sticker.height}
                   draggable="false"
                 />
-              </motion.button>
-            ))}
+              );
+              const className = `joy-maintenance__sticker ${sticker.className}`;
+
+              // Where dragging is off (touch and coarse pointers, so vertical
+              // scrolling always wins) the sticker is decoration, not a control.
+              // Rendering a button there put a focusable "Move the ..." target in
+              // the tab order that could not do anything.
+              if (!dragEnabled) {
+                return (
+                  <div key={sticker.alt} className={className}>
+                    {image}
+                  </div>
+                );
+              }
+
+              return (
+                <motion.button
+                  key={sticker.alt}
+                  type="button"
+                  className={className}
+                  drag
+                  dragConstraints={heroSectionRef}
+                  dragElastic={0}
+                  dragMomentum={false}
+                  whileDrag={{ scale: 1.08, zIndex: 10 }}
+                  aria-label={`Move the ${sticker.alt.toLowerCase()}`}
+                >
+                  {image}
+                </motion.button>
+              );
+            })}
           </div>
         </section>
 

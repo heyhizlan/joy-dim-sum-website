@@ -1,0 +1,631 @@
+/* Multipage route layouts and route-specific content. */
+
+.joy-breadcrumbs {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  color: #2B1F17;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.joy-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.joy-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.joy-breadcrumbs svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: none;
+}
+
+.joy-breadcrumbs a {
+  /* 20px tall without this, below the WCAG 2.5.8 24x24 minimum. */
+  padding-block: 3px;
+  color: inherit;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 180ms ease;
+}
+
+.joy-breadcrumbs a:hover,
+.joy-breadcrumbs a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.joy-breadcrumbs--light {
+  color: rgb(241 232 215 / 78%);
+}
+
+.joy-page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(8.5rem, 12vw, 11rem) 0 clamp(5.5rem, 9vw, 8rem);
+  background: #1D552B;
+  color: #F1E8D7;
+}
+
+.joy-page-hero__pattern {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-beige-on-green-and-brown.svg');
+  background-position: -1px -1px;
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  opacity: 0.15;
+}
+
+.joy-page-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(310px, 0.72fr);
+  align-items: center;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.joy-page-hero__copy {
+  min-width: 0;
+  max-width: 780px;
+}
+
+.joy-page-hero__copy .joy-section-kicker {
+  color: #FFCC29;
+}
+
+.joy-page-hero__copy h1 {
+  max-width: 12ch;
+  margin: 0;
+  color: #F1E8D7;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(3.8rem, 7vw, 7rem);
+  font-weight: 840;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  overflow-wrap: anywhere;
+}
+
+.joy-page-hero__copy > p:last-of-type {
+  max-width: 650px;
+  margin: 1.75rem 0 0;
+  color: rgb(241 232 215 / 82%);
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.joy-page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.joy-page-hero__visual {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  place-items: center;
+  padding: clamp(1rem, 2.6vw, 2.2rem);
+  border: 3px solid #2B1F17;
+  border-radius: clamp(1.8rem, 4vw, 3.5rem);
+  background: #F1E8D7;
+  box-shadow: 0 18px 0 #2B1F17;
+}
+
+.joy-page-hero__visual--yellow {
+  background: #FFCC29;
+}
+
+.joy-page-hero__visual--outlet {
+  overflow: hidden;
+  padding: 0;
+  background: #F1E8D7;
+}
+
+.joy-page-hero__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: contain;
+}
+
+.joy-page-hero__visual--outlet img {
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.joy-page-hero__visual figcaption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid #2B1F17;
+  border-radius: 0.75rem;
+  background: #ED7E8B;
+  color: #2B1F17;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.joy-locations--page {
+  min-height: 100svh;
+  padding-top: clamp(8.5rem, 12vw, 11rem);
+}
+
+.joy-locations--page .joy-locations__heading h1 {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-weight: 840;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+.joy-locations--page .joy-locations__heading h1,
+.joy-locations--page .joy-locations__heading .joy-section-kicker {
+  color: #1D552B;
+}
+
+.joy-locations__intro {
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+  color: rgb(43 31 23 / 72%);
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.55;
+}
+
+.joy-outlet-card h3 a {
+  color: inherit;
+  text-decoration-color: transparent;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 180ms ease;
+}
+
+.joy-outlet-card h3 a:hover,
+.joy-outlet-card h3 a:focus-visible {
+  text-decoration-color: #ED7E8B;
+}
+
+.joy-outlet-card__footer--overview {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.joy-outlet-card__directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  /* 21px tall without this, below the WCAG 2.5.8 24x24 minimum. */
+  padding-block: 2px;
+  color: #2B1F17;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+
+.joy-outlet-card__directions:hover,
+.joy-outlet-card__directions:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.joy-outlet-card__footer--overview .joy-outlet-card__countdown {
+  margin-left: auto;
+}
+
+.joy-visit {
+  padding: clamp(5.5rem, 9vw, 8rem) 0;
+  background: #F1E8D7;
+}
+
+.joy-visit__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1fr);
+  align-items: center;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.joy-visit__heading {
+  max-width: 620px;
+}
+
+.joy-visit__heading .joy-section-kicker {
+  color: #1D552B;
+}
+
+.joy-visit__heading h2,
+.joy-continuity h2,
+.joy-social-cta h2,
+.joy-page-links h2 {
+  margin: 0;
+  color: #1D552B;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 830;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+
+.joy-visit__heading > p:last-child,
+.joy-continuity__card > p:last-child,
+.joy-social-cta__card > p:last-of-type,
+.joy-page-links__inner > div:first-child > p:last-child {
+  margin: 1.25rem 0 0;
+  color: #6F655C;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.55;
+}
+
+.joy-visit__card {
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+  padding: clamp(1.6rem, 4vw, 3rem);
+  border: 3px solid #2B1F17;
+  border-radius: clamp(1.6rem, 3vw, 2.5rem);
+  background: #FFCC29;
+  box-shadow: 0 16px 0 #2B1F17;
+}
+
+.joy-visit__card h3 {
+  margin: 0 0 0.5rem;
+  color: #1D552B;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.6rem);
+  font-weight: 820;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+.joy-visit__card > a:not(.joy-outlet-card__button),
+.joy-visit__card > p {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0;
+  color: #2B1F17;
+  line-height: 1.5;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+
+.joy-visit__card > a:not(.joy-outlet-card__button):hover,
+.joy-visit__card > a:not(.joy-outlet-card__button):focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.joy-visit__card > a > svg,
+.joy-visit__card > p > svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: none;
+  margin-top: 0.12rem;
+}
+
+.joy-visit__card > a > span > span {
+  display: block;
+}
+
+.joy-visit__card .joy-outlet-card__countdown {
+  justify-items: start;
+  text-align: left;
+}
+
+.joy-visit__card .joy-outlet-card__button {
+  width: fit-content;
+  margin-top: 0.5rem;
+}
+
+.joy-continuity,
+.joy-social-cta,
+.joy-page-links {
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
+}
+
+.joy-continuity {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #ED7E8B;
+}
+
+.joy-continuity::before,
+.joy-social-cta::before {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-beige-on-green-and-brown.svg');
+  background-position: -1px -1px;
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  content: '';
+  opacity: 0.18;
+}
+
+.joy-continuity__card,
+.joy-social-cta__card {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 3px solid #2B1F17;
+  border-radius: clamp(1.8rem, 4vw, 3rem);
+  background: #F1E8D7;
+  box-shadow: 0 18px 0 #2B1F17;
+}
+
+.joy-continuity__card {
+  max-width: 1000px;
+}
+
+.joy-continuity__card .joy-section-kicker,
+.joy-social-cta__card .joy-section-kicker,
+.joy-page-links .joy-section-kicker {
+  color: #1D552B;
+}
+
+.joy-social-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #ED7E8B;
+}
+
+.joy-social-cta__card {
+  display: flex;
+  max-width: 920px;
+  flex-direction: column;
+  gap: clamp(1rem, 2.2vw, 1.5rem);
+}
+
+.joy-social-cta__card .joy-section-kicker,
+.joy-social-cta__card h2,
+.joy-social-cta__card > p:last-of-type {
+  margin: 0;
+}
+
+.joy-social-cta__card .joy-page-links__actions {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.joy-page-links {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #FFCC29;
+}
+
+.joy-page-links::before {
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-brown-on-yellow.svg');
+  background-position: -1px -1px;
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  content: '';
+  opacity: 0.1;
+}
+
+.joy-page-links__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+  align-items: end;
+  gap: clamp(2rem, 7vw, 7rem);
+}
+
+.joy-page-links__inner > div:first-child > p:last-child {
+  color: #2B1F17;
+}
+
+.joy-page-links__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.joy-page-links__actions a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  border: 2px solid #2B1F17;
+  border-radius: 0.9rem;
+  background: #1D552B;
+  box-shadow: 0 5px 0 #2B1F17;
+  color: #F1E8D7;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.joy-page-links__actions a:hover,
+.joy-page-links__actions a:focus-visible {
+  background: #FFCC29;
+  box-shadow: 0 1px 0 #2B1F17;
+  color: #2B1F17;
+  transform: translateY(4px);
+}
+
+.joy-menu__full-menu {
+  text-decoration: none;
+}
+
+.joy-locations__all-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.25rem;
+}
+
+.joy-footer h3 a {
+  /* 22px tall without this, below the WCAG 2.5.8 24x24 minimum. */
+  padding-block: 1px;
+  color: inherit;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+
+.joy-footer h3 a:hover,
+.joy-footer h3 a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.joy-not-found {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: var(--joy-page-gutter);
+  background: #1D552B;
+  color: #F1E8D7;
+  text-align: center;
+}
+
+.joy-not-found > div {
+  max-width: 780px;
+}
+
+.joy-not-found h1 {
+  margin: 0;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 840;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+.joy-not-found > div > p:nth-of-type(2) {
+  margin: 1.5rem 0 2rem;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 900px) {
+  .joy-page-hero__grid,
+  .joy-visit__layout,
+  .joy-page-links__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .joy-page-hero__copy {
+    max-width: 700px;
+  }
+
+  .joy-page-hero__visual {
+    width: min(100%, 560px);
+    justify-self: center;
+  }
+
+  .joy-page-links__actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 560px) {
+  .joy-breadcrumbs {
+    margin-bottom: 1.6rem;
+  }
+
+  .joy-page-hero {
+    padding-top: 7.4rem;
+  }
+
+  .joy-page-hero__grid {
+    gap: 2.5rem;
+  }
+
+  .joy-page-hero__copy h1,
+  .joy-locations--page .joy-locations__heading h1 {
+    font-size: clamp(3.1rem, 15vw, 4.4rem);
+  }
+
+  .joy-page-hero__copy > p:last-of-type {
+    font-size: 1rem;
+  }
+
+  .joy-page-hero__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .joy-page-hero__actions .joy-button {
+    width: 100%;
+  }
+
+  .joy-page-hero__visual {
+    border-width: 2px;
+    border-radius: 1.6rem;
+    box-shadow: 0 12px 0 #2B1F17;
+  }
+
+  .joy-locations--page {
+    padding-top: 7.4rem;
+  }
+
+  .joy-outlet-card__footer--overview {
+    align-items: flex-end;
+  }
+
+  .joy-outlet-card__footer--overview .joy-outlet-card__button {
+    align-self: flex-end;
+  }
+
+  .joy-outlet-card__footer--overview .joy-outlet-card__countdown {
+    margin-left: 0;
+  }
+
+  .joy-visit__card,
+  .joy-continuity__card,
+  .joy-social-cta__card {
+    border-width: 2px;
+    box-shadow: 0 12px 0 #2B1F17;
+  }
+
+  .joy-visit__heading h2,
+  .joy-continuity h2,
+  .joy-social-cta h2,
+  .joy-page-links h2 {
+    font-size: clamp(2.8rem, 13vw, 4rem);
+  }
+
+  .joy-visit__card > a,
+  .joy-visit__card > p {
+    overflow-wrap: anywhere;
+  }
+
+  .joy-visit__card .joy-outlet-card__button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .joy-page-links__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .joy-page-links__actions a {
+    width: 100%;
+  }
+}
