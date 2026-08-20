@@ -96,5 +96,5 @@ accessibility, SEO and mobile-interaction issues.
 - Prerendered SSR build via `scripts/prerender.mjs`.
 - GitHub Pages deployment workflow.
 
-[1.4.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/v1.4.0
-[1.3.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/v1.3.0
+[1.4.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.4.0
+[1.3.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.3.0
