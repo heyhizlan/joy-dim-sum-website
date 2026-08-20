@@ -11,7 +11,7 @@ export default function SectionReveal({ children }: SectionRevealProps) {
   return (
     <motion.div
       className="joy-section-reveal"
-      initial={reduceMotion ? false : { opacity: 0, y: 42 }}
+      initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 42 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}

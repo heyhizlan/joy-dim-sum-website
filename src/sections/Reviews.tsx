@@ -132,6 +132,7 @@ export default function Reviews() {
   const currentCardRef = useRef(0);
   const pausedRef = useRef(false);
   const resetTimerRef = useRef<number | null>(null);
+  const resumeTimerRef = useRef<number | null>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const reduceMotion = useReducedMotion();
 
@@ -144,10 +145,20 @@ export default function Reviews() {
 
       const cards = scroller.querySelectorAll<HTMLElement>('[data-review-card]');
       const originalCardCount = googleReviews.length + 1;
-      const nextCard = currentCardRef.current + 1;
-      const target = cards[nextCard];
       const first = cards[0];
-      if (!target || !first) return;
+      if (!first) return;
+
+      // Derive the current card from where the scroller actually is, so a manual
+      // swipe is respected instead of being pulled back to a stale counter.
+      let currentCard = 0;
+      for (let index = 0; index < cards.length; index += 1) {
+        const offset = cards[index].offsetLeft - first.offsetLeft;
+        if (offset <= scroller.scrollLeft + 4) currentCard = index;
+      }
+
+      const nextCard = currentCard + 1;
+      const target = cards[nextCard];
+      if (!target) return;
 
       scroller.scrollTo({
         left: target.offsetLeft - first.offsetLeft,
@@ -168,6 +179,9 @@ export default function Reviews() {
       if (resetTimerRef.current !== null) {
         window.clearTimeout(resetTimerRef.current);
       }
+      if (resumeTimerRef.current !== null) {
+        window.clearTimeout(resumeTimerRef.current);
+      }
     };
   }, [isInView, reduceMotion]);
 
@@ -177,7 +191,7 @@ export default function Reviews() {
         <motion.div
           ref={ref}
           className="joy-reviews__heading"
-          initial={{ opacity: 0, y: 26 }}
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -186,7 +200,7 @@ export default function Reviews() {
           <p>Good food tastes even better when people share the JOY.</p>
         </motion.div>
 
-        <div
+        <section
           ref={scrollerRef}
           className="joy-reviews__scroller"
           aria-label="Featured Google reviews"
@@ -203,6 +217,18 @@ export default function Reviews() {
           onBlurCapture={() => {
             pausedRef.current = false;
           }}
+          onTouchStart={() => {
+            pausedRef.current = true;
+          }}
+          onTouchEnd={() => {
+            // Let the flick settle before autoplay may resume.
+            if (resumeTimerRef.current !== null) {
+              window.clearTimeout(resumeTimerRef.current);
+            }
+            resumeTimerRef.current = window.setTimeout(() => {
+              pausedRef.current = false;
+            }, 4000);
+          }}
         >
           {googleReviews.map((review) => (
             <ReviewCard key={review.author} review={review} />
@@ -212,7 +238,7 @@ export default function Reviews() {
             <ReviewCard key={`duplicate-${review.author}`} review={review} duplicate />
           ))}
           <ReviewCta duplicate />
-        </div>
+        </section>
       </div>
     </section>
   );

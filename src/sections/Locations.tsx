@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { CalendarDays, Clock, MapPin, Navigation } from 'lucide-react';
+import { KIARA_BAY_OPENING_LABEL, KiaraBayCountdown } from '../lib/kiaraBay';
 
 const outlets = [
   {
@@ -28,49 +29,16 @@ const outlets = [
       '52100 Kuala Lumpur',
     ],
     description: 'Good news, Kepong! A new JOY Dim Sum outlet is coming soon to Kiara Bay, Kuala Lumpur. More dim sum, more pau, more JOY dekat you.',
-    note: 'Target opening 15 September 2026',
+    note: KIARA_BAY_OPENING_LABEL,
     mapsLink:
       'https://www.google.com/maps/search/?api=1&query=The+Beat+at+Kiara+Bay+51+Persiaran+Putra+Bayu+Kepong',
   },
 ] as const;
 
-const kiaraBayOpeningDate = new Date('2026-09-15T00:00:00+08:00').getTime();
-
-function getOpeningCountdown() {
-  const difference = kiaraBayOpeningDate - Date.now();
-
-  if (difference <= 0) return 'Opening day is here';
-
-  const days = Math.floor(difference / 86_400_000);
-  const hours = Math.floor((difference / 3_600_000) % 24);
-  const minutes = Math.floor((difference / 60_000) % 60);
-
-  return `${days}d ${hours}h ${minutes}m`;
-}
-
-function KiaraBayCountdown() {
-  const [countdown, setCountdown] = useState('Counting down…');
-
-  useEffect(() => {
-    const updateCountdown = () => setCountdown(getOpeningCountdown());
-
-    updateCountdown();
-    const interval = window.setInterval(updateCountdown, 60_000);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="joy-outlet-card__countdown" aria-live="polite">
-      <span>Opening in</span>
-      <strong>{countdown}</strong>
-    </div>
-  );
-}
-
 export default function Locations() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const reduceMotion = useReducedMotion();
 
   return (
     <section id="locations" className="joy-locations" aria-labelledby="locations-title">
@@ -79,7 +47,7 @@ export default function Locations() {
         <motion.div
           ref={ref}
           className="joy-locations__heading"
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -95,7 +63,7 @@ export default function Locations() {
                 'joy-outlet-card' +
                 ('note' in outlet ? ' joy-outlet-card--opening' : '')
               }
-              initial={{ opacity: 0, y: 28 }}
+              initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
                 duration: 0.58,
@@ -107,7 +75,7 @@ export default function Locations() {
                 <motion.span
                   className="joy-outlet-card__status"
                   animate={
-                    isInView
+                    isInView && !reduceMotion
                       ? { rotate: [0, -6, 6, -4, 4, 0], y: [0, -2, 0, -1, 0] }
                       : {}
                   }

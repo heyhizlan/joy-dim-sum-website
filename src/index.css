@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'SN Pro';
-  src: url('../fonts/SN_Pro/SNPro-VariableFont_wght.ttf') format('truetype');
+  src: url('../fonts/SN_Pro/SNPro-VariableFont_wght.woff2') format('woff2');
   font-style: normal;
   font-weight: 200 900;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: 'Cal Sans Text UI';
-  src: url('../fonts/Cal_Sans/CalSansTextUI-Regular.ttf') format('truetype');
+  src: url('../fonts/Cal_Sans/CalSansTextUI-Regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -18,15 +18,7 @@
 
 @font-face {
   font-family: 'Cal Sans Text UI';
-  src: url('../fonts/Cal_Sans/CalSansTextUI-Italic.ttf') format('truetype');
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Cal Sans Text UI';
-  src: url('../fonts/Cal_Sans/CalSansTextUI-Medium.ttf') format('truetype');
+  src: url('../fonts/Cal_Sans/CalSansTextUI-Medium.woff2') format('woff2');
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -34,7 +26,7 @@
 
 @font-face {
   font-family: 'Cal Sans Text UI';
-  src: url('../fonts/Cal_Sans/CalSansTextUI-SemiBold.ttf') format('truetype');
+  src: url('../fonts/Cal_Sans/CalSansTextUI-SemiBold.woff2') format('woff2');
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -42,17 +34,9 @@
 
 @font-face {
   font-family: 'Cal Sans Text UI';
-  src: url('../fonts/Cal_Sans/CalSansTextUI-Bold.ttf') format('truetype');
+  src: url('../fonts/Cal_Sans/CalSansTextUI-Bold.woff2') format('woff2');
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Sarina';
-  src: url('../fonts/Sarina/Sarina-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
   font-display: swap;
 }
 
@@ -72,15 +56,16 @@
 
   --font-display: 'SN Pro', system-ui, sans-serif;
   --font-body: 'Cal Sans Text UI', system-ui, sans-serif;
-  --font-accent: 'Sarina', cursive;
 }
 
 :root {
   --joy-page-max: 1440px;
   --joy-page-gutter: clamp(1.25rem, 4vw, 4.5rem);
+  /* 100% (not 100vw) so a classic scrollbar does not shift the full-bleed
+     elements out of line with .joy-section-shell, which is measured in %. */
   --joy-page-edge: max(
     var(--joy-page-gutter),
-    calc((100vw - var(--joy-page-max)) / 2)
+    calc((100% - var(--joy-page-max)) / 2)
   );
   color: #2B1F17;
   background: #F1E8D7;
@@ -139,6 +124,17 @@ button:focus-visible,
     var(--joy-page-max)
   );
   margin: 0 auto;
+}
+
+/* The primary nav is fixed, so anchor jumps must clear it or the section
+   kicker lands underneath the bar. Measured nav bottom: 95px desktop, 86px mobile. */
+.joy-menu,
+.joy-locations,
+.joy-about,
+.joy-faq,
+.joy-reviews,
+.joy-instagram {
+  scroll-margin-top: 104px;
 }
 
 .joy-section-kicker {
@@ -266,7 +262,7 @@ button:focus-visible,
 .joy-button:hover,
 .joy-outlet-card__button:hover,
 .joy-reviews__button:hover,
-.joy-menu__full-menu:hover {
+.joy-menu__full-menu:not([aria-disabled='true']):hover {
   background: #FFCC29;
   box-shadow: 0 1px 0 #2B1F17;
   color: #2B1F17;
@@ -292,7 +288,9 @@ button:focus-visible,
   z-index: 40;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  /* Scroll rather than trap the links when the viewport is too short for them. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 120px 24px 48px;
   background: #F1E8D7;
 }
@@ -380,12 +378,14 @@ button:focus-visible,
   text-transform: uppercase;
 }
 
-h1.joy-hero__eyebrow {
-  font-family: inherit;
-  line-height: inherit;
+.joy-hero__title {
+  display: block;
+  margin: 0;
+  font: inherit;
 }
 
 .joy-hero__headline {
+  display: block;
   margin: 0;
   font-family: 'SN Pro', sans-serif;
   font-size: clamp(5rem, 8.1vw, 9rem);
@@ -680,6 +680,10 @@ h1.joy-hero__eyebrow {
   font: inherit;
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.joy-menu__full-menu[aria-disabled='true'] {
+  cursor: default;
 }
 
 .joy-menu__full-menu svg {
@@ -1129,9 +1133,8 @@ h1.joy-hero__eyebrow {
   text-align: center;
 }
 
-.joy-faq__heading h2 {
-  font-size: clamp(2.4rem, 4.8vw, 5.2rem);
-  white-space: nowrap;
+.joy-faq__heading h2 > span {
+  display: block;
 }
 
 .joy-faq__heading .joy-section-kicker {
@@ -1267,10 +1270,16 @@ h1.joy-hero__eyebrow {
 .joy-inline-link {
   color: inherit;
   font-weight: 700;
+  /* Tailwind preflight resets anchors to `text-decoration: inherit`, which resolves
+     to none - without restoring the line there is nothing for the colour to paint. */
+  text-decoration-line: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
-  transition: text-decoration-thickness 160ms ease, text-underline-offset 160ms ease;
+  transition:
+    text-decoration-color 160ms ease,
+    text-decoration-thickness 160ms ease,
+    text-underline-offset 160ms ease;
 }
 
 .joy-faq__answer a:hover,
@@ -1559,6 +1568,8 @@ h1.joy-hero__eyebrow {
 .joy-instagram__follow a {
   display: inline-flex;
   align-items: center;
+  /* Standalone link, so it needs the WCAG 2.5.8 24x24 minimum (21.1px without this). */
+  padding-block: 3px;
   gap: 9px;
   color: #2B1F17;
   font-weight: 700;
@@ -1645,7 +1656,10 @@ h1.joy-hero__eyebrow {
 }
 
 .joy-footer__detail {
-  margin-bottom: 13px;
+  /* 2px of vertical padding lifts these links from 21px to 25px tall,
+     clearing the WCAG 2.5.8 24x24 minimum without changing the spacing rhythm. */
+  margin-bottom: 11px;
+  padding-block: 2px;
   color: rgb(241 232 215 / 72%);
   font-size: 0.9rem;
   text-decoration: none;
@@ -1729,7 +1743,6 @@ a.joy-footer__detail:hover {
   display: flex;
   justify-content: flex-end;
   margin-top: clamp(10rem, 14vw, 13rem);
-  padding-top: 0;
 }
 
 .joy-footer__bottom p {
@@ -1742,6 +1755,7 @@ a.joy-footer__detail:hover {
 .joy-footer__bottom a {
   color: inherit;
   font-weight: 700;
+  text-decoration-line: underline;
   text-decoration-color: transparent;
   text-underline-offset: 4px;
   transition: color 160ms ease, text-decoration-color 160ms ease;
@@ -1970,6 +1984,29 @@ a.joy-footer__detail:hover {
   }
 }
 
+/* From 981px the hero becomes two columns and the intro narrows to ~373px,
+   while the non-wrapping headline lines need up to ~546px at 6rem. Scale the
+   headline with the viewport across that band; it reaches 6rem again by 1500px.
+   Below 981px the hero is single column and 6rem already fits, so it is untouched. */
+@media (min-width: 981px) {
+  .joy-maintenance h1 {
+    font-size: clamp(4rem, 6.4vw, 6rem);
+  }
+}
+
+/* Just above the 560px step the hero is single column but the shell is still
+   narrower than the widest headline line at 6rem, pushing the intro past the
+   viewport edge. Cap the size by viewport width; 6rem resumes from ~590px. */
+@media (min-width: 561px) and (max-width: 980px) {
+  .joy-maintenance h1 {
+    font-size: min(6rem, 16.3vw);
+  }
+
+  .joy-maintenance__intro {
+    min-width: 0;
+  }
+}
+
 .joy-maintenance__outlets {
   padding: clamp(5rem, 8vw, 8rem) 0 clamp(7rem, 10vw, 10rem);
   border-top: 2px solid #2B1F17;
@@ -2030,6 +2067,9 @@ a.joy-footer__detail:hover {
   min-height: 170px;
   align-items: center;
   justify-content: space-between;
+  /* Between 561px and ~640px logo + socials + copyright cannot share one row;
+     without wrapping the copyright is pushed off the right edge and clipped. */
+  flex-wrap: wrap;
   gap: 32px;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -2050,6 +2090,8 @@ a.joy-footer__detail:hover {
 .joy-maintenance__social a {
   display: inline-flex;
   align-items: center;
+  /* 20.6px tall without this, below the WCAG 2.5.8 24x24 minimum. */
+  padding-block: 2px;
   gap: 8px;
   color: #F1E8D7;
   font-size: 0.86rem;
@@ -2220,11 +2262,6 @@ a.joy-footer__detail:hover {
     font-size: clamp(4.5rem, 8vw, 7rem);
   }
 
-  .joy-review-card {
-    width: calc((100% - 22px) / 2);
-    flex-basis: calc((100% - 22px) / 2);
-  }
-
   .joy-footer__grid {
     grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.6fr);
     gap: clamp(3rem, 7vw, 6rem);
@@ -2338,9 +2375,6 @@ a.joy-footer__detail:hover {
     gap: 4rem;
   }
 
-  .joy-footer__right {
-    grid-template-columns: minmax(90px, 0.6fr) minmax(180px, 1.15fr) minmax(140px, 0.9fr);
-  }
 }
 
 @media (max-width: 560px) {
@@ -2415,10 +2449,6 @@ a.joy-footer__detail:hover {
     align-items: flex-end;
   }
 
-  .joy-menu__full-menu-wrap {
-    justify-items: end;
-  }
-
   .joy-menu__heading h2,
   .joy-locations__heading h2,
   .joy-faq__heading h2,
@@ -2428,13 +2458,12 @@ a.joy-footer__detail:hover {
     font-size: clamp(3.15rem, 15vw, 4.6rem);
   }
 
+  /* "Got questions?" measures 6.63x the font size, so below ~561px the shared
+     heading size would wrap it and give three lines instead of two. Cap it at the
+     largest size that still fits the shell; above 560px the shared size is used
+     unchanged, identical to every other section heading. */
   .joy-faq__heading h2 {
-    font-size: clamp(2rem, 7.2vw, 3rem);
-  }
-
-  .joy-reviews__heading {
-    display: grid;
-    align-items: start;
+    font-size: min(clamp(3.15rem, 15vw, 4.6rem), calc(15vw - 5px));
   }
 
   .joy-review-card {
@@ -2496,8 +2525,6 @@ a.joy-footer__detail:hover {
 
   .joy-outlet-card__countdown {
     order: -1;
-    justify-items: end;
-    text-align: right;
   }
 
   .joy-outlet-card__address > span {

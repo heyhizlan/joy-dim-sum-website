@@ -13,19 +13,24 @@ export default function Hero() {
       <div className="joy-hero__inner">
         <motion.div
           className="joy-hero__content"
-          initial={reduceMotion ? false : { opacity: 0, y: 36 }}
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 id="joy-hero-title" className="joy-hero__eyebrow">
-            <Heart aria-hidden="true" size={17} strokeWidth={2.6} fill="currentColor" />
-            Dim sum in Sentul and Kepong
-          </h1>
+          {/* One h1 carrying both the keyword line and the visual headline, so the
+              page's main heading is not just the small kicker. Styling stays on the
+              inner elements, so nothing moves. */}
+          <h1 id="joy-hero-title" className="joy-hero__title">
+            <span className="joy-hero__eyebrow">
+              <Heart aria-hidden="true" size={17} strokeWidth={2.6} fill="currentColor" />
+              Dim sum in Sentul and Kepong
+            </span>
 
-          <div className="joy-hero__headline">
-            <span>FULL BITE</span>
-            <span><span className="joy-hero__of">OF</span> <span className="joy-hero__joy">JOY</span></span>
-          </div>
+            <span className="joy-hero__headline">
+              <span>FULL BITE</span>
+              <span><span className="joy-hero__of">OF</span> <span className="joy-hero__joy">JOY</span></span>
+            </span>
+          </h1>
 
           <p className="joy-hero__lede">
             Dim sum, pau and plenty more to share. Come hungry, bring your makan
@@ -46,7 +51,7 @@ export default function Hero() {
 
         <motion.div
           className="joy-hero__visual"
-          initial={reduceMotion ? false : { opacity: 0, x: 42 }}
+          initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 42 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         >

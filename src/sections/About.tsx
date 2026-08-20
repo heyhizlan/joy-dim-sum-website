@@ -1,16 +1,17 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const reduceMotion = useReducedMotion();
 
   return (
     <section id="about" className="joy-about" aria-labelledby="about-title">
       <div className="joy-section-shell joy-about__content">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, x: -28 }}
+          initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -26,7 +27,7 @@ export default function About() {
 
         <motion.div
           className="joy-about__copy"
-          initial={{ opacity: 0, x: 28 }}
+          initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 28 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{
             duration: 0.65,

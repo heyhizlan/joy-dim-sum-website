@@ -54,13 +54,13 @@ export default function Navigation() {
       <motion.nav
         className={navClassName}
         aria-label="Primary navigation"
-        initial={reduceMotion ? false : { y: -90 }}
+        initial={reduceMotion ? { y: 0 } : { y: -90 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="joy-nav__shell">
           <div className="joy-nav__bar">
-            <a className="joy-nav__brand" href="#" aria-label="JOY Dim Sum home">
+            <a className="joy-nav__brand" href="#top" aria-label="JOY Dim Sum home">
               <img
                 src={onLightSurface ? logoGreen : logoYellowBeige}
                 alt="JOY Dim Sum Sentul Point and Kiara Bay, Kepong"

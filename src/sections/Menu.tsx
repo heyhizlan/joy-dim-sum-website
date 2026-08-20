@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, FileText } from 'lucide-react';
 import harKau from '../assets/seo/joy-dim-sum-har-kau-kuala-lumpur.webp';
 import lohMaiKai from '../assets/seo/joy-dim-sum-loh-mai-kai-kuala-lumpur.webp';
@@ -109,6 +109,7 @@ export default function Menu() {
   const headingRef = useRef(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(headingRef, { once: true, margin: '-100px' });
+  const reduceMotion = useReducedMotion();
 
   const scrollCards = (direction: -1 | 1) => {
     const track = trackRef.current;
@@ -125,7 +126,7 @@ export default function Menu() {
         <motion.div
           ref={headingRef}
           className="joy-menu__heading"
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -149,6 +150,7 @@ export default function Menu() {
                 title="Full PDF menu coming soon"
               >
                 See Full Menu
+                <span className="sr-only">(coming soon)</span>
                 <FileText aria-hidden="true" />
               </button>
             </div>
@@ -164,7 +166,7 @@ export default function Menu() {
         </motion.div>
       </div>
 
-      <div
+      <section
         ref={trackRef}
         className="joy-menu__track"
         aria-label="Curated dim sum and pau"
@@ -190,7 +192,7 @@ export default function Menu() {
             </div>
           </article>
         ))}
-      </div>
+      </section>
     </section>
   );
 }
