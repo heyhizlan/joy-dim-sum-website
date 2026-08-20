@@ -5,13 +5,17 @@ import logoYellowBeige from '../../assets/Logo Masterfile/joydimsum-duotone-yell
 import logoGreen from '../../assets/Logo Masterfile/joydimsum-primary-green--rgb.svg';
 
 const navLinks = [
-  { label: 'Menu', href: '#menu' },
-  { label: 'Outlets', href: '#locations' },
-  { label: 'Our Story', href: '#about' },
-  { label: 'News', href: '#instagram' },
+  { label: 'Menu', href: '/menu/' },
+  { label: 'Outlets', href: '/locations/' },
+  { label: 'Story', href: '/#about' },
+  { label: 'News', href: '/#instagram' },
 ];
 
-export default function Navigation() {
+export default function Navigation({
+  lightOnLoad = false,
+}: {
+  lightOnLoad?: boolean;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -40,11 +44,14 @@ export default function Navigation() {
     };
   }, [mobileOpen]);
 
-  const onLightSurface = scrolled || mobileOpen;
+  const onLightSurface = lightOnLoad || scrolled || mobileOpen;
   const navClassName = [
     'joy-nav',
     scrolled ? 'joy-nav--scrolled' : '',
     mobileOpen ? 'joy-nav--open' : '',
+    // Pages that open on a light section need the dark link colour straight
+    // away; cream links on the yellow outlets header were unreadable.
+    lightOnLoad ? 'joy-nav--light' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -60,7 +67,7 @@ export default function Navigation() {
       >
         <div className="joy-nav__shell">
           <div className="joy-nav__bar">
-            <a className="joy-nav__brand" href="#top" aria-label="JOY Dim Sum home">
+            <a className="joy-nav__brand" href="/" aria-label="JOY Dim Sum home">
               <img
                 src={onLightSurface ? logoGreen : logoYellowBeige}
                 alt="JOY Dim Sum Sentul Point and Kiara Bay, Kepong"
@@ -77,7 +84,7 @@ export default function Navigation() {
               ))}
             </div>
 
-            <a className="joy-nav__cta" href="#locations">
+            <a className="joy-nav__cta" href="/locations/">
               Find an Outlet
             </a>
 

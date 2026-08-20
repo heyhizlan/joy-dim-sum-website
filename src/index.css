@@ -230,7 +230,8 @@ button:focus-visible,
 }
 
 .joy-nav--scrolled .joy-nav__link,
-.joy-nav--open .joy-nav__link {
+.joy-nav--open .joy-nav__link,
+.joy-nav--light .joy-nav__link {
   color: #2B1F17;
 }
 
@@ -267,6 +268,15 @@ button:focus-visible,
   box-shadow: 0 1px 0 #2B1F17;
   color: #2B1F17;
   transform: translateY(3px);
+}
+
+.joy-nav__cta:active,
+.joy-button:active,
+.joy-outlet-card__button:active,
+.joy-reviews__button:active,
+.joy-menu__full-menu:active {
+  box-shadow: 0 0 0 #2B1F17;
+  transform: translateY(5px);
 }
 
 .joy-nav__menu-button {
@@ -452,6 +462,11 @@ button:focus-visible,
   color: #2B1F17;
 }
 
+.joy-button--green {
+  background: #1D552B;
+  color: #F1E8D7;
+}
+
 .joy-hero__visual {
   position: relative;
   z-index: 2;
@@ -494,40 +509,36 @@ button:focus-visible,
 
 .joy-comic-panel__image-motion {
   position: absolute;
-  inset: 0;
+  inset: -6%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
   transform-origin: center;
+  will-change: transform;
 }
 
 .joy-comic-panel--photo:hover .joy-comic-panel__image-motion {
-  animation: joy-comic-image-wiggle 520ms ease-in-out 1;
+  animation: joy-comic-image-rotate 3.8s linear 1;
 }
 
-@keyframes joy-comic-image-wiggle {
-  0%,
-  100% {
+@keyframes joy-comic-image-rotate {
+  0% {
     transform: rotate(0deg);
   }
-  25% {
-    transform: rotate(-4deg);
-  }
-  55% {
-    transform: rotate(4deg);
-  }
-  78% {
-    transform: rotate(-2deg);
+  100% {
+    transform: rotate(360deg);
   }
 }
 
 .joy-comic-panel--photo img {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
   display: block;
-  width: 112%;
+  width: 100%;
+  height: 100%;
   max-width: none;
+  object-fit: contain;
   user-select: none;
   filter: none;
-  transform: translateX(-50%) rotate(-30deg);
+  transform: none;
   transform-origin: center;
 }
 
@@ -697,7 +708,8 @@ button:focus-visible,
 
 .joy-menu__heading h2,
 .joy-locations__heading h2,
-.joy-faq__heading h2 {
+.joy-faq__heading h2,
+.joy-faq__heading h1 {
   margin: 0;
   font-family: 'SN Pro', sans-serif;
   font-size: clamp(3.5rem, 7vw, 7rem);
@@ -1122,6 +1134,49 @@ button:focus-visible,
   opacity: 0.08;
 }
 
+.joy-faq--plain::before {
+  content: none;
+}
+
+.joy-faq--page {
+  padding-top: clamp(2rem, 4vw, 4rem);
+}
+
+.joy-faq-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #F1E8D7;
+}
+
+.joy-faq-page::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-brown-on-yellow.svg');
+  background-position: -1px -1px;
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  content: '';
+  opacity: 0.08;
+}
+
+.joy-faq-page .joy-faq {
+  background: transparent;
+}
+
+.joy-faq-page .joy-faq::before {
+  content: none;
+}
+
+.joy-faq--page .joy-faq__heading h1 {
+  color: #1D552B;
+}
+
+.joy-faq-page__breadcrumbs {
+  padding-top: clamp(8.5rem, 12vw, 11rem);
+}
+
 .joy-faq__shell {
   position: relative;
   z-index: 1;
@@ -1133,7 +1188,8 @@ button:focus-visible,
   text-align: center;
 }
 
-.joy-faq__heading h2 > span {
+.joy-faq__heading h2 > span,
+.joy-faq__heading h1 > span {
   display: block;
 }
 
@@ -1144,6 +1200,12 @@ button:focus-visible,
 .joy-faq__list {
   display: grid;
   gap: 18px;
+}
+
+.joy-faq__page-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.25rem;
 }
 
 .joy-faq__item {
@@ -1274,8 +1336,8 @@ button:focus-visible,
      to none - without restoring the line there is nothing for the colour to paint. */
   text-decoration-line: underline;
   text-decoration-color: transparent;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
   transition:
     text-decoration-color 160ms ease,
     text-decoration-thickness 160ms ease,
@@ -1287,8 +1349,8 @@ button:focus-visible,
 .joy-inline-link:hover,
 .joy-inline-link:focus-visible {
   text-decoration-color: currentColor;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
 }
 
 .joy-reviews h2 {
@@ -1718,7 +1780,8 @@ a.joy-footer__detail:hover {
 .joy-footer__location span,
 .joy-footer__social span {
   text-decoration-color: transparent;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
   transition: text-decoration-color 180ms ease;
 }
 
@@ -1731,6 +1794,7 @@ a.joy-footer__detail:hover {
 .joy-footer__social:hover span {
   text-decoration-line: underline;
   text-decoration-color: #FFCC29;
+  text-decoration-thickness: 1px;
 }
 
 .joy-footer__location:hover svg,
@@ -1909,8 +1973,11 @@ a.joy-footer__detail:hover {
   padding: 0;
   border: 0;
   background: transparent;
-  cursor: pointer;
   touch-action: pan-y;
+}
+
+.joy-maintenance__playground[data-drag-enabled='false'] .joy-maintenance__drag-note {
+  display: none;
 }
 
 .joy-maintenance__playground[data-drag-enabled='true'] {
@@ -1935,7 +2002,12 @@ a.joy-footer__detail:hover {
   user-select: none;
 }
 
-.joy-maintenance__sticker:hover img,
+@media (hover: hover) and (pointer: fine) {
+  .joy-maintenance__sticker:hover img {
+    animation: joy-maintenance-sticker-wiggle 560ms ease-in-out 1;
+  }
+}
+
 .joy-maintenance__sticker:focus-visible img {
   animation: joy-maintenance-sticker-wiggle 560ms ease-in-out 1;
 }
@@ -2262,6 +2334,13 @@ a.joy-footer__detail:hover {
     font-size: clamp(4.5rem, 8vw, 7rem);
   }
 
+  /* Three cards across leave under 140px of text width here, which pushed the
+     quote's longest word past the card border. Two fit the type properly. */
+  .joy-review-card {
+    width: calc((100% - 22px) / 2);
+    flex-basis: calc((100% - 22px) / 2);
+  }
+
   .joy-footer__grid {
     grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.6fr);
     gap: clamp(3rem, 7vw, 6rem);
@@ -2270,6 +2349,53 @@ a.joy-footer__detail:hover {
   .joy-footer__right {
     grid-template-columns: minmax(90px, 0.6fr) minmax(180px, 1.15fr) minmax(140px, 0.9fr);
     gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+/* The hero headline lines never wrap, so "FULL BITE" needs about 344px at its
+   4.5rem floor. In the two-column hero the left column only reaches that from
+   ~875px up, so between 821px and 940px the headline ran under the comic panels.
+   Stack the hero across that band instead; the single-column rules are the same
+   ones the narrower breakpoints already use. */
+@media (max-width: 940px) {
+  .joy-hero {
+    align-items: flex-start;
+    padding: 8rem var(--joy-page-gutter) 4.5rem;
+  }
+
+  .joy-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .joy-hero__content {
+    max-width: 660px;
+  }
+
+  .joy-hero__headline {
+    font-size: clamp(4.6rem, 16vw, 7.4rem);
+  }
+
+  .joy-hero__visual {
+    width: min(100%, 650px);
+    min-height: 620px;
+    margin: 0 auto;
+  }
+
+  .joy-comic-panel--photo {
+    overflow: hidden;
+  }
+
+  .joy-comic-panel--yellow .joy-comic-panel__image-motion {
+    inset: 9%;
+  }
+
+  .joy-comic-panel--beige .joy-comic-panel__image-motion {
+    inset: 7%;
+  }
+
+  .joy-hero__scroll {
+    display: none;
   }
 }
 
@@ -2302,34 +2428,6 @@ a.joy-footer__detail:hover {
     margin-left: auto;
   }
 
-  .joy-hero {
-    align-items: flex-start;
-    padding: 8rem var(--joy-page-gutter) 4.5rem;
-  }
-
-  .joy-hero__inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .joy-hero__content {
-    max-width: 660px;
-  }
-
-  .joy-hero__headline {
-    font-size: clamp(4.6rem, 16vw, 7.4rem);
-  }
-
-  .joy-hero__visual {
-    width: min(100%, 650px);
-    min-height: 620px;
-    margin: 0 auto;
-  }
-
-  .joy-hero__scroll {
-    display: none;
-  }
-
   .joy-menu__heading {
     align-items: flex-start;
   }
@@ -2345,11 +2443,6 @@ a.joy-footer__detail:hover {
 
   .joy-reviews__heading {
     max-width: 650px;
-  }
-
-  .joy-review-card {
-    width: calc((100% - 22px) / 2);
-    flex-basis: calc((100% - 22px) / 2);
   }
 
   .joy-locations__grid,
@@ -2421,6 +2514,14 @@ a.joy-footer__detail:hover {
 
   .joy-hero__comic {
     gap: 10px;
+  }
+
+  .joy-comic-panel--yellow .joy-comic-panel__image-motion {
+    inset: 10%;
+  }
+
+  .joy-comic-panel--beige .joy-comic-panel__image-motion {
+    inset: 8%;
   }
 
   .joy-comic-panel {

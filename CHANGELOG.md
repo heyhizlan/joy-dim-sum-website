@@ -4,6 +4,48 @@ All notable changes to the JOY Dim Sum website are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-08-20
+
+This release expands JOY Dim Sum into a fully prerendered multipage website,
+refreshes the food and outlet imagery, and completes the latest responsive,
+navigation, accessibility and local-discovery refinements.
+
+### Added
+
+- **Dedicated indexable pages** for the full menu, all outlets, Sentul Point,
+  Kiara Bay in Kepong, and 15 frequently asked questions.
+- **Route-specific SEO metadata, canonical URLs, structured data, breadcrumbs,
+  and sitemap entries** for the new pages.
+- **Sentul Point and Kiara Bay outlet photography** plus refreshed transparent
+  WebP product imagery for Chicken Siew Mai, Otak-otak Dumpling, Scallop
+  Dumpling, Shanghai Dumpling, Siew Long Pau and Dragonfruit Dumpling.
+- **Internal outlet discovery links** from the landing-page cards and outlet
+  overview, while keeping direct map actions where appropriate.
+
+### Changed
+
+- **Landing-page navigation and section CTAs** now use the shorter Story,
+  Outlets and News labels consistently across desktop, mobile and footer menus.
+- **Hero food panels** use centred, responsive basket imagery with deliberate
+  in-place rotation on appearance and hover.
+- **Menu cards and copy** now reflect the revised JOY dishes and image set.
+- **Outlet, FAQ, campaign, review and maintenance layouts** received responsive
+  spacing, alignment, interaction and pattern refinements across desktop,
+  tablet and mobile.
+
+### Fixed
+
+- **See what is steaming now scrolls directly to the landing-page menu.**
+- **View Full Menu now opens the dedicated menu page** instead of presenting
+  a disabled coming-soon control.
+- **Review cards no longer clip at carousel edges**, and mobile menu, news and
+  maintenance interactions no longer create excess whitespace or block normal
+  page scrolling.
+- **FAQ, social, map and navigation interactions** now have consistent press,
+  underline, hover and keyboard behaviour.
+- **Maintenance favicon and responsive media handling** now use stable public
+  asset paths.
+
 ## [1.4.0] - 2026-08-20
 
 The landing page is the live, indexable site. Kiara Bay's target opening moves to
@@ -96,5 +138,6 @@ accessibility, SEO and mobile-interaction issues.
 - Prerendered SSR build via `scripts/prerender.mjs`.
 - GitHub Pages deployment workflow.
 
+[1.5.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.5.0
 [1.4.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.4.0
 [1.3.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.3.0

@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://joydimsum.com/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://joydimsum.com/locations/</loc>
+    <lastmod>2026-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://joydimsum.com/locations/sentul-point/</loc>
+    <lastmod>2026-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://joydimsum.com/locations/kiara-bay-kepong/</loc>
+    <lastmod>2026-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://joydimsum.com/menu/</loc>
+    <lastmod>2026-08-20</lastmod>
+  </url>
+  <url>
+    <loc>https://joydimsum.com/faqs/</loc>
+    <lastmod>2026-08-20</lastmod>
   </url>
 </urlset>
