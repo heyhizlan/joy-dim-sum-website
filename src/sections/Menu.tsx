@@ -160,7 +160,11 @@ export default function Menu({
                 </a>
               </div>
             )}
-            <div className="joy-menu__controls" aria-label="Menu card controls">
+            <div
+              className="joy-menu__controls"
+              role="group"
+              aria-label="Menu card controls"
+            >
               <button type="button" onClick={() => scrollCards(-1)} aria-label="Previous food">
                 <ArrowLeft aria-hidden="true" />
               </button>
