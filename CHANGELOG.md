@@ -4,6 +4,50 @@ All notable changes to the JOY Dim Sum website are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-08-21
+
+A quality pass over the 1.5.0 release. The hero food panels now spin only on
+hover, the outlet overview links straight through to each outlet page, and a
+second-layer QA review cleared a batch of responsive, accessibility and image
+defects.
+
+### Changed
+
+- **Hero food panels rotate on hover only.** The baskets no longer spin as the
+  page appears, and the hover rotation slowed from 3.8s to 7s for a full turn.
+  The rotation is CSS-driven, so `prefers-reduced-motion` suppresses it.
+- **Outlet overview cards link to the outlet pages.** On `/locations/` both
+  cards now read **View Location** with a map-pin icon and open the matching
+  outlet page. Landing-page cards keep **Get Directions** and continue to open
+  Google Maps in a new tab.
+- **Kiara Bay opening headline breaks onto two lines**, so "Opening in" reads as
+  the label and the countdown as the value instead of wrapping mid-figure.
+- **Reviews autoplay now stops when the carousel leaves the viewport.** Its
+  in-view gate was latching after the first pass, so the carousel kept
+  advancing for the rest of the session. Pause on hover, touch and focus is
+  unchanged.
+
+### Fixed
+
+- **Sideways scroll at a 320px viewport.** `body` carried `min-width: 320px`,
+  but a classic scrollbar leaves 305px of content width, so every route scrolled
+  15px horizontally. This is the width WCAG 2.2 reflow is measured at, and the
+  width a 1280px desktop reports at 400% zoom. Nothing overflows without it.
+- **Kiara Bay outlet photo declared the wrong dimensions.** The image is
+  1080x1920, but it was marked up as 1920x1080, so the browser reserved a
+  landscape box for a portrait file. The rendered result is unchanged.
+- **The landing page had no `main` landmark**, the only route without one. It
+  now matches the menu, outlet and FAQ pages, restoring landmark navigation and
+  skip-to-content.
+- **The Kiara Bay countdown announced itself every minute.** The `aria-live`
+  region re-read "Opening in 25d 14h 0m" on each tick, twice over on pages that
+  show two cards. The exact opening date sits in the same card.
+- **Menu carousel controls were unlabelled in assistive technology.** The
+  `aria-label` sat on a plain `div`, which exposes no role for it to name.
+- **Two low-contrast text styles.** The footer copyright line (4.11:1) and the
+  review call-to-action subtitle (3.03:1) now clear WCAG AA at 4.95:1 and
+  4.72:1, using the same colours at higher opacity.
+
 ## [1.5.0] - 2026-08-20
 
 This release expands JOY Dim Sum into a fully prerendered multipage website,
@@ -138,6 +182,7 @@ accessibility, SEO and mobile-interaction issues.
 - Prerendered SSR build via `scripts/prerender.mjs`.
 - GitHub Pages deployment workflow.
 
+[1.5.1]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.5.1
 [1.5.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.5.0
 [1.4.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.4.0
 [1.3.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.3.0

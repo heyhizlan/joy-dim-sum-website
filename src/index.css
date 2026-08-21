@@ -82,7 +82,9 @@ html {
 }
 
 body {
-  min-width: 320px;
+  /* No min-width: at a 320px viewport a classic scrollbar leaves 305px of
+     content width, so min-width: 320px forced the whole page to scroll
+     sideways (WCAG 2.2 SC 1.4.10). Nothing overflows at 305px. */
   margin: 0;
   color: #2B1F17;
   background-color: #F1E8D7;
@@ -518,7 +520,7 @@ button:focus-visible,
 }
 
 .joy-comic-panel--photo:hover .joy-comic-panel__image-motion {
-  animation: joy-comic-image-rotate 3.8s linear 1;
+  animation: joy-comic-image-rotate 7s linear 1;
 }
 
 @keyframes joy-comic-image-rotate {
@@ -1496,7 +1498,7 @@ button:focus-visible,
 .joy-review-card--cta > div > span {
   display: block;
   margin-top: 18px;
-  color: rgb(43 31 23 / 50%);
+  color: rgb(43 31 23 / 66%);
   font-size: 0.82rem;
   line-height: 1.45;
 }
@@ -1811,7 +1813,7 @@ a.joy-footer__detail:hover {
 
 .joy-footer__bottom p {
   margin: 0;
-  color: rgb(241 232 215 / 48%);
+  color: rgb(241 232 215 / 55%);
   font-size: 0.75rem;
   text-align: right;
 }

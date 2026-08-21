@@ -134,10 +134,14 @@ export default function Reviews() {
   const resetTimerRef = useRef<number | null>(null);
   const resumeTimerRef = useRef<number | null>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  // Separate, non-`once` gate: the heading reveal should latch after its first
+  // pass, but autoplay was left running (and scrolling) long after the section
+  // had gone off-screen.
+  const scrollerInView = useInView(scrollerRef, { amount: 0.15 });
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (reduceMotion || !isInView) return;
+    if (reduceMotion || !scrollerInView) return;
 
     const interval = window.setInterval(() => {
       const scroller = scrollerRef.current;
@@ -183,7 +187,7 @@ export default function Reviews() {
         window.clearTimeout(resumeTimerRef.current);
       }
     };
-  }, [isInView, reduceMotion]);
+  }, [scrollerInView, reduceMotion]);
 
   return (
     <section id="reviews" className="joy-reviews" aria-labelledby="reviews-title">

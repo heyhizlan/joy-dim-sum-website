@@ -127,8 +127,12 @@ export default function LocationsSection({ page = false }: { page?: boolean }) {
                   target={page ? undefined : '_blank'}
                   rel={page ? undefined : 'noreferrer'}
                 >
-                  <NavigationIcon aria-hidden="true" size={17} />
-                  Get Directions
+                  {page ? (
+                    <MapPin aria-hidden="true" size={17} />
+                  ) : (
+                    <NavigationIcon aria-hidden="true" size={17} />
+                  )}
+                  {page ? 'View Location' : 'Get Directions'}
                 </a>
                 {outlet.status === 'opening-soon' && <KiaraBayCountdown />}
               </div>

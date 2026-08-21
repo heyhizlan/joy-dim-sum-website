@@ -57,13 +57,7 @@ export default function Hero() {
         >
           <div className="joy-hero__comic">
             <figure className="joy-comic-panel joy-comic-panel--photo joy-comic-panel--yellow">
-              <motion.div
-                className="joy-comic-panel__image-motion"
-                animate={
-                  reduceMotion ? undefined : { rotate: [0, 360] }
-                }
-                transition={{ duration: 4.2, delay: 0.45, ease: 'linear' }}
-              >
+              <div className="joy-comic-panel__image-motion">
                 <img
                   src={chickenGreenDumpling}
                   alt="Top view of green chicken dumplings in a bamboo basket at JOY Dim Sum"
@@ -72,7 +66,7 @@ export default function Hero() {
                   fetchPriority="high"
                   draggable="false"
                 />
-              </motion.div>
+              </div>
             </figure>
 
             <article className="joy-comic-panel joy-comic-panel--copy joy-comic-panel--pink">
@@ -86,13 +80,7 @@ export default function Hero() {
             </article>
 
             <figure className="joy-comic-panel joy-comic-panel--photo joy-comic-panel--beige">
-              <motion.div
-                className="joy-comic-panel__image-motion"
-                animate={
-                  reduceMotion ? undefined : { rotate: [0, -360] }
-                }
-                transition={{ duration: 4.2, delay: 0.6, ease: 'linear' }}
-              >
+              <div className="joy-comic-panel__image-motion">
                 <img
                   src={scallopDumpling}
                   alt="Top view of colourful scallop dumplings in a bamboo basket at JOY Dim Sum"
@@ -101,7 +89,7 @@ export default function Hero() {
                   fetchPriority="high"
                   draggable="false"
                 />
-              </motion.div>
+              </div>
             </figure>
           </div>
         </motion.div>

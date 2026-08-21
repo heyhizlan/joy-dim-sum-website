@@ -263,6 +263,12 @@
   line-height: 0.92;
 }
 
+/* Keep the countdown on its own line so "Opening in" reads as the label and the
+   timer as the value, instead of wrapping mid-figure. */
+.joy-social-cta h2 span {
+  display: block;
+}
+
 .joy-visit__heading > p:last-child,
 .joy-continuity__card > p:last-child,
 .joy-social-cta__card > p:last-of-type,

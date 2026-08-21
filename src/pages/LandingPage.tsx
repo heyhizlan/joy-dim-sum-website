@@ -14,26 +14,30 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-joy-cream">
       <Navigation />
-      <Hero />
-      <MenuTicker />
-      <SectionReveal>
-        <Menu />
-      </SectionReveal>
-      <SectionReveal>
-        <LocationsSection />
-      </SectionReveal>
-      <SectionReveal>
-        <About />
-      </SectionReveal>
-      <SectionReveal>
-        <FAQSection showPageLink />
-      </SectionReveal>
-      <SectionReveal>
-        <Reviews />
-      </SectionReveal>
-      <SectionReveal>
-        <Instagram />
-      </SectionReveal>
+      {/* Every other route wraps its content in <main>; the landing page was
+          the only one without the landmark. */}
+      <main>
+        <Hero />
+        <MenuTicker />
+        <SectionReveal>
+          <Menu />
+        </SectionReveal>
+        <SectionReveal>
+          <LocationsSection />
+        </SectionReveal>
+        <SectionReveal>
+          <About />
+        </SectionReveal>
+        <SectionReveal>
+          <FAQSection showPageLink />
+        </SectionReveal>
+        <SectionReveal>
+          <Reviews />
+        </SectionReveal>
+        <SectionReveal>
+          <Instagram />
+        </SectionReveal>
+      </main>
       <SectionReveal>
         <Footer />
       </SectionReveal>

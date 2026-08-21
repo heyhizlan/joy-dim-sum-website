@@ -206,8 +206,8 @@ export default function OutletPage({ outlet }: { outlet: Outlet }) {
                 <img
                   src={heroImage}
                   alt={heroAlt}
-                  width={sentul ? 765 : 1920}
-                  height={sentul ? 1020 : 1080}
+                  width={sentul ? 765 : 1080}
+                  height={sentul ? 1020 : 1920}
                   fetchPriority="high"
                 />
               </figure>

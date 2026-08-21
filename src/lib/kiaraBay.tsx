@@ -42,7 +42,9 @@ export function KiaraBayCountdown() {
   const countdown = useOpeningCountdown();
 
   return (
-    <div className="joy-outlet-card__countdown" aria-live="polite">
+    // No aria-live: this ticks every 60s, so an assertive region would
+    // interrupt the reader once a minute. The exact date is stated alongside.
+    <div className="joy-outlet-card__countdown">
       <span>Opening in</span>
       <strong>{countdown}</strong>
     </div>
