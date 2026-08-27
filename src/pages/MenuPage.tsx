@@ -1,4 +1,4 @@
-import { ArrowDownRight, MapPin } from 'lucide-react';
+import { ArrowDownRight, FileText } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import siewMai from '../assets/seo/joy-dim-sum-siew-mai-menu-highlight.webp';
 import Footer from '../sections/Footer';
@@ -28,13 +28,16 @@ export default function MenuPage() {
                   ten current highlights from the JOY table.
                 </p>
                 <div className="joy-page-hero__actions">
-                  <a className="joy-button joy-button--primary" href="#menu">
+                  <a
+                    className="joy-button joy-button--primary"
+                    href="/full-menu/"
+                  >
+                    View Full Menu
+                    <FileText aria-hidden="true" />
+                  </a>
+                  <a className="joy-button joy-button--secondary" href="#menu">
                     Browse Highlights
                     <ArrowDownRight aria-hidden="true" />
-                  </a>
-                  <a className="joy-button joy-button--secondary" href="/locations/">
-                    <MapPin aria-hidden="true" />
-                    Find an Outlet
                   </a>
                 </div>
               </div>

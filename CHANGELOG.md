@@ -4,6 +4,37 @@ All notable changes to the JOY Dim Sum website are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-08-27
+
+This release adds a dedicated, responsive full-menu viewer, refreshes the Loh
+Mai Kai photography everywhere it is used, and connects the two full-menu calls
+to action directly to the new experience.
+
+### Added
+
+- **Dedicated full-menu viewer at `/full-menu/`.** Seven menu files are
+  presented in order as a cover, five two-page spreads and a back cover.
+- **Previous and Next spread navigation** with matching JOY yellow button
+  animation, keyboard arrow support, touch swiping, accessible labels and a
+  live spread counter.
+- **Indexable metadata, structured-data breadcrumbs and sitemap coverage** for
+  the new full-menu route.
+- **Optimized WebP menu artwork.** The uploaded high-resolution JPG menu files
+  were converted with ImageMagick and adjacent spreads are preloaded for faster
+  page turns.
+
+### Changed
+
+- **Only the two annotated View Full Menu buttons**—on the landing-page menu
+  section and menu highlights hero—now open `/full-menu/`. Both controls use the
+  yellow JOY treatment and retain the existing hover and press motion.
+- **Menu-page hero actions were reordered.** View Full Menu is now the primary
+  action, while Browse Highlights scrolls to the curated menu cards.
+- **The full-menu artwork is displayed without a surrounding card frame** on
+  every device, with Previous and Next controls aligned below the image.
+- **Loh Mai Kai imagery was replaced globally** across the source PNG, SEO PNG
+  and transparent WebP variants while retaining the existing 1144x1051 canvas.
+
 ## [1.5.1] - 2026-08-21
 
 A quality pass over the 1.5.0 release. The hero food panels now spin only on
@@ -182,6 +213,7 @@ accessibility, SEO and mobile-interaction issues.
 - Prerendered SSR build via `scripts/prerender.mjs`.
 - GitHub Pages deployment workflow.
 
+[1.5.2]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.5.2
 [1.5.1]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.5.1
 [1.5.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.5.0
 [1.4.0]: https://github.com/heyhizlan/joy-dim-sum-website/releases/tag/production-v1.4.0

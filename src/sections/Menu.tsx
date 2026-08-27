@@ -151,8 +151,8 @@ export default function Menu({
             {showPageLink && (
               <div className="joy-menu__full-menu-wrap">
                 <a
-                  className="joy-menu__full-menu"
-                  href="/menu/"
+                  className="joy-menu__full-menu joy-menu__full-menu--yellow"
+                  href="/full-menu/"
                   aria-label="View the full JOY Dim Sum menu"
                 >
                   View Full Menu
