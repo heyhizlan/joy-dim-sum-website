@@ -6,6 +6,7 @@ export const prerenderRoutes = [
   '/locations/sentul-point/',
   '/locations/kiara-bay-kepong/',
   '/menu/',
+  '/full-menu/',
   '/faqs/',
 ] as const;
 
@@ -69,6 +70,15 @@ const routeMeta: Record<SiteRoute, RouteMeta> = {
     canonical: `${SITE_URL}/menu/`,
     ogImage: shareImage,
     ogImageAlt: 'JOY Dim Sum siew mai menu highlight on a yellow brand background',
+  },
+  '/full-menu/': {
+    path: '/full-menu/',
+    title: 'Full JOY Dim Sum Menu | Kuala Lumpur',
+    description:
+      'View the full JOY Dim Sum menu, including dim sum, pau, savoury dishes, mains, drinks and current selections in Kuala Lumpur.',
+    canonical: `${SITE_URL}/full-menu/`,
+    ogImage: shareImage,
+    ogImageAlt: 'The full JOY Dim Sum menu in Kuala Lumpur',
   },
   '/faqs/': {
     path: '/faqs/',
@@ -148,7 +158,7 @@ function restaurantBase(outlet: (typeof outletList)[number]) {
       latitude: outlet.latitude,
       longitude: outlet.longitude,
     },
-    hasMenu: `${SITE_URL}/menu/`,
+    hasMenu: `${SITE_URL}/full-menu/`,
     parentOrganization: { '@id': `${SITE_URL}/#organization` },
   };
 }
@@ -255,6 +265,20 @@ export function getStructuredData(pathname: string) {
           ...restaurantBase(outlet),
           openingDate: outlet.openingDate,
         },
+      ],
+    };
+  }
+
+  if (path === '/full-menu/') {
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        webPage(meta, 'Full JOY Dim Sum Menu'),
+        breadcrumbs([
+          { name: 'Home', url: `${SITE_URL}/` },
+          { name: 'Menu Highlights', url: `${SITE_URL}/menu/` },
+          { name: 'Full Menu', url: meta.canonical },
+        ]),
       ],
     };
   }

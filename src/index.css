@@ -695,6 +695,11 @@ button:focus-visible,
   font-weight: 700;
 }
 
+.joy-menu__full-menu--yellow {
+  background: #FFCC29;
+  color: #2B1F17;
+}
+
 .joy-menu__full-menu[aria-disabled='true'] {
   cursor: default;
 }
