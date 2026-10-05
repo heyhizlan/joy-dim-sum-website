@@ -152,7 +152,7 @@ export default function Menu({
               <div className="joy-menu__full-menu-wrap">
                 <a
                   className="joy-menu__full-menu"
-                  href="/full-menu/"
+                  href="/menu/#full-text-menu"
                   aria-label="View the full JOY Dim Sum menu"
                 >
                   View Full Menu

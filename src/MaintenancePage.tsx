@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
-  CalendarDays,
   Clock,
   MapPin,
   Navigation,
@@ -12,34 +11,20 @@ import siewMai from './assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.webp';
 import harKau from './assets/seo/joy-dim-sum-har-kau-kuala-lumpur.webp';
 import chickenPau from './assets/seo/joy-dim-sum-chicken-pau-kuala-lumpur.webp';
 import gulaMelakaMantau from './assets/seo/joy-dim-sum-gula-melaka-mantau-kuala-lumpur.webp';
-import { KIARA_BAY_OPENING_LABEL, KiaraBayCountdown } from './lib/kiaraBay';
+import { kiaraBayMapsUrl } from './lib/siteData';
 import { FacebookIcon, InstagramIcon } from './lib/SocialIcons';
 
 const outlets = [
   {
-    name: 'Sentul Point',
-    addressLines: [
-      'AG-26, Sentul Point,',
-      'Jln Sentul Pasar, Sentul,',
-      '51100 Kuala Lumpur',
-    ],
-    description: 'Dim sum, pau and casual dining at Sentul Point in Kuala Lumpur.',
-    formerName: 'Formerly known as Dim Sum House.',
-    hours: 'Monday–Sunday, 10am to 10pm',
-    mapsLink:
-      'https://www.google.com/maps/place/Dim+Sum+House+@+Sentul+Point/@3.2019041,101.6893619,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc47ea6c13790f:0x7bcae75188d28cc7!8m2!3d3.2019041!4d101.6893619!16s%2Fg%2F11z2hxfpsd',
-  },
-  {
     name: 'Kiara Bay',
     addressLines: [
-      'The Beat at Kiara Bay, Karya Bayu Metropolitan,',
-      '51, Persiaran Putra Bayu, Kepong,',
+      'G-27, Karya Bayu Metropolitan,',
+      '51, Persiaran Putra Bayu, Kiara Bay, Kepong,',
       '52100 Kuala Lumpur',
     ],
-    description: 'A new JOY Dim Sum table is coming to Kiara Bay in Kepong, Kuala Lumpur.',
-    note: KIARA_BAY_OPENING_LABEL,
-    mapsLink:
-      'https://www.google.com/maps/search/?api=1&query=The+Beat+at+Kiara+Bay+51+Persiaran+Putra+Bayu+Kepong',
+    description: 'Dim sum, pau and casual dining at Kiara Bay in Kepong, Kuala Lumpur.',
+    hours: 'Monday–Sunday, 8am to 11pm',
+    mapsLink: kiaraBayMapsUrl,
   },
 ] as const;
 
@@ -77,7 +62,6 @@ const stickers = [
 export default function MaintenancePage() {
   const heroSectionRef = useRef<HTMLElement>(null);
   const [dragEnabled, setDragEnabled] = useState(false);
-  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const dragMedia = window.matchMedia(
@@ -111,7 +95,7 @@ export default function MaintenancePage() {
           ref={heroSectionRef}
         >
           <div className="joy-maintenance__intro">
-            <p className="joy-maintenance__kicker">Dim sum in Sentul and Kepong</p>
+            <p className="joy-maintenance__kicker">Dim sum in Kiara Bay, Kepong</p>
             <h1 id="maintenance-title">
               <span className="joy-maintenance__headline-line">Wait ah,</span>
               <span className="joy-maintenance__headline-line">something is</span>
@@ -120,8 +104,8 @@ export default function MaintenancePage() {
               </span>
             </h1>
             <p className="joy-maintenance__support">
-              We’re freshening up the JOY Dim Sum website. Sentul Point is
-              serving as usual, and Kiara Bay is counting down to opening day.
+              We’re freshening up the JOY Dim Sum website. Kiara Bay is serving
+              every day from 8am to 11pm.
             </p>
             <a className="joy-maintenance__outlet-cta" href="#maintenance-outlets">
               Find our outlets
@@ -192,37 +176,11 @@ export default function MaintenancePage() {
               {outlets.map((outlet) => (
                 <article
                   key={outlet.name}
-                  className={
-                    'joy-outlet-card' +
-                    ('note' in outlet ? ' joy-outlet-card--opening' : '')
-                  }
+                  className="joy-outlet-card"
                 >
-                  {'note' in outlet && (
-                    <motion.span
-                      className="joy-outlet-card__status"
-                      initial={{ rotate: 0, y: 0 }}
-                      whileInView={
-                        reduceMotion
-                          ? {}
-                          : {
-                              rotate: [0, -6, 6, -4, 4, 0],
-                              y: [0, -2, 0, -1, 0],
-                            }
-                      }
-                      viewport={{ once: true, amount: 0.8 }}
-                      transition={{ duration: 0.72, ease: 'easeInOut' }}
-                    >
-                      Opening soon
-                    </motion.span>
-                  )}
                   <h3>{outlet.name}</h3>
                   <p className="joy-outlet-card__description">
                     <span>{outlet.description}</span>
-                    {'formerName' in outlet && (
-                      <span className="joy-outlet-card__former-name">
-                        {outlet.formerName}
-                      </span>
-                    )}
                   </p>
 
                   <div className="joy-outlet-card__details">
@@ -240,18 +198,10 @@ export default function MaintenancePage() {
                         ))}
                       </span>
                     </a>
-                    {'hours' in outlet && (
-                      <p>
-                        <Clock aria-hidden="true" />
-                        <span>{outlet.hours}</span>
-                      </p>
-                    )}
-                    {'note' in outlet && (
-                      <p>
-                        <CalendarDays aria-hidden="true" />
-                        <span>{outlet.note}</span>
-                      </p>
-                    )}
+                    <p>
+                      <Clock aria-hidden="true" />
+                      <span>{outlet.hours}</span>
+                    </p>
                   </div>
 
                   <div className="joy-outlet-card__footer">
@@ -264,7 +214,6 @@ export default function MaintenancePage() {
                       <Navigation aria-hidden="true" size={18} />
                       Get directions
                     </a>
-                    {'note' in outlet && <KiaraBayCountdown />}
                   </div>
                 </article>
               ))}

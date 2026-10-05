@@ -127,6 +127,90 @@
   background: #FFCC29;
 }
 
+.joy-page-hero__visual--carousel {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  background: #F1E8D7;
+}
+
+.joy-menu-hero-carousel__track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  border-radius: inherit;
+  cursor: grab;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.joy-menu-hero-carousel__track:active {
+  cursor: grabbing;
+}
+
+.joy-menu-hero-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.joy-menu-hero-carousel__slide {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.joy-page-hero__visual--carousel .joy-menu-hero-carousel__slide img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.joy-menu-hero-carousel__dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  display: flex;
+  padding: 0.25rem 0.4rem;
+  border: 2px solid #2B1F17;
+  border-radius: 999px;
+  background: rgb(241 232 215 / 88%);
+  transform: translateX(-50%);
+}
+
+.joy-menu-hero-carousel__dots button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.joy-menu-hero-carousel__dots button::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #A9A29B;
+  content: '';
+  transform: translate(-50%, -50%);
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.joy-menu-hero-carousel__dots button.is-active::before {
+  background: #57514C;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
 .joy-page-hero__visual--outlet {
   overflow: hidden;
   padding: 0;
@@ -170,6 +254,212 @@
   padding: clamp(8.5rem, 12vw, 11rem) 0 clamp(5rem, 8vw, 7rem);
   background: #1D552B;
   color: #F1E8D7;
+}
+
+.joy-text-menu {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5.5rem, 9vw, 8.5rem) 0;
+  background: #1D552B;
+  color: #F1E8D7;
+}
+
+.joy-text-menu__pattern {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-beige-on-green-and-brown.svg');
+  background-position: -1px -1px;
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  opacity: 0.16;
+}
+
+.joy-text-menu__shell {
+  position: relative;
+  z-index: 1;
+}
+
+.joy-text-menu__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.65fr);
+  align-items: end;
+  gap: clamp(2rem, 6vw, 6rem);
+  margin-bottom: clamp(2.4rem, 5vw, 4.5rem);
+}
+
+.joy-text-menu__heading .joy-section-kicker {
+  color: #FFCC29;
+}
+
+.joy-text-menu__heading h2 {
+  max-width: 780px;
+  margin: 0;
+  color: #F1E8D7;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(3.4rem, 6.5vw, 6.8rem);
+  font-weight: 840;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+}
+
+.joy-text-menu__heading > p {
+  margin: 0;
+  color: rgb(241 232 215 / 84%);
+  font-family: 'Cal Sans Text UI', sans-serif;
+  font-size: clamp(1rem, 1.45vw, 1.16rem);
+  font-weight: 400;
+  line-height: 1.58;
+}
+
+.joy-text-menu__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.joy-text-menu__filters button {
+  min-height: 46px;
+  padding: 0.7rem 1rem;
+  border: 2px solid #2B1F17;
+  border-radius: 999px;
+  background: #F1E8D7;
+  box-shadow: 0 5px 0 #2B1F17;
+  color: #2B1F17;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.joy-text-menu__filters button:hover,
+.joy-text-menu__filters button:focus-visible,
+.joy-text-menu__filters button.is-active {
+  background: #FFCC29;
+}
+
+.joy-text-menu__filters button:active,
+.joy-text-menu__filters button.is-active {
+  box-shadow: 0 1px 0 #2B1F17;
+  transform: translateY(4px);
+}
+
+.joy-text-menu__select-wrap {
+  display: none;
+  margin-bottom: 2.5rem;
+}
+
+.joy-text-menu__select-wrap label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #FFCC29;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.joy-text-menu__select-wrap select {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.75rem 2.8rem 0.75rem 1rem;
+  border: 2px solid #2B1F17;
+  border-radius: 16px;
+  background: #FFCC29;
+  box-shadow: 0 5px 0 #2B1F17;
+  color: #2B1F17;
+  font: 700 1rem 'Cal Sans Text UI', sans-serif;
+}
+
+.joy-text-menu__groups {
+  display: grid;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+.joy-text-menu__category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.joy-text-menu__category-heading h3 {
+  margin: 0;
+  color: #FFCC29;
+  font-family: 'SN Pro', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 4.8rem);
+  font-weight: 820;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+}
+
+.joy-text-menu__category-heading p {
+  max-width: 440px;
+  margin: 0;
+  color: rgb(241 232 215 / 76%);
+  font-family: 'Cal Sans Text UI', sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.joy-text-menu__items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.joy-text-menu__item {
+  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 2px solid #2B1F17;
+  border-radius: 22px;
+  background: #F1E8D7;
+  box-shadow: 0 8px 0 #2B1F17;
+  color: #2B1F17;
+}
+
+.joy-text-menu__item-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.joy-text-menu__item h4,
+.joy-text-menu__price {
+  font-family: 'SN Pro', sans-serif;
+}
+
+.joy-text-menu__item h4 {
+  margin: 0;
+  color: #1D552B;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  font-weight: 790;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.joy-text-menu__price {
+  flex: 0 0 auto;
+  margin: 0;
+  color: #B33A27;
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  font-weight: 760;
+  line-height: 1.15;
+  text-align: right;
+}
+
+.joy-text-menu__description {
+  max-width: 62ch;
+  margin: 0.9rem 0 0;
+  color: #6F655C;
+  font-family: 'Cal Sans Text UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .joy-full-menu__pattern {
@@ -375,10 +665,6 @@
   text-decoration-color: currentColor;
 }
 
-.joy-outlet-card__footer--overview .joy-outlet-card__countdown {
-  margin-left: auto;
-}
-
 .joy-visit {
   padding: clamp(5.5rem, 9vw, 8rem) 0;
   background: #F1E8D7;
@@ -412,8 +698,6 @@
   line-height: 0.92;
 }
 
-/* Keep the countdown on its own line so "Opening in" reads as the label and the
-   timer as the value, instead of wrapping mid-figure. */
 .joy-social-cta h2 span {
   display: block;
 }
@@ -477,11 +761,6 @@
 
 .joy-visit__card > a > span > span {
   display: block;
-}
-
-.joy-visit__card .joy-outlet-card__countdown {
-  justify-items: start;
-  text-align: left;
 }
 
 .joy-visit__card .joy-outlet-card__button {
@@ -578,6 +857,10 @@
   background-size: 120px 120px;
   content: '';
   opacity: 0.1;
+}
+
+.joy-page-links--solid::before {
+  content: none;
 }
 
 .joy-page-links__inner {
@@ -700,6 +983,33 @@
   .joy-full-menu__heading {
     grid-template-columns: 1fr;
   }
+
+  .joy-text-menu__heading {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .joy-text-menu__filters {
+    display: none;
+  }
+
+  .joy-text-menu__select-wrap {
+    display: block;
+  }
+
+  .joy-text-menu__items {
+    grid-template-columns: 1fr;
+  }
+
+  .joy-text-menu__category-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .joy-text-menu__category-heading p {
+    text-align: left;
+  }
 }
 
 @media (max-width: 560px) {
@@ -771,6 +1081,23 @@
     box-shadow: 0 12px 0 #2B1F17;
   }
 
+  .joy-menu-hero-carousel__dots {
+    bottom: 0.65rem;
+  }
+
+  .joy-text-menu__heading h2 {
+    font-size: clamp(3.1rem, 15vw, 4.5rem);
+  }
+
+  .joy-text-menu__item-topline {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .joy-text-menu__price {
+    text-align: left;
+  }
+
   .joy-locations--page {
     padding-top: 7.4rem;
   }
@@ -781,10 +1108,6 @@
 
   .joy-outlet-card__footer--overview .joy-outlet-card__button {
     align-self: flex-end;
-  }
-
-  .joy-outlet-card__footer--overview .joy-outlet-card__countdown {
-    margin-left: 0;
   }
 
   .joy-visit__card,

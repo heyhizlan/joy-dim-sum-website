@@ -20,6 +20,9 @@ function App() {
         <Menu />
       </SectionReveal>
       <SectionReveal>
+        <Reviews />
+      </SectionReveal>
+      <SectionReveal>
         <Locations />
       </SectionReveal>
       <SectionReveal>
@@ -27,9 +30,6 @@ function App() {
       </SectionReveal>
       <SectionReveal>
         <FAQ />
-      </SectionReveal>
-      <SectionReveal>
-        <Reviews />
       </SectionReveal>
       <SectionReveal>
         <Instagram />

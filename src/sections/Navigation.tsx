@@ -6,6 +6,7 @@ import logoGreen from '../../assets/Logo Masterfile/joydimsum-primary-green--rgb
 
 const navLinks = [
   { label: 'Menu', href: '/menu/' },
+  { label: 'Reviews', href: '/#reviews' },
   { label: 'Outlets', href: '/locations/' },
   { label: 'Story', href: '/#about' },
   { label: 'News', href: '/#instagram' },
@@ -70,7 +71,7 @@ export default function Navigation({
             <a className="joy-nav__brand" href="/" aria-label="JOY Dim Sum home">
               <img
                 src={onLightSurface ? logoGreen : logoYellowBeige}
-                alt="JOY Dim Sum Sentul Point and Kiara Bay, Kepong"
+                alt="JOY Dim Sum Kiara Bay, Kepong"
                 width="1080"
                 height="190"
               />

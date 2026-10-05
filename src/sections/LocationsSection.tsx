@@ -1,20 +1,59 @@
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import {
-  CalendarDays,
-  Clock,
-  MapPin,
-  Navigation as NavigationIcon,
-} from 'lucide-react';
+import { Clock, MapPin, Navigation as NavigationIcon } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { KiaraBayCountdown } from '../lib/kiaraBay';
-import { outletList } from '../lib/siteData';
+import storefrontOne from '../../assets/kiarabay-gallery/joy-dim-sum-kiara-bay-kepong-storefront-1.webp';
+import storefrontTwo from '../../assets/kiarabay-gallery/joy-dim-sum-kiara-bay-kepong-storefront-2.webp';
+import interior from '../../assets/kiarabay-gallery/joy-dim-sum-kiara-bay-kepong-interior.webp';
+import signage from '../../assets/kiarabay-gallery/joy-dim-sum-kiara-bay-kepong-signage.webp';
+import { outlets } from '../lib/siteData';
+
+const galleryImages = [
+  {
+    src: storefrontOne,
+    alt: 'JOY Dim Sum Kiara Bay storefront at Karya Bayu Metropolitan in Kepong',
+  },
+  {
+    src: storefrontTwo,
+    alt: 'Entrance to JOY Dim Sum Kiara Bay dim sum and dumpling restaurant',
+  },
+  {
+    src: interior,
+    alt: 'Dining interior at JOY Dim Sum Kiara Bay in Kepong',
+  },
+  {
+    src: signage,
+    alt: 'JOY Dim Sum Kiara Bay restaurant signage',
+  },
+] as const;
 
 export default function LocationsSection({ page = false }: { page?: boolean }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const headingRef = useRef(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const isInView = useInView(headingRef, { once: true, margin: '-100px' });
   const reduceMotion = useReducedMotion();
   const Heading = page ? 'h1' : 'h2';
+  const outlet = outlets.kiaraBay;
+
+  const showSlide = useCallback((index: number, behavior: ScrollBehavior = 'smooth') => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    carousel.scrollTo({ left: carousel.clientWidth * index, behavior });
+    setActiveSlide(index);
+  }, []);
+
+  useEffect(() => {
+    if (paused || reduceMotion) return;
+
+    const interval = window.setInterval(() => {
+      const nextSlide = (activeSlide + 1) % galleryImages.length;
+      showSlide(nextSlide);
+    }, 3000);
+
+    return () => window.clearInterval(interval);
+  }, [activeSlide, paused, reduceMotion, showSlide]);
 
   return (
     <section
@@ -25,71 +64,88 @@ export default function LocationsSection({ page = false }: { page?: boolean }) {
       <div className="joy-locations__pattern" aria-hidden="true" />
       <div className="joy-section-shell joy-locations__content">
         {page && (
-          <Breadcrumbs
-            items={[{ label: 'Home', href: '/' }, { label: 'Outlets' }]}
-          />
+          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Outlet' }]} />
         )}
 
         <motion.div
-          ref={ref}
+          ref={headingRef}
           className="joy-locations__heading"
           initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="joy-section-kicker">Find our outlets</p>
+          <p className="joy-section-kicker">Find our outlet</p>
           <Heading id="locations-title">
-            {page ? 'JOY Dim Sum Outlets in Kuala Lumpur' : 'Two Outlets, Same JOY'}
+            {page ? 'JOY Dim Sum at Kiara Bay, Kepong' : 'One Outlet, Full JOY'}
           </Heading>
           {page && (
             <p className="joy-locations__intro">
-              Sentul Point is serving every day, while our Kiara Bay table in
-              Kepong is getting ready to open. Pick an outlet for the details,
-              directions and latest verified information.
+              Find our Kiara Bay address, daily opening hours, photo carousel and
+              directions for your next dim sum and dumpling feast.
             </p>
           )}
         </motion.div>
 
-        <div className="joy-locations__grid">
-          {outletList.map((outlet, index) => (
-            <motion.article
-              key={outlet.slug}
-              className={`joy-outlet-card${
-                outlet.status === 'opening-soon' ? ' joy-outlet-card--opening' : ''
-              }`}
-              initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.58,
-                delay: index * 0.12,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+        <div className="joy-locations__grid joy-locations__grid--single">
+          <motion.article
+            className="joy-outlet-card joy-outlet-card--with-carousel"
+            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div
+              className="joy-outlet-carousel"
+              aria-label="Kiara Bay outlet image carousel"
+              onPointerDown={() => setPaused(true)}
+              onPointerUp={() => setPaused(false)}
+              onPointerCancel={() => setPaused(false)}
+              onPointerLeave={() => setPaused(false)}
             >
-              {outlet.status === 'opening-soon' && (
-                <motion.span
-                  className="joy-outlet-card__status"
-                  animate={
-                    isInView && !reduceMotion
-                      ? { rotate: [0, -6, 6, -4, 4, 0], y: [0, -2, 0, -1, 0] }
-                      : {}
-                  }
-                  transition={{ duration: 0.72, delay: 0.6, ease: 'easeInOut' }}
-                >
-                  Opening soon
-                </motion.span>
-              )}
+              <div
+                ref={carouselRef}
+                className="joy-outlet-carousel__track"
+                onScroll={(event) => {
+                  const track = event.currentTarget;
+                  if (!track.clientWidth) return;
+                  setActiveSlide(
+                    Math.min(
+                      galleryImages.length - 1,
+                      Math.max(0, Math.round(track.scrollLeft / track.clientWidth)),
+                    ),
+                  );
+                }}
+              >
+                {galleryImages.map((image, index) => (
+                  <figure className="joy-outlet-carousel__slide" key={image.src}>
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      width="1800"
+                      height="1800"
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                    />
+                  </figure>
+                ))}
+              </div>
+              <div className="joy-outlet-carousel__dots" aria-label="Choose an outlet photo">
+                {galleryImages.map((image, index) => (
+                  <button
+                    key={image.src}
+                    type="button"
+                    className={index === activeSlide ? 'is-active' : ''}
+                    aria-label={`Show outlet photo ${index + 1} of ${galleryImages.length}`}
+                    aria-current={index === activeSlide ? 'true' : undefined}
+                    onClick={() => showSlide(index)}
+                  />
+                ))}
+              </div>
+            </div>
 
+            <div className="joy-outlet-card__copy">
               <h3>
                 <a href={outlet.path}>{outlet.shortName}</a>
               </h3>
-              <p className="joy-outlet-card__description">
-                <span>{outlet.description}</span>
-                {'formerName' in outlet && (
-                  <span className="joy-outlet-card__former-name">
-                    Formerly known as {outlet.formerName}.
-                  </span>
-                )}
-              </p>
+              <p className="joy-outlet-card__description">{outlet.description}</p>
 
               <div className="joy-outlet-card__details">
                 <a
@@ -106,18 +162,10 @@ export default function LocationsSection({ page = false }: { page?: boolean }) {
                     ))}
                   </span>
                 </a>
-                {'hoursLabel' in outlet && (
-                  <p>
-                    <Clock aria-hidden="true" />
-                    <span>{outlet.hoursLabel}</span>
-                  </p>
-                )}
-                {'openingLabel' in outlet && (
-                  <p>
-                    <CalendarDays aria-hidden="true" />
-                    <span>{outlet.openingLabel}</span>
-                  </p>
-                )}
+                <p>
+                  <Clock aria-hidden="true" />
+                  <span>{outlet.hoursLabel}</span>
+                </p>
               </div>
 
               <div className="joy-outlet-card__footer joy-outlet-card__footer--overview">
@@ -132,17 +180,16 @@ export default function LocationsSection({ page = false }: { page?: boolean }) {
                   ) : (
                     <NavigationIcon aria-hidden="true" size={17} />
                   )}
-                  {page ? 'View Location' : 'Get Directions'}
+                  {page ? 'View Outlet' : 'Get Directions'}
                 </a>
-                {outlet.status === 'opening-soon' && <KiaraBayCountdown />}
               </div>
-            </motion.article>
-          ))}
+            </div>
+          </motion.article>
         </div>
         {!page && (
           <div className="joy-locations__all-link">
-            <a className="joy-button joy-button--green" href="/locations/">
-              View All Outlets
+            <a className="joy-button joy-button--green" href="/locations/kiara-bay-kepong/">
+              View Outlet
             </a>
           </div>
         )}

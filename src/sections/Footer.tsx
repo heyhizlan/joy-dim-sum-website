@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin } from 'lucide-react';
+import { Clock, MapPin } from 'lucide-react';
 import footerHeart from '../assets/seo/joy-dim-sum-yellow-half-heart-footer.svg';
 import logoYellow from '../../assets/Logo Masterfile/joydimsum-primary-yellow--rgb.svg';
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '../lib/SocialIcons';
@@ -30,13 +30,13 @@ export default function Footer() {
             <a className="joy-footer__brand-logo" href="/" aria-label="Back to JOY Dim Sum home">
               <img
                 src={logoYellow}
-                alt="JOY Dim Sum Sentul Point and Kiara Bay, Kepong"
+                alt="JOY Dim Sum Kiara Bay, Kepong"
                 width="1080"
                 height="190"
               />
             </a>
             <p>
-              Dim sum, pau and more in Sentul and Kepong, Kuala Lumpur. Come
+              Dim sum, pau and more in Kiara Bay, Kepong. Come
               hungry, bring your makan gang and stay a bit longer, lah.
             </p>
           </div>
@@ -53,30 +53,6 @@ export default function Footer() {
 
             <div className="joy-footer__outlets">
               <div>
-                <h3><a href={outlets.sentul.path}>Sentul</a></h3>
-                <a
-                  className="joy-footer__detail joy-footer__location"
-                  href={outlets.sentul.mapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Open ${outlets.sentul.schemaName} in Google Maps`}
-                >
-                  <MapPin aria-hidden="true" />
-                  <span>{outlets.sentul.shortName}, Kuala Lumpur</span>
-                </a>
-                <a
-                  className="joy-footer__detail joy-footer__social"
-                  href={outlets.sentul.whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`WhatsApp JOY Dim Sum at ${outlets.sentul.phone}`}
-                >
-                  <WhatsAppIcon />
-                  <span>{outlets.sentul.phone}</span>
-                </a>
-              </div>
-
-              <div>
                 <h3><a href={outlets.kiaraBay.path}>Kiara Bay</a></h3>
                 <a
                   className="joy-footer__detail joy-footer__location"
@@ -86,12 +62,22 @@ export default function Footer() {
                   aria-label={`Open ${outlets.kiaraBay.schemaName} in Google Maps`}
                 >
                   <MapPin aria-hidden="true" />
-                  <span>{outlets.kiaraBay.shortName}, Kepong</span>
+                  <span>The Beats @ Kiara Bay, Kepong</span>
                 </a>
                 <p className="joy-footer__detail">
-                  <CalendarDays aria-hidden="true" />
-                  <span>{outlets.kiaraBay.openingLabel}</span>
+                  <Clock aria-hidden="true" />
+                  <span>{outlets.kiaraBay.hoursLabel}</span>
                 </p>
+                <a
+                  className="joy-footer__detail joy-footer__social"
+                  href={outlets.kiaraBay.whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`WhatsApp JOY Dim Sum at ${outlets.kiaraBay.phone}`}
+                >
+                  <WhatsAppIcon />
+                  <span>{outlets.kiaraBay.phone}</span>
+                </a>
               </div>
             </div>
 

@@ -869,14 +869,7 @@ button:focus-visible,
 }
 
 .joy-locations__pattern {
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-brown-on-yellow.svg');
-  background-position: -1px -1px;
-  background-repeat: repeat;
-  background-size: 120px 120px;
-  opacity: 0.14;
+  display: none;
 }
 
 .joy-locations__content {
@@ -900,6 +893,10 @@ button:focus-visible,
   gap: 26px;
 }
 
+.joy-locations__grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .joy-outlet-card {
   position: relative;
   display: flex;
@@ -913,18 +910,103 @@ button:focus-visible,
   box-shadow: 0 18px 0 #2B1F17;
 }
 
-.joy-outlet-card__status {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  padding: 8px 11px;
+.joy-outlet-card--with-carousel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  align-items: stretch;
+  gap: clamp(24px, 4vw, 54px);
+}
+
+.joy-outlet-card__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.joy-outlet-carousel {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 15px;
+  user-select: none;
+}
+
+.joy-outlet-carousel__track {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
   border: 2px solid #2B1F17;
-  border-radius: 12px;
-  background: #ED7E8B;
-  color: #2B1F17;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  border-radius: 22px;
+  background: #D7D0C7;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.joy-outlet-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.joy-outlet-carousel__slide {
+  width: 100%;
+  aspect-ratio: 1;
+  flex: 0 0 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.joy-outlet-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.joy-outlet-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.joy-outlet-carousel__dots button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.joy-outlet-carousel__dots button::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #A9A29B;
+  content: '';
+  transform: translate(-50%, -50%);
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.joy-outlet-carousel__dots button.is-active::before {
+  background: #57514C;
+  transform: translate(-50%, -50%) scale(1.18);
+}
+
+.joy-outlet-carousel__dots button:focus-visible {
+  outline: 2px solid #1D552B;
+  outline-offset: 1px;
+  border-radius: 999px;
 }
 
 .joy-outlet-card h3 {
@@ -935,10 +1017,6 @@ button:focus-visible,
   font-weight: 820;
   letter-spacing: -0.04em;
   line-height: 0.95;
-}
-
-.joy-outlet-card--opening h3 {
-  padding-right: 132px;
 }
 
 .joy-outlet-card__description {
@@ -1042,29 +1120,6 @@ button:focus-visible,
   margin-top: 0;
 }
 
-.joy-outlet-card__countdown {
-  display: grid;
-  justify-items: end;
-  color: #2B1F17;
-  font-family: 'SN Pro', sans-serif;
-  line-height: 1;
-  text-align: right;
-}
-
-.joy-outlet-card__countdown span {
-  margin-bottom: 6px;
-  font-size: 0.7rem;
-  font-weight: 650;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.joy-outlet-card__countdown strong {
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  font-weight: 780;
-  white-space: nowrap;
-}
-
 .joy-about {
   position: relative;
   isolation: isolate;
@@ -1141,8 +1196,17 @@ button:focus-visible,
   opacity: 0.08;
 }
 
+.joy-faq--plain {
+  background: #ED7E8B;
+}
+
 .joy-faq--plain::before {
-  content: none;
+  opacity: 0.1;
+}
+
+.joy-faq--plain .joy-section-kicker,
+.joy-faq--plain .joy-faq__heading h2 {
+  color: #2B1F17;
 }
 
 .joy-faq--page {
@@ -1303,8 +1367,20 @@ button:focus-visible,
   isolation: isolate;
   overflow: hidden;
   padding: clamp(6rem, 10vw, 9rem) 0;
-  background: #FFCC29;
+  background: #ED7E8B;
   color: #2B1F17;
+}
+
+.joy-reviews::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-brown-on-yellow.svg');
+  background-position: -1px -1px;
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  content: '';
+  opacity: 0.1;
 }
 
 .joy-reviews__shell {
@@ -1317,7 +1393,7 @@ button:focus-visible,
 }
 
 .joy-reviews .joy-section-kicker {
-  color: #1D552B;
+  color: #2B1F17;
 }
 
 .joy-reviews__heading {
@@ -1363,7 +1439,7 @@ button:focus-visible,
 .joy-reviews h2 {
   max-width: 520px;
   margin: 0;
-  color: #1D552B;
+  color: #2B1F17;
   font-family: 'SN Pro', sans-serif;
   font-size: clamp(3.4rem, 6vw, 6.4rem);
   font-weight: 820;
@@ -2457,6 +2533,15 @@ a.joy-footer__detail:hover {
     grid-template-columns: 1fr;
   }
 
+  .joy-outlet-card--with-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .joy-outlet-carousel {
+    width: min(100%, 680px);
+    justify-self: center;
+  }
+
   .joy-outlet-card__description,
   .joy-outlet-card__details {
     min-height: 0;
@@ -2610,16 +2695,8 @@ a.joy-footer__detail:hover {
     box-shadow: 0 13px 0 #2B1F17;
   }
 
-  .joy-outlet-card__status {
-    position: static;
-    display: inline-flex;
-    width: fit-content;
-    align-self: flex-start;
-    margin-bottom: 20px;
-  }
-
-  .joy-outlet-card--opening h3 {
-    padding-right: 0;
+  .joy-outlet-carousel__track {
+    border-radius: 18px;
   }
 
   .joy-outlet-card__footer {
@@ -2629,10 +2706,6 @@ a.joy-footer__detail:hover {
 
   .joy-outlet-card__footer .joy-outlet-card__button {
     align-self: flex-end;
-  }
-
-  .joy-outlet-card__countdown {
-    order: -1;
   }
 
   .joy-outlet-card__address > span {

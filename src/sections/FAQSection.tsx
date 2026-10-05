@@ -11,15 +11,19 @@ export const homepageFaqs: FaqItem[] = [
   {
     question: 'What does JOY Dim Sum serve?',
     answer:
-      'We serve dim sum favourites, fluffy pau, savoury dishes, mains and more. Plenty to share, but if too sedap, ordering your own also can.',
+      'We serve dim sum favourites, steamed dumplings, fluffy pau, savoury dishes, mains and more. Plenty to share, but if too sedap, ordering your own also can.',
+  },
+  {
+    question: 'Does JOY Dim Sum serve dumplings?',
+    answer:
+      'Yes. Dumplings are part of our dim sum menu, with steamed favourites and different fillings served in shareable baskets.',
   },
   {
     question: 'Where can I find JOY Dim Sum?',
     answer: (
       <>
-        Visit <a href="/locations/sentul-point/">JOY Dim Sum Sentul Point</a> in
-        Kuala Lumpur. Our <a href="/locations/kiara-bay-kepong/">Kiara Bay outlet</a>
-        is also coming soon to Kepong.
+        Visit our <a href="/locations/kiara-bay-kepong/">Kiara Bay outlet</a> in
+        Kepong, Kuala Lumpur.
       </>
     ),
   },
@@ -52,15 +56,15 @@ export const homepageFaqs: FaqItem[] = [
 export const allFaqs: FaqItem[] = [
   ...homepageFaqs,
   {
-    question: 'What are the Sentul Point opening hours?',
+    question: 'What are the Kiara Bay opening hours?',
     answer:
-      'JOY Dim Sum Sentul Point is open Monday to Sunday, from 10am to 10pm.',
+      'JOY Dim Sum Kiara Bay is open Monday to Sunday, from 8am to 11pm.',
   },
   {
-    question: 'Can I reserve a table at Sentul Point?',
+    question: 'Can I reserve a table at Kiara Bay?',
     answer: (
       <>
-        Can! Message the Sentul Point team on{' '}
+        Can! Message the Kiara Bay team on{' '}
         <a href="https://wa.me/60166102688" target="_blank" rel="noreferrer">
           WhatsApp
         </a>{' '}
@@ -69,14 +73,9 @@ export const allFaqs: FaqItem[] = [
     ),
   },
   {
-    question: 'When is the Kiara Bay outlet opening?',
-    answer:
-      'The current target opening date is 16 September 2026. Follow JOY Dim Sum for the latest confirmed opening update.',
-  },
-  {
     question: 'Can I get directions from this website?',
     answer:
-      'Yes. Use the Get Directions button on either outlet card to open the verified location in Google Maps.',
+      'Yes. Use the Get Directions button to open the Kiara Bay outlet in Google Maps.',
   },
   {
     question: 'Does JOY Dim Sum offer takeaway?',
@@ -99,14 +98,9 @@ export const allFaqs: FaqItem[] = [
       'JOY Dim Sum does not serve pork, lard or alcohol.',
   },
   {
-    question: 'Was JOY Dim Sum Sentul Point formerly Dim Sum House?',
-    answer:
-      'Yes. The Sentul Point outlet was formerly known as Dim Sum House and now serves from the same familiar location under the JOY Dim Sum name.',
-  },
-  {
     question: 'Can I visit JOY Dim Sum for lunch or dinner?',
     answer:
-      'Yes. Sentul Point serves daily from 10am to 10pm, so you can visit for a late morning basket, lunch or dinner.',
+      'Yes. Kiara Bay serves daily from 8am to 11pm, so you can visit for breakfast, lunch or dinner.',
   },
   {
     question: 'Can I see the full menu online?',

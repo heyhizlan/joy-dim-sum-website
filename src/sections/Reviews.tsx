@@ -2,44 +2,41 @@ import { useEffect, useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Star } from 'lucide-react';
 
-const sentulGoogleMaps =
-  'https://www.google.com/maps/place/Dim+Sum+House+@+Sentul+Point/@3.2019041,101.6893619,17z/data=!3m1!4b1!4m6!3m5!1s0x31cc47ea6c13790f:0x7bcae75188d28cc7!8m2!3d3.2019041!4d101.6893619!16s%2Fg%2F11z2hxfpsd';
+const kiaraBayGoogleMaps = 'https://maps.app.goo.gl/PAGM7fZnBRZ3gtWf8';
+
+const reviewLink = (reviewId: string) =>
+  `https://www.google.com/maps/place/JOY+Dim+Sum+%C2%B7+Kiara+Bay/@3.2251402,101.6504669,17z/data=!4m8!3m7!1s0x31cc47aca9731587:0x9048736172d7481b!8m2!3d3.2251402!4d101.6504669!9m1!1b1!16s%2Fg%2F11zf69cfjx?reviewId=${reviewId}`;
 
 const googleReviews = [
   {
-    author: 'Dennis',
-    excerpt: 'The environment is very nice.',
-    date: '2 months ago',
+    author: 'Tan Chee Way',
+    excerpt: 'Delicious food, friendly staff, and a clean, cozy environment.',
     stars: 5,
-    reviewLink: 'https://maps.app.goo.gl/wUhYKmccA7RKcUkT6',
+    reviewLink: reviewLink('Ci9DQUlRQUNvZENodHljRjlvT2paMFlpMVJSV054TTNOa1MwOWFPVVpWVFZwTFUxRRAB'),
   },
   {
-    author: 'Melody Saturday',
-    excerpt: 'Friendly staff and good environment too.',
-    date: '1 month ago',
+    author: 'Miss N',
+    excerpt: 'Food is reasonably priced. Lots of choices. Suitable for all ages. The shop is clean and beautiful. The staff is also friendly.',
     stars: 5,
-    reviewLink: 'https://maps.app.goo.gl/YvjkjeJCFXrNrAk7A',
+    reviewLink: reviewLink('Ci9DQUlRQUNvZENodHljRjlvT2xwZmFtOHpSbVI1U2twMlQyMUZhSEZyUjNGWFZsRRAB'),
   },
   {
-    author: 'erlina erlina',
-    excerpt: 'I like the lotus leaf bun with the chicken.',
-    date: '4 months ago',
+    author: 'Ai Ping Goh',
+    excerpt: 'The dim sum is overall good, and they provide various types of sauces to go with. Especially love the fried carrot cake with the mala sauce.',
     stars: 5,
-    reviewLink: 'https://maps.app.goo.gl/eQbxwab1M67AsYWp6',
+    reviewLink: reviewLink('Ci9DQUlRQUNvZENodHljRjlvT21oM1UwZFhSbTg1V0d0d2FsUnpkVEZYUm14cVIxRRAB'),
   },
   {
-    author: 'Moon Low',
-    excerpt: 'The food is tasty and hot. Nice food presentation too.',
-    date: '2 weeks ago',
-    stars: 4,
-    reviewLink: 'https://maps.app.goo.gl/g4VbUWrE5XCFBftE7',
+    author: 'Aiden Chang',
+    excerpt: 'Service and environment is good, staffs very attentive 👍',
+    stars: 5,
+    reviewLink: reviewLink('Ci9DQUlRQUNvZENodHljRjlvT2pCVE5ucENPVU4xVm5aTlZESnFNMGxpWVRCblQxRRAB'),
   },
   {
-    author: 'Jimmy G',
-    excerpt: 'The portion is great and the taste is great too!',
-    date: '2 months ago',
+    author: 'Low Ken Leong',
+    excerpt: 'Good service and delicious 👍',
     stars: 5,
-    reviewLink: 'https://maps.app.goo.gl/P7oJAHKQU94VpxMM9',
+    reviewLink: reviewLink('Ci9DQUlRQUNvZENodHljRjlvT21SS1NYRTVWMmRxY1ZWQ1YyaEdXSEJpYzNwcWNHYxAB'),
   },
 ] as const;
 
@@ -82,7 +79,6 @@ function ReviewCard({
       <blockquote>“{review.excerpt}”</blockquote>
       <footer>
         <strong>{review.author}</strong>
-        <span>{review.date} on Google</span>
       </footer>
       <a
         className="joy-review-card__google"
@@ -106,15 +102,15 @@ function ReviewCta({ duplicate = false }: { duplicate?: boolean }) {
       aria-hidden={duplicate ? 'true' : undefined}
     >
       <div>
-        <p>30+ reviews on Google</p>
+        <p>Guest reviews on Google</p>
         <h3>
-          4.5+ Stars. Wah, Big JOY<span className="joy-punctuation">!</span>
+          4.9 Stars. Wah, Big JOY<span className="joy-punctuation">!</span>
         </h3>
-        <span>See what our guests are saying about JOY Dim Sum at Sentul Point.</span>
+        <span>See what our guests are saying about JOY Dim Sum at Kiara Bay.</span>
       </div>
       <a
         className="joy-reviews__button"
-        href={sentulGoogleMaps}
+        href={kiaraBayGoogleMaps}
         target="_blank"
         rel="noreferrer"
         tabIndex={duplicate ? -1 : undefined}

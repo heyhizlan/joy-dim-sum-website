@@ -1,12 +1,10 @@
-import { outletList, outlets, SITE_URL, socialLinks } from './siteData';
+import { outlets, SITE_URL, socialLinks } from './siteData';
 
 export const prerenderRoutes = [
   '/',
   '/locations/',
-  '/locations/sentul-point/',
   '/locations/kiara-bay-kepong/',
   '/menu/',
-  '/full-menu/',
   '/faqs/',
 ] as const;
 
@@ -28,63 +26,45 @@ const shareImageAlt =
 const routeMeta: Record<SiteRoute, RouteMeta> = {
   '/': {
     path: '/',
-    title: 'JOY Dim Sum | Dim Sum Restaurant in Kuala Lumpur',
+    title: 'JOY Dim Sum | Dim Sum Restaurant in Kepong',
     description:
-      'Enjoy dim sum, pau and casual dining at JOY Dim Sum in Kuala Lumpur, with outlets at Sentul Point and Kiara Bay, Kepong. View our menu and locations.',
+      'Enjoy dim sum, steamed dumplings, pau and casual dining at JOY Dim Sum, Kiara Bay, Kepong. View our menu, hours and location.',
     canonical: `${SITE_URL}/`,
     ogImage: shareImage,
     ogImageAlt: shareImageAlt,
   },
   '/locations/': {
     path: '/locations/',
-    title: 'JOY Dim Sum Outlets in Kuala Lumpur',
+    title: 'JOY Dim Sum Kiara Bay, Kepong',
     description:
-      'Find JOY Dim Sum outlets in Kuala Lumpur. View details, directions and opening information for Sentul Point and Kiara Bay, Kepong.',
+      'Find JOY Dim Sum and dumplings at Kiara Bay, Kepong. View the address, daily opening hours, outlet gallery and Google Maps directions.',
     canonical: `${SITE_URL}/locations/`,
     ogImage: shareImage,
     ogImageAlt: shareImageAlt,
-  },
-  '/locations/sentul-point/': {
-    path: '/locations/sentul-point/',
-    title: 'Dim Sum in Sentul, Kuala Lumpur | JOY Dim Sum',
-    description:
-      'Visit JOY Dim Sum at Sentul Point, Kuala Lumpur. View dim sum and pau favourites, daily opening hours, reservations and directions.',
-    canonical: `${SITE_URL}/locations/sentul-point/`,
-    ogImage: shareImage,
-    ogImageAlt: 'JOY Dim Sum food and brand artwork for the Sentul Point outlet',
   },
   '/locations/kiara-bay-kepong/': {
     path: '/locations/kiara-bay-kepong/',
     title: 'Dim Sum in Kepong at Kiara Bay | JOY Dim Sum',
     description:
-      'JOY Dim Sum is opening at Kiara Bay, Kepong. See the location, menu highlights and latest verified opening information.',
+      'Visit JOY Dim Sum at Kiara Bay, Kepong for dim sum, steamed dumplings and pau. See menu highlights, daily hours and directions.',
     canonical: `${SITE_URL}/locations/kiara-bay-kepong/`,
     ogImage: shareImage,
-    ogImageAlt: 'JOY Dim Sum food and brand artwork for the upcoming Kiara Bay outlet',
+    ogImageAlt: 'JOY Dim Sum food and brand artwork for the Kiara Bay outlet',
   },
   '/menu/': {
     path: '/menu/',
-    title: 'JOY Dim Sum Menu | Dim Sum & Pau in Kuala Lumpur',
+    title: 'JOY Dim Sum Menu | Dim Sum & Pau in Kepong',
     description:
-      'Explore JOY Dim Sum menu highlights, including dim sum favourites, fluffy pau, savoury dishes, mains, tea and kopi in Kuala Lumpur.',
+      'Explore the JOY Dim Sum menu, including dim sum favourites, steamed dumplings, fluffy pau, savoury dishes, mains, tea and kopi in Kepong.',
     canonical: `${SITE_URL}/menu/`,
     ogImage: shareImage,
     ogImageAlt: 'JOY Dim Sum siew mai menu highlight on a yellow brand background',
   },
-  '/full-menu/': {
-    path: '/full-menu/',
-    title: 'Full JOY Dim Sum Menu | Kuala Lumpur',
-    description:
-      'View the full JOY Dim Sum menu, including dim sum, pau, savoury dishes, mains, drinks and current selections in Kuala Lumpur.',
-    canonical: `${SITE_URL}/full-menu/`,
-    ogImage: shareImage,
-    ogImageAlt: 'The full JOY Dim Sum menu in Kuala Lumpur',
-  },
   '/faqs/': {
     path: '/faqs/',
-    title: 'JOY Dim Sum FAQs | Outlets, Menu & Visits',
+    title: 'JOY Dim Sum FAQs | Kiara Bay, Menu & Visits',
     description:
-      'Find answers about JOY Dim Sum outlets, opening hours, reservations, menu highlights, directions, ingredients and visits in Kuala Lumpur.',
+      'Find answers about JOY Dim Sum Kiara Bay, dim sum and dumpling choices, opening hours, reservations, directions and visits.',
     canonical: `${SITE_URL}/faqs/`,
     ogImage: shareImage,
     ogImageAlt: 'JOY Dim Sum food and brand artwork for frequently asked questions',
@@ -130,18 +110,8 @@ function webPage(meta: RouteMeta, name: string) {
   };
 }
 
-function postalAddress(outlet: (typeof outletList)[number]) {
-  return {
-    '@type': 'PostalAddress',
-    streetAddress: outlet.streetAddress,
-    addressLocality: outlet.addressLocality,
-    addressRegion: outlet.addressRegion,
-    postalCode: outlet.postcode,
-    addressCountry: outlet.country,
-  };
-}
-
-function restaurantBase(outlet: (typeof outletList)[number]) {
+function restaurant() {
+  const outlet = outlets.kiaraBay;
   return {
     '@type': 'Restaurant',
     '@id': `${SITE_URL}${outlet.path}#restaurant`,
@@ -151,14 +121,29 @@ function restaurantBase(outlet: (typeof outletList)[number]) {
     image: shareImage,
     logo: `${SITE_URL}/apple-touch-icon.png`,
     priceRange: '$$',
-    servesCuisine: ['Dim Sum', 'Chinese', 'Pau'],
-    address: postalAddress(outlet),
+    servesCuisine: ['Dim Sum', 'Chinese Dumplings', 'Chinese', 'Pau'],
+    keywords: 'dim sum, dimsum, dumplings, Chinese dumplings, Kiara Bay, Kepong',
+    telephone: outlet.phoneInternational,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: outlet.streetAddress,
+      addressLocality: outlet.addressLocality,
+      addressRegion: outlet.addressRegion,
+      postalCode: outlet.postcode,
+      addressCountry: outlet.country,
+    },
     geo: {
       '@type': 'GeoCoordinates',
       latitude: outlet.latitude,
       longitude: outlet.longitude,
     },
-    hasMenu: `${SITE_URL}/full-menu/`,
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: outlet.openingHours.opens,
+      closes: outlet.openingHours.closes,
+    },
+    hasMenu: `${SITE_URL}/menu/#full-text-menu`,
     parentOrganization: { '@id': `${SITE_URL}/#organization` },
   };
 }
@@ -178,6 +163,7 @@ export function getStructuredData(pathname: string) {
           name: 'JOY Dim Sum',
           url: `${SITE_URL}/`,
           logo: `${SITE_URL}/apple-touch-icon.png`,
+          knowsAbout: ['Dim sum', 'Dimsum', 'Chinese dumplings', 'Pau'],
           sameAs: [socialLinks.facebook, socialLinks.instagram],
         },
         {
@@ -188,117 +174,38 @@ export function getStructuredData(pathname: string) {
           publisher: { '@id': `${SITE_URL}/#organization` },
           inLanguage: 'en-MY',
         },
+        restaurant(),
       ],
     };
   }
 
-  if (path === '/locations/') {
-    return {
-      '@context': 'https://schema.org',
-      '@graph': [
-        webPage(meta, 'JOY Dim Sum Outlets in Kuala Lumpur'),
-        breadcrumbs([
-          { name: 'Home', url: `${SITE_URL}/` },
-          { name: 'Outlets', url: meta.canonical },
-        ]),
-        {
-          '@type': 'ItemList',
-          '@id': `${meta.canonical}#outlets`,
-          name: 'JOY Dim Sum outlets in Kuala Lumpur',
-          itemListElement: outletList.map((outlet, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: outlet.schemaName,
-            url: `${SITE_URL}${outlet.path}`,
-          })),
-        },
-      ],
-    };
-  }
-
-  if (path === '/locations/sentul-point/') {
-    const outlet = outlets.sentul;
-    return {
-      '@context': 'https://schema.org',
-      '@graph': [
-        webPage(meta, 'Dim Sum in Sentul, Kuala Lumpur'),
-        breadcrumbs([
-          { name: 'Home', url: `${SITE_URL}/` },
-          { name: 'Outlets', url: `${SITE_URL}/locations/` },
-          { name: 'Sentul Point', url: meta.canonical },
-        ]),
-        {
-          ...restaurantBase(outlet),
-          alternateName: outlet.formerName,
-          telephone: outlet.phoneInternational,
-          openingHoursSpecification: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: [
-              'Monday',
-              'Tuesday',
-              'Wednesday',
-              'Thursday',
-              'Friday',
-              'Saturday',
-              'Sunday',
-            ],
-            opens: outlet.openingHours.opens,
-            closes: outlet.openingHours.closes,
-          },
-        },
-      ],
-    };
-  }
-
-  if (path === '/locations/kiara-bay-kepong/') {
-    const outlet = outlets.kiaraBay;
+  if (path === '/locations/' || path === '/locations/kiara-bay-kepong/') {
     return {
       '@context': 'https://schema.org',
       '@graph': [
         webPage(meta, 'JOY Dim Sum at Kiara Bay, Kepong'),
         breadcrumbs([
           { name: 'Home', url: `${SITE_URL}/` },
-          { name: 'Outlets', url: `${SITE_URL}/locations/` },
+          ...(path === '/locations/kiara-bay-kepong/'
+            ? [{ name: 'Outlet', url: `${SITE_URL}/locations/` }]
+            : []),
           { name: 'Kiara Bay, Kepong', url: meta.canonical },
         ]),
-        {
-          ...restaurantBase(outlet),
-          openingDate: outlet.openingDate,
-        },
-      ],
-    };
-  }
-
-  if (path === '/full-menu/') {
-    return {
-      '@context': 'https://schema.org',
-      '@graph': [
-        webPage(meta, 'Full JOY Dim Sum Menu'),
-        breadcrumbs([
-          { name: 'Home', url: `${SITE_URL}/` },
-          { name: 'Menu Highlights', url: `${SITE_URL}/menu/` },
-          { name: 'Full Menu', url: meta.canonical },
-        ]),
+        restaurant(),
       ],
     };
   }
 
   if (path === '/faqs/') {
     const faqItems = [
-      ['What does JOY Dim Sum serve?', 'JOY serves dim sum favourites, fluffy pau, savoury dishes, mains and more.'],
-      ['Where can I find JOY Dim Sum?', 'Visit JOY Dim Sum at Sentul Point in Kuala Lumpur. A Kiara Bay outlet is also coming soon to Kepong.'],
-      ['How can I get the latest JOY Dim Sum updates?', 'Follow @joydimsum.my on Instagram and Facebook for promotions, menu news and outlet updates.'],
-      ['What are the Sentul Point opening hours?', 'JOY Dim Sum Sentul Point is open Monday to Sunday, from 10am to 10pm.'],
-      ['Can I reserve a table at Sentul Point?', 'Yes. Message the Sentul Point team on WhatsApp with your preferred date, time and number of guests.'],
-      ['When is the Kiara Bay outlet opening?', 'The current target opening date is 16 September 2026. Follow JOY Dim Sum for the latest confirmed update.'],
-      ['Can I get directions from this website?', 'Yes. Use a Get Directions button to open the verified outlet location in Google Maps.'],
-      ['Does JOY Dim Sum offer takeaway?', 'Takeaway availability can vary by item and outlet. Please check with the team before ordering.'],
-      ['Is the menu the same at every outlet?', 'The main JOY favourites lead the menu, while availability and selected dishes may vary by outlet.'],
-      ['Is JOY Dim Sum suitable for group meals?', 'Yes. JOY is made for sharing dim sum, pau, savoury dishes and mains.'],
-      ['Are there any ingredients JOY Dim Sum does not serve?', 'JOY Dim Sum does not serve pork, lard or alcohol.'],
-      ['Was JOY Dim Sum Sentul Point formerly Dim Sum House?', 'Yes. The Sentul Point outlet was formerly known as Dim Sum House and now serves from the same location under the JOY Dim Sum name.'],
-      ['Can I visit JOY Dim Sum for lunch or dinner?', 'Yes. Sentul Point serves daily from 10am to 10pm.'],
-      ['Can I see the full menu online?', 'The website currently shows curated highlights. Ask the outlet team for the latest full menu and availability.'],
+      ['What does JOY Dim Sum serve?', 'JOY serves dim sum favourites, steamed dumplings, fluffy pau, savoury dishes, mains and more.'],
+      ['Does JOY Dim Sum serve dumplings?', 'Yes. Dumplings are part of the JOY Dim Sum menu, including steamed dim sum favourites with different fillings.'],
+      ['Where can I find JOY Dim Sum?', 'Visit JOY Dim Sum at Kiara Bay in Kepong, Kuala Lumpur.'],
+      ['What are the Kiara Bay opening hours?', 'JOY Dim Sum Kiara Bay is open Monday to Sunday, from 8am to 11pm.'],
+      ['Can I reserve a table?', 'Yes. Message the Kiara Bay team on WhatsApp with your preferred date, time and number of guests.'],
+      ['Can I get directions from this website?', 'Yes. Use a Get Directions button to open the Kiara Bay outlet in Google Maps.'],
+      ['Does JOY Dim Sum offer takeaway?', 'Takeaway availability can vary by item. Please check with the team before ordering.'],
+      ['Can I see the full menu online?', 'The website shows the full menu and curated highlights. Ask the outlet team for current availability.'],
       ['What should I do if I have a food allergy?', 'Tell the outlet team about any allergy or dietary requirement before ordering.'],
     ];
 

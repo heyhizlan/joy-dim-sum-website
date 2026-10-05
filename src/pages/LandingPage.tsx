@@ -23,6 +23,9 @@ export default function LandingPage() {
           <Menu />
         </SectionReveal>
         <SectionReveal>
+          <Reviews />
+        </SectionReveal>
+        <SectionReveal>
           <LocationsSection />
         </SectionReveal>
         <SectionReveal>
@@ -30,9 +33,6 @@ export default function LandingPage() {
         </SectionReveal>
         <SectionReveal>
           <FAQSection showPageLink />
-        </SectionReveal>
-        <SectionReveal>
-          <Reviews />
         </SectionReveal>
         <SectionReveal>
           <Instagram />

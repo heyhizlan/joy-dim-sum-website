@@ -33,8 +33,9 @@ export default function Hero() {
           </h1>
 
           <p className="joy-hero__lede">
-            Dim sum, pau and plenty more to share at Sentul Point and Kiara Bay,
-            Kepong. Come hungry, bring your makan gang and stay a bit longer, lah.
+            Dim sum favourites, steamed dumplings, fluffy pau and plenty more
+            to share at Kiara Bay, Kepong. Come hungry, bring your makan gang
+            and stay a bit longer, lah.
           </p>
 
           <div className="joy-hero__actions">
