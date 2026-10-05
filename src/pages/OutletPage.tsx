@@ -7,7 +7,7 @@ import {
   Phone,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
-import kiaraBayOutlet from '../assets/seo/joy-dim-sum-kiara-bay-outlet-kepong.webp';
+import kiaraBayStorefront from '../../assets/kiarabay-gallery/joy-dim-sum-kiara-bay-kepong-storefront-1.webp';
 import { type Outlet } from '../lib/siteData';
 import FAQSection, { type FaqItem } from '../sections/FAQSection';
 import Footer from '../sections/Footer';
@@ -120,10 +120,10 @@ export default function OutletPage({ outlet }: { outlet: Outlet }) {
               </div>
               <figure className="joy-page-hero__visual joy-page-hero__visual--outlet">
                 <img
-                  src={kiaraBayOutlet}
-                  alt="JOY Dim Sum restaurant interior at Kiara Bay in Kepong"
-                  width="1080"
-                  height="1920"
+                  src={kiaraBayStorefront}
+                  alt="JOY Dim Sum Kiara Bay storefront at Karya Bayu Metropolitan in Kepong"
+                  width="1800"
+                  height="1800"
                   fetchPriority="high"
                 />
               </figure>

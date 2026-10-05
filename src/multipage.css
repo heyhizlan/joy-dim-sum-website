@@ -176,11 +176,9 @@
   position: absolute;
   bottom: 1rem;
   left: 50%;
+  z-index: 1;
   display: flex;
-  padding: 0.25rem 0.4rem;
-  border: 2px solid #2B1F17;
-  border-radius: 999px;
-  background: rgb(241 232 215 / 88%);
+  gap: 2px;
   transform: translateX(-50%);
 }
 
@@ -644,7 +642,7 @@
 .joy-outlet-card__footer--overview {
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .joy-outlet-card__directions {

@@ -925,10 +925,7 @@ button:focus-visible,
 
 .joy-outlet-carousel {
   position: relative;
-  display: grid;
   min-width: 0;
-  align-content: start;
-  gap: 15px;
   user-select: none;
 }
 
@@ -971,9 +968,14 @@ button:focus-visible,
 }
 
 .joy-outlet-carousel__dots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  z-index: 1;
   display: flex;
   justify-content: center;
   gap: 2px;
+  transform: translateX(-50%);
 }
 
 .joy-outlet-carousel__dots button {
@@ -989,8 +991,8 @@ button:focus-visible,
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
   background: #A9A29B;
   content: '';
@@ -1000,7 +1002,7 @@ button:focus-visible,
 
 .joy-outlet-carousel__dots button.is-active::before {
   background: #57514C;
-  transform: translate(-50%, -50%) scale(1.18);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 .joy-outlet-carousel__dots button:focus-visible {
@@ -1120,6 +1122,10 @@ button:focus-visible,
   margin-top: 0;
 }
 
+.joy-outlet-card__footer--overview {
+  justify-content: flex-end;
+}
+
 .joy-about {
   position: relative;
   isolation: isolate;
@@ -1204,8 +1210,8 @@ button:focus-visible,
   opacity: 0.1;
 }
 
-.joy-faq--plain .joy-section-kicker,
-.joy-faq--plain .joy-faq__heading h2 {
+.joy-faq.joy-faq--plain .joy-faq__heading .joy-section-kicker,
+.joy-faq.joy-faq--plain .joy-faq__heading h2 {
   color: #2B1F17;
 }
 
@@ -2432,6 +2438,16 @@ a.joy-footer__detail:hover {
   .joy-footer__right {
     grid-template-columns: minmax(90px, 0.6fr) minmax(180px, 1.15fr) minmax(140px, 0.9fr);
     gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+@media (min-width: 981px) {
+  .joy-outlet-card--with-carousel {
+    grid-template-columns: minmax(360px, 560px) minmax(360px, 1fr);
+  }
+
+  .joy-outlet-carousel {
+    width: min(100%, 560px);
   }
 }
 
