@@ -67,8 +67,12 @@ export default function Instagram() {
         </motion.div>
 
         <div className="joy-instagram__grid">
-          {instagramPosts.map((postUrl) => (
-            <div className="joy-instagram__embed" key={postUrl}>
+          {instagramPosts.map((postUrl, index) => (
+            <div
+              className="joy-instagram__embed"
+              id={index === 1 ? 'instagram-b4f1' : undefined}
+              key={postUrl}
+            >
               <blockquote
                 className="instagram-media"
                 data-instgrm-permalink={postUrl}

@@ -59,7 +59,7 @@ export const outlets = {
     phone: '016-610 2688',
     phoneInternational: '+60166102688',
     whatsappUrl: 'https://wa.me/60166102688',
-    hoursLabel: 'Monday to Sunday, 8am to 11pm',
+    hoursLabel: 'Open Everyday, 8AM to 11PM',
     openingHours: { opens: '08:00', closes: '23:00' },
   },
 } as const satisfies Record<string, Outlet>;

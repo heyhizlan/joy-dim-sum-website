@@ -6,9 +6,9 @@ import { outlets, socialLinks } from '../lib/siteData';
 
 const footerNavigation = [
   { label: 'Menu', href: '/menu/' },
-  { label: 'Outlets', href: '/locations/' },
+  { label: 'Reviews', href: '/#reviews' },
+  { label: 'Kiara Bay', href: '/locations/kiara-bay-kepong/' },
   { label: 'Story', href: '/#about' },
-  { label: 'FAQs', href: '/faqs/' },
   { label: 'News', href: '/#instagram' },
 ];
 

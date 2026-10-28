@@ -444,6 +444,18 @@ button:focus-visible,
   font-size: clamp(0.9rem, 1.1vw, 1.02rem);
   font-weight: 800;
   line-height: 1.25;
+  text-decoration: none;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.joy-hero__price-anchor:hover {
+  box-shadow: 0 1px 0 #2B1F17;
+  transform: translateY(3px);
+}
+
+.joy-hero__price-anchor:active {
+  box-shadow: none;
+  transform: translateY(5px);
 }
 
 .joy-hero__actions {
@@ -905,40 +917,70 @@ button:focus-visible,
   line-height: 1.45;
 }
 
-.joy-floating-whatsapp {
+.joy-floating-actions {
   position: fixed;
   right: max(18px, env(safe-area-inset-right));
   bottom: max(18px, env(safe-area-inset-bottom));
   z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.joy-floating-map,
+.joy-floating-whatsapp {
   display: inline-flex;
+  height: 54px;
   min-height: 54px;
   align-items: center;
+  justify-content: center;
   gap: 9px;
-  padding: 13px 17px;
   border: 2px solid #2B1F17;
   border-radius: 18px;
-  background: #1D552B;
   box-shadow: 0 5px 0 #2B1F17;
-  color: #F1E8D7;
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
+.joy-floating-map {
+  width: 54px;
+  background: #FFCC29;
+  color: #2B1F17;
+}
+
+.joy-floating-whatsapp {
+  padding: 13px 17px;
+  background: #1D552B;
+  color: #F1E8D7;
+  animation: joy-whatsapp-wiggle 700ms 650ms ease-in-out 1;
+}
+
+.joy-floating-map svg,
 .joy-floating-whatsapp svg {
   width: 24px;
   height: 24px;
 }
 
+.joy-floating-map:hover,
 .joy-floating-whatsapp:hover {
   box-shadow: 0 2px 0 #2B1F17;
   transform: translateY(3px);
 }
 
+.joy-floating-map:active,
 .joy-floating-whatsapp:active {
   box-shadow: none;
   transform: translateY(5px);
+}
+
+@keyframes joy-whatsapp-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-4deg); }
+  80% { transform: rotate(4deg); }
 }
 
 .joy-locations {
@@ -1701,15 +1743,7 @@ button:focus-visible,
 }
 
 .joy-instagram::before {
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  background-image: url('../assets/pattern-for-web/SVG/joydimsum-pattern-brown-on-yellow.svg');
-  background-position: -1px -1px;
-  background-repeat: repeat;
-  background-size: 120px 120px;
-  content: '';
-  opacity: 0.13;
+  content: none;
 }
 
 .joy-instagram .joy-section-shell {
@@ -1756,7 +1790,7 @@ button:focus-visible,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
-  align-items: start;
+  grid-auto-rows: 760px;
 }
 
 .joy-instagram__embed {
@@ -1767,9 +1801,11 @@ button:focus-visible,
   background: #F1E8D7;
   box-shadow: 0 16px 0 #2B1F17;
   padding: 12px;
+  scroll-margin-top: 116px;
 }
 
 .joy-instagram__embed .instagram-media {
+  height: 100% !important;
   width: 100% !important;
   min-width: 0 !important;
   max-width: none !important;
@@ -1777,6 +1813,7 @@ button:focus-visible,
 }
 
 .joy-instagram__embed iframe {
+  height: 100% !important;
   width: 100%;
   max-width: 100% !important;
   margin: 0 !important;
@@ -2688,12 +2725,25 @@ a.joy-footer__detail:hover {
     font-size: 0.73rem;
   }
 
+  .joy-floating-actions {
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .joy-floating-map,
   .joy-floating-whatsapp {
-    width: 54px;
-    min-height: 54px;
-    justify-content: center;
+    width: 46px;
+    height: 46px;
+    min-height: 46px;
     padding: 0;
-    border-radius: 50%;
+    border-radius: 13px;
+  }
+
+  .joy-floating-map svg,
+  .joy-floating-whatsapp svg {
+    width: 21px;
+    height: 21px;
   }
 
   .joy-floating-whatsapp span {
@@ -2837,6 +2887,7 @@ a.joy-footer__detail:hover {
 
   .joy-instagram__grid {
     grid-template-columns: 1fr;
+    grid-auto-rows: 700px;
     gap: 20px;
   }
 

@@ -40,9 +40,9 @@ export default function Hero() {
             and stay a bit longer, lah.
           </p>
 
-          <p className="joy-hero__price-anchor">
+          <a className="joy-hero__price-anchor" href="#instagram-b4f1">
             Buy 4, Free 1 for Any Pau &amp; Selected Dim Sum
-          </p>
+          </a>
 
           <div className="joy-hero__actions">
             <a className="joy-button joy-button--primary" href="/menu/">
@@ -69,7 +69,9 @@ export default function Hero() {
           <p className="joy-hero__advantages">
             <span>Air-Conditioned Comfort</span>
             <span aria-hidden="true">|</span>
-            <span>Open Daily, 8AM - 11PM</span>
+            <span>Cozy Kopitiam</span>
+            <span aria-hidden="true">|</span>
+            <span>Daily, 8AM-11PM</span>
           </p>
         </motion.div>
 
