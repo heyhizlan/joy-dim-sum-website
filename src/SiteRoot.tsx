@@ -10,6 +10,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import OutletPage from './pages/OutletPage';
 import MaintenancePage from './MaintenancePage';
 import { MAINTENANCE_MODE } from './siteMode';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 function FullMenuRedirect() {
   useEffect(() => {
@@ -57,20 +58,35 @@ export default function SiteRoot({
     typeof window === 'undefined' ? '/' : window.location.pathname;
   const routePath = normalizePathname(pathname ?? browserPath);
 
+  let page;
+
   switch (routePath) {
     case '/':
-      return <LandingPage />;
+      page = <LandingPage />;
+      break;
     case '/locations/':
-      return <LocationsIndexPage />;
+      page = <LocationsIndexPage />;
+      break;
     case '/locations/kiara-bay-kepong/':
-      return <OutletPage outlet={outlets.kiaraBay} />;
+      page = <OutletPage outlet={outlets.kiaraBay} />;
+      break;
     case '/menu/':
-      return <MenuPage />;
+      page = <MenuPage />;
+      break;
     case '/full-menu/':
-      return <FullMenuRedirect />;
+      page = <FullMenuRedirect />;
+      break;
     case '/faqs/':
-      return <FaqPage />;
+      page = <FaqPage />;
+      break;
     default:
-      return <NotFoundPage />;
+      page = <NotFoundPage />;
   }
+
+  return (
+    <>
+      {page}
+      <FloatingWhatsApp />
+    </>
+  );
 }

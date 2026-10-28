@@ -126,6 +126,31 @@ for (const route of routes) {
   );
 }
 
+if (!MAINTENANCE_MODE) {
+  const legacyLocationDirectory = path.join(distDir, 'locations', 'sentul');
+  const destination = `${siteUrl}/locations/kiara-bay-kepong/`;
+
+  await mkdir(legacyLocationDirectory, { recursive: true });
+  await writeFile(
+    path.join(legacyLocationDirectory, 'index.html'),
+    `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0; url=${destination}" />
+    <link rel="canonical" href="${destination}" />
+    <title>JOY Dim Sum Kiara Bay, Kepong</title>
+    <script>window.location.replace(${JSON.stringify(destination)});</script>
+  </head>
+  <body>
+    <p>This location has moved. <a href="${destination}">Visit JOY Dim Sum at Kiara Bay, Kepong</a>.</p>
+  </body>
+</html>`,
+    'utf8',
+  );
+}
+
 const robotsTxt = MAINTENANCE_MODE
   ? 'User-agent: *\nDisallow: /\n'
   : `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`;

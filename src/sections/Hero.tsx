@@ -2,6 +2,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, Heart, MapPin } from 'lucide-react';
 import chickenGreenDumpling from '../assets/seo/joy-dim-sum-chicken-green-dumpling-top-view.webp';
 import scallopDumpling from '../assets/seo/joy-dim-sum-scallop-dumpling-top-view.webp';
+import { trackConversion } from '../lib/analytics';
+import { kiaraBayMapsUrl } from '../lib/siteData';
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -38,16 +40,39 @@ export default function Hero() {
             and stay a bit longer, lah.
           </p>
 
+          <p className="joy-hero__price-anchor">
+            Everyday Dim Sum &amp; Combos starting from RM6.80
+          </p>
+
           <div className="joy-hero__actions">
             <a className="joy-button joy-button--primary" href="/menu/">
               View Our Menu
               <ArrowDownRight aria-hidden="true" size={19} strokeWidth={2.4} />
             </a>
-            <a className="joy-button joy-button--secondary" href="/locations/">
+            <a
+              className="joy-button joy-button--secondary"
+              href={kiaraBayMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() =>
+                trackConversion('get_directions_click', {
+                  link_url: kiaraBayMapsUrl,
+                  link_text: 'Get Directions',
+                })
+              }
+            >
               <MapPin aria-hidden="true" size={18} strokeWidth={2.4} />
-              Find an Outlet
+              Get Directions
             </a>
           </div>
+
+          <p className="joy-hero__advantages">
+            <span>Air-Conditioned Comfort</span>
+            <span aria-hidden="true">|</span>
+            <span>Easy Basement Parking</span>
+            <span aria-hidden="true">|</span>
+            <span>Open 8am - 11pm</span>
+          </p>
         </motion.div>
 
         <motion.div

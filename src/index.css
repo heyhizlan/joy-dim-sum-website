@@ -432,11 +432,37 @@ button:focus-visible,
   line-height: 1.5;
 }
 
+.joy-hero__price-anchor {
+  display: table;
+  margin: 18px 0 0;
+  padding: 8px 12px;
+  border: 2px solid #2B1F17;
+  border-radius: 10px;
+  background: #ED7E8B;
+  box-shadow: 0 4px 0 #2B1F17;
+  color: #2B1F17;
+  font-size: clamp(0.9rem, 1.1vw, 1.02rem);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
 .joy-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 30px;
+}
+
+.joy-hero__advantages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 22px 0 0;
+  color: #F1E8D7;
+  font-size: clamp(0.76rem, 1vw, 0.88rem);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1.4;
 }
 
 .joy-button {
@@ -854,10 +880,62 @@ button:focus-visible,
   line-height: 0.94;
 }
 
+.joy-food-card__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.joy-food-card__price {
+  flex: none;
+  padding: 7px 9px;
+  border: 2px solid currentColor;
+  border-radius: 9px;
+  font-size: 0.88rem;
+  line-height: 1;
+}
+
 .joy-food-card__copy p {
   margin: 15px 0 0;
   font-size: 0.98rem;
   line-height: 1.45;
+}
+
+.joy-floating-whatsapp {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 17px;
+  border: 2px solid #2B1F17;
+  border-radius: 18px;
+  background: #1D552B;
+  box-shadow: 0 5px 0 #2B1F17;
+  color: #F1E8D7;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.joy-floating-whatsapp svg {
+  width: 24px;
+  height: 24px;
+}
+
+.joy-floating-whatsapp:hover {
+  box-shadow: 0 2px 0 #2B1F17;
+  transform: translateY(3px);
+}
+
+.joy-floating-whatsapp:active {
+  box-shadow: none;
+  transform: translateY(5px);
 }
 
 .joy-locations {
@@ -2608,6 +2686,28 @@ a.joy-footer__detail:hover {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-top: 24px;
+  }
+
+  .joy-hero__advantages {
+    gap: 4px 7px;
+    font-size: 0.73rem;
+  }
+
+  .joy-floating-whatsapp {
+    width: 54px;
+    min-height: 54px;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .joy-floating-whatsapp span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 
   .joy-button {

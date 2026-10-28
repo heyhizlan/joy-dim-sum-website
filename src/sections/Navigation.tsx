@@ -7,7 +7,7 @@ import logoGreen from '../../assets/Logo Masterfile/joydimsum-primary-green--rgb
 const navLinks = [
   { label: 'Menu', href: '/menu/' },
   { label: 'Reviews', href: '/#reviews' },
-  { label: 'Outlets', href: '/locations/' },
+  { label: 'Kiara Bay', href: '/locations/kiara-bay-kepong/' },
   { label: 'Story', href: '/#about' },
   { label: 'News', href: '/#instagram' },
 ];
@@ -85,8 +85,8 @@ export default function Navigation({
               ))}
             </div>
 
-            <a className="joy-nav__cta" href="/locations/">
-              Find an Outlet
+            <a className="joy-nav__cta" href="/locations/kiara-bay-kepong/">
+              Kiara Bay Details
             </a>
 
             <button

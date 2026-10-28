@@ -16,6 +16,7 @@ export const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Chicken Siew Mai',
+    price: 'RM8.80',
     image: chickenSiewMai,
     width: 1157,
     height: 1043,
@@ -25,6 +26,7 @@ export const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Otak-otak Dumpling',
+    price: 'RM8.80',
     image: otakOtakDumpling,
     width: 1157,
     height: 1043,
@@ -34,6 +36,7 @@ export const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Loh Mai Kai',
+    price: 'RM8.80',
     image: lohMaiKai,
     width: 1144,
     height: 1051,
@@ -43,6 +46,7 @@ export const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Scallop Dumpling',
+    price: 'RM16.80',
     image: scallopDumpling,
     width: 1145,
     height: 1025,
@@ -52,6 +56,7 @@ export const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Shanghai Dumpling',
+    price: 'RM13.80',
     image: shanghaiDumpling,
     width: 1157,
     height: 1043,
@@ -61,6 +66,7 @@ export const featuredFood = [
   {
     category: 'Pau',
     name: 'Siew Long Pau',
+    price: 'RM13.80',
     image: siewLongPau,
     width: 1157,
     height: 1043,
@@ -70,6 +76,7 @@ export const featuredFood = [
   {
     category: 'Pau',
     name: 'Salted Egg Pau',
+    price: 'RM14.80',
     image: saltedEggPau,
     width: 972,
     height: 821,
@@ -79,6 +86,7 @@ export const featuredFood = [
   {
     category: 'Pau',
     name: 'Pandan Kaya Pau',
+    price: 'RM8.80',
     image: pandanKayaPau,
     width: 1033,
     height: 864,
@@ -88,6 +96,7 @@ export const featuredFood = [
   {
     category: 'Pau',
     name: 'Red Bean Pau',
+    price: 'RM10.80',
     image: redBeanPau,
     width: 986,
     height: 837,
@@ -97,6 +106,7 @@ export const featuredFood = [
   {
     category: 'Dim Sum',
     name: 'Dragonfruit Dumpling',
+    price: 'RM16.80',
     image: dragonfruitDumpling,
     width: 1157,
     height: 1043,
@@ -197,7 +207,10 @@ export default function Menu({
               />
             </div>
             <div className="joy-food-card__copy">
-              <h3>{food.name}</h3>
+              <div className="joy-food-card__title-row">
+                <h3>{food.name}</h3>
+                <strong className="joy-food-card__price">{food.price}</strong>
+              </div>
               <p>{food.story}</p>
             </div>
           </article>

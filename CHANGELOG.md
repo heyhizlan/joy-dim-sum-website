@@ -87,11 +87,11 @@ navigation, accessibility and local-discovery refinements.
 
 ### Added
 
-- **Dedicated indexable pages** for the full menu, all outlets, Sentul Point,
+- **Dedicated indexable pages** for the full menu and outlet details,
   Kiara Bay in Kepong, and 15 frequently asked questions.
 - **Route-specific SEO metadata, canonical URLs, structured data, breadcrumbs,
   and sitemap entries** for the new pages.
-- **Sentul Point and Kiara Bay outlet photography** plus refreshed transparent
+- **Outlet photography** plus refreshed transparent
   WebP product imagery for Chicken Siew Mai, Otak-otak Dumpling, Scallop
   Dumpling, Shanghai Dumpling, Siew Long Pau and Dragonfruit Dumpling.
 - **Internal outlet discovery links** from the landing-page cards and outlet

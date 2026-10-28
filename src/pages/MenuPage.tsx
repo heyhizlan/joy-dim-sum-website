@@ -4,10 +4,19 @@ import MenuHeroCarousel from '../components/MenuHeroCarousel';
 import Footer from '../sections/Footer';
 import Menu from '../sections/Menu';
 import MenuTicker from '../sections/MenuTicker';
+import { useEffect } from 'react';
 import Navigation from '../sections/Navigation';
+import { trackConversion } from '../lib/analytics';
 import TextMenu from '../sections/TextMenu';
 
 export default function MenuPage() {
+  useEffect(() => {
+    trackConversion('menu_page_view', {
+      page_path: '/menu/',
+      page_title: 'JOY Dim Sum Menu',
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-joy-cream">
       <Navigation />
