@@ -86,7 +86,7 @@ export default function Navigation({
             </div>
 
             <a className="joy-nav__cta" href="/locations/kiara-bay-kepong/">
-              Kiara Bay Details
+              Location
             </a>
 
             <button
