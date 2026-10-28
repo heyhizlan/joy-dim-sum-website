@@ -17,6 +17,8 @@ const instagramPosts = [
   'https://www.instagram.com/p/DeLl_Nsj49t/',
   'https://www.instagram.com/p/DeigzQ7D5Ec/',
   'https://www.instagram.com/p/De8RVH1P6mf/',
+  'https://www.instagram.com/p/DegjU79j_ZF/',
+  'https://www.instagram.com/p/DeQmeLwj-JW/',
 ] as const;
 
 export default function Instagram() {
