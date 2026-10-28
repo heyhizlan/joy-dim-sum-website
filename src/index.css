@@ -946,8 +946,12 @@ button:focus-visible,
 
 .joy-floating-map {
   width: 54px;
-  background: #FFCC29;
+  background: #F1E8D7;
   color: #2B1F17;
+}
+
+.joy-floating-map svg {
+  fill: #F1E8D7;
 }
 
 .joy-floating-whatsapp {
@@ -1788,9 +1792,9 @@ button:focus-visible,
 
 .joy-instagram__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 460px));
+  justify-content: center;
   gap: 22px;
-  grid-auto-rows: 760px;
 }
 
 .joy-instagram__embed {
@@ -1805,7 +1809,6 @@ button:focus-visible,
 }
 
 .joy-instagram__embed .instagram-media {
-  height: 100% !important;
   width: 100% !important;
   min-width: 0 !important;
   max-width: none !important;
@@ -1813,7 +1816,6 @@ button:focus-visible,
 }
 
 .joy-instagram__embed iframe {
-  height: 100% !important;
   width: 100%;
   max-width: 100% !important;
   margin: 0 !important;
@@ -2887,7 +2889,6 @@ a.joy-footer__detail:hover {
 
   .joy-instagram__grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 700px;
     gap: 20px;
   }
 
