@@ -41,7 +41,7 @@ export default function Hero() {
           </p>
 
           <p className="joy-hero__price-anchor">
-            Everyday Dim Sum &amp; Combos starting from RM6.80
+            Buy 4, Free 1 for Any Pau &amp; Selected Dim Sum
           </p>
 
           <div className="joy-hero__actions">
@@ -69,9 +69,7 @@ export default function Hero() {
           <p className="joy-hero__advantages">
             <span>Air-Conditioned Comfort</span>
             <span aria-hidden="true">|</span>
-            <span>Easy Basement Parking</span>
-            <span aria-hidden="true">|</span>
-            <span>Open 8am - 11pm</span>
+            <span>Open Daily, 8AM - 11PM</span>
           </p>
         </motion.div>
 

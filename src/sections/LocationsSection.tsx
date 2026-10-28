@@ -186,13 +186,6 @@ export default function LocationsSection({ page = false }: { page?: boolean }) {
             </div>
           </motion.article>
         </div>
-        {!page && (
-          <div className="joy-locations__all-link">
-            <a className="joy-button joy-button--green" href="/locations/kiara-bay-kepong/">
-              View Outlet
-            </a>
-          </div>
-        )}
       </div>
     </section>
   );

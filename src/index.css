@@ -890,8 +890,11 @@ button:focus-visible,
 .joy-food-card__price {
   flex: none;
   padding: 7px 9px;
-  border: 2px solid currentColor;
+  border: 2px solid #2B1F17;
   border-radius: 9px;
+  background: #F1E8D7;
+  box-shadow: 0 4px 0 #2B1F17;
+  color: #2B1F17;
   font-size: 0.88rem;
   line-height: 1;
 }
@@ -1751,47 +1754,39 @@ button:focus-visible,
 
 .joy-instagram__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
+  align-items: start;
 }
 
-.joy-instagram__tile {
+.joy-instagram__embed {
   position: relative;
-  aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 3px solid #2B1F17;
   border-radius: 28px;
   background: #F1E8D7;
   box-shadow: 0 16px 0 #2B1F17;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  padding: 12px;
 }
 
-.joy-instagram__tile:hover {
-  box-shadow: 0 6px 0 #2B1F17;
-  transform: translateY(10px);
+.joy-instagram__embed .instagram-media {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
 }
 
-.joy-instagram__tile:active {
-  box-shadow: 0 0 0 #2B1F17;
-  transform: translateY(16px);
-}
-
-.joy-instagram__tile img {
-  display: block;
+.joy-instagram__embed iframe {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 16px !important;
 }
 
 .joy-instagram__follow {
   display: flex;
   justify-content: flex-end;
   margin-top: 36px;
-}
-
-.joy-instagram__more {
-  display: none;
 }
 
 .joy-instagram__follow a {
@@ -2845,42 +2840,9 @@ a.joy-footer__detail:hover {
     gap: 20px;
   }
 
-  .joy-instagram__tile {
+  .joy-instagram__embed {
     border-radius: 24px;
-  }
-
-  .joy-instagram__tile--more {
-    display: none;
-  }
-
-  .joy-instagram__grid--expanded .joy-instagram__tile--more {
-    display: block;
-  }
-
-  .joy-instagram__more {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 34px;
-  }
-
-  .joy-instagram__more button {
-    min-height: 48px;
-    padding: 11px 18px;
-    border: 2px solid #2B1F17;
-    border-radius: 15px;
-    background: #FFCC29;
-    box-shadow: 0 5px 0 #2B1F17;
-    color: #2B1F17;
-    cursor: pointer;
-    font: inherit;
-    font-weight: 750;
-    transition: box-shadow 180ms ease, transform 180ms ease;
-  }
-
-  .joy-instagram__more button:hover,
-  .joy-instagram__more button:focus-visible {
-    box-shadow: 0 1px 0 #2B1F17;
-    transform: translateY(4px);
+    padding: 8px;
   }
 
   .joy-instagram__follow a {
