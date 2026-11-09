@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
 
@@ -9,11 +9,17 @@ export type ConversionEvent =
   | 'whatsapp_click'
   | 'menu_page_view';
 
+/**
+ * Pushes a conversion event into the Google Tag Manager data layer
+ * (container GTM-W9XQJS82). GTM forwards it to GA4 via a Custom Event
+ * trigger matching the event name.
+ */
 export function trackConversion(
   eventName: ConversionEvent,
   parameters: Record<string, string> = {},
 ) {
   if (typeof window === 'undefined') return;
 
-  window.gtag?.('event', eventName, parameters);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...parameters });
 }
