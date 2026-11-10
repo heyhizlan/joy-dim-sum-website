@@ -438,6 +438,30 @@
   min-width: 0;
 }
 
+/* Hover peek: enlarge the thumbnail over the card on pointer devices. */
+@media (hover: hover) and (pointer: fine) {
+  .joy-text-menu__thumb {
+    position: relative;
+    z-index: 1;
+    transform-origin: top left;
+    transition:
+      transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.22s ease;
+  }
+
+  .joy-text-menu__thumb:hover {
+    z-index: 5;
+    transform: scale(1.7);
+    box-shadow: 0 6px 0 #2B1F17;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .joy-text-menu__thumb {
+    transition: none;
+  }
+}
+
 .joy-text-menu__item-topline {
   display: flex;
   align-items: flex-start;
