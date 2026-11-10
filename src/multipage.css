@@ -410,6 +410,9 @@
 }
 
 .joy-text-menu__item {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.9rem, 1.6vw, 1.3rem);
   min-width: 0;
   padding: clamp(1.25rem, 2.5vw, 2rem);
   border: 2px solid #2B1F17;
@@ -417,6 +420,22 @@
   background: #F1E8D7;
   box-shadow: 0 8px 0 #2B1F17;
   color: #2B1F17;
+}
+
+.joy-text-menu__thumb {
+  flex: 0 0 auto;
+  width: clamp(68px, 7vw, 92px);
+  height: clamp(68px, 7vw, 92px);
+  border: 2px solid #2B1F17;
+  border-radius: 18px;
+  background: #FFFFFF;
+  box-shadow: 0 3px 0 #2B1F17;
+  object-fit: cover;
+}
+
+.joy-text-menu__item-body {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .joy-text-menu__item-topline {
@@ -1090,6 +1109,16 @@
   .joy-text-menu__item-topline {
     flex-direction: column;
     gap: 0.7rem;
+  }
+
+  .joy-text-menu__item {
+    gap: 0.85rem;
+  }
+
+  .joy-text-menu__thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
   }
 
   .joy-text-menu__price {

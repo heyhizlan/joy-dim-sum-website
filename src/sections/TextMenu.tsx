@@ -88,15 +88,29 @@ export default function TextMenu() {
                     itemScope
                     itemType="https://schema.org/MenuItem"
                   >
-                    <div className="joy-text-menu__item-topline">
-                      <h4 itemProp="name">{item.name}</h4>
-                      <p className="joy-text-menu__price">{item.price}</p>
-                    </div>
-                    {item.description && (
-                      <p className="joy-text-menu__description" itemProp="description">
-                        {item.description}
-                      </p>
+                    {item.image && (
+                      <img
+                        className="joy-text-menu__thumb"
+                        src={item.image}
+                        alt={`${item.name} at JOY Dim Sum Kiara Bay, Kepong`}
+                        width={256}
+                        height={256}
+                        loading="lazy"
+                        decoding="async"
+                        itemProp="image"
+                      />
                     )}
+                    <div className="joy-text-menu__item-body">
+                      <div className="joy-text-menu__item-topline">
+                        <h4 itemProp="name">{item.name}</h4>
+                        <p className="joy-text-menu__price">{item.price}</p>
+                      </div>
+                      {item.description && (
+                        <p className="joy-text-menu__description" itemProp="description">
+                          {item.description}
+                        </p>
+                      )}
+                    </div>
                   </article>
                 ))}
               </div>
