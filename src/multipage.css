@@ -1140,9 +1140,9 @@
   }
 
   .joy-text-menu__thumb {
-    width: 64px;
-    height: 64px;
-    border-radius: 14px;
+    width: 84px;
+    height: 84px;
+    border-radius: 16px;
   }
 
   .joy-text-menu__price {
