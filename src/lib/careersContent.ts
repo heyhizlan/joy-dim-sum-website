@@ -53,6 +53,7 @@ export type CareersCopy = {
     floor: string;
   };
   roles: {
+    kicker: string;
     heading: string;
     intro: string;
     shiftLabel: string;
@@ -103,6 +104,7 @@ export const careersCopy: Record<CareerLanguage, CareersCopy> = {
       floor: 'Front of house',
     },
     roles: {
+      kicker: 'Pick your spot',
       heading: 'Open roles',
       intro: 'Pick full-time or part-time to see the pay.',
       shiftLabel: 'Show pay for',
@@ -207,6 +209,7 @@ export const careersCopy: Record<CareerLanguage, CareersCopy> = {
       floor: '外场',
     },
     roles: {
+      kicker: '选你的岗位',
       heading: '招聘职位',
       intro: '选全职或兼职，看看薪水多少。',
       shiftLabel: '显示薪水',
@@ -285,6 +288,7 @@ export const careersCopy: Record<CareerLanguage, CareersCopy> = {
       floor: 'Bahagian depan',
     },
     roles: {
+      kicker: 'Pilih tempat korang',
       heading: 'Jawatan kosong',
       intro: 'Pilih full-time atau part-time untuk tengok gaji.',
       shiftLabel: 'Tunjuk gaji untuk',

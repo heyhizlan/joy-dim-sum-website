@@ -4,6 +4,29 @@ All notable changes to the JOY Dim Sum website are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.1] - 2026-11-16
+
+A visual QA pass on the careers page so it matches the rest of the site.
+
+### Changed
+
+- **Section pattern rhythm.** The careers sections now alternate pattern and
+  plain: green hero (pattern), open roles (plain cream), perks (pink pattern),
+  how to apply (plain yellow). The roles section's custom grid lines are gone.
+- **Station bento.** Food photo and table graphics removed. Every room uses one
+  corner radius, nested inside the board's radius, with a Google Material
+  Symbols icon in the top-right corner (skillet, cooking, local cafe, room
+  service). Hover now turns the role tag green instead of tinting the room.
+- **Ticks** are the Material Symbols rounded check with no circle border.
+- **What you get / Who we're looking for** are two separate cards side by side
+  (stacked on phones).
+- **Scroll reveal.** Sections, role cards and both perk cards fade up once as
+  they enter view, using the same reveal as the landing page. No looping;
+  reduced-motion users see everything straight away.
+- Role cards, section padding and heading sizes now use the same radius, drop
+  shadow and spacing as the other pages, and the roles heading gets the shared
+  kicker label. Off-palette tints were replaced with brand cream.
+
 ## [1.6.0] - 2026-11-16
 
 This release adds a careers page for the Kiara Bay outlet, linked from the

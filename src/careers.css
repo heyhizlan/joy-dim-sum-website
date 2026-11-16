@@ -103,10 +103,13 @@
   box-shadow: inset 0 0 0 2px var(--joy-careers-ink);
 }
 
-/* Station plan: a top-down sketch of the outlet. The brown board shows
-   through the gaps as walls; each room links to the role that works there. */
+/* Station plan: a bento of the outlet's four stations, each linking to the
+   role that works there. One radius for every room; the board's outer
+   radius is the room radius plus the board padding so the curves nest. */
 
 .joy-careers-plan {
+  --plan-pad: 10px;
+  --plan-room-radius: 22px;
   min-width: 0;
   margin: 0;
 }
@@ -116,12 +119,12 @@
   aspect-ratio: 1 / 1;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: minmax(0, 0.9fr) minmax(0, 1.25fr);
-  gap: 8px;
-  padding: 8px;
+  gap: var(--plan-pad);
+  padding: var(--plan-pad);
   border: 3px solid var(--joy-careers-ink);
-  border-radius: clamp(1.8rem, 4vw, 3rem);
+  border-radius: calc(var(--plan-room-radius) + var(--plan-pad));
   background: var(--joy-careers-ink);
-  box-shadow: 0 18px 0 #143E20;
+  box-shadow: 0 18px 0 var(--joy-careers-ink);
 }
 
 .joy-careers-plan__zone {
@@ -130,85 +133,49 @@
   min-width: 0;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 0.35rem;
-  overflow: hidden;
-  padding: clamp(0.85rem, 1.8vw, 1.3rem);
-  border-radius: 10px;
+  gap: 0.5rem;
+  padding: clamp(1rem, 1.8vw, 1.35rem);
+  border-radius: var(--plan-room-radius);
   color: var(--joy-careers-ink);
   text-decoration: none;
-  transition: background-color 180ms ease;
 }
 
 .joy-careers-plan__zone--hot {
   grid-column: 1 / 3;
-  border-top-left-radius: clamp(1.4rem, 3.4vw, 2.5rem);
   background: #FFCC29;
 }
 
 .joy-careers-plan__zone--dimsum {
   grid-column: 3;
-  border-top-right-radius: clamp(1.4rem, 3.4vw, 2.5rem);
   background: #FFCC29;
 }
 
 .joy-careers-plan__zone--beverage {
   grid-row: 2;
   grid-column: 1;
-  border-bottom-left-radius: clamp(1.4rem, 3.4vw, 2.5rem);
   background: #ED7E8B;
 }
 
 .joy-careers-plan__zone--floor {
   grid-row: 2;
   grid-column: 2 / 4;
-  border-bottom-right-radius: clamp(1.4rem, 3.4vw, 2.5rem);
   background: #F1E8D7;
 }
 
-.joy-careers-plan__zone:hover,
 .joy-careers-plan__zone:focus-visible {
-  background: #FFE07A;
+  outline-offset: -7px;
 }
 
-.joy-careers-plan__zone--beverage:hover,
-.joy-careers-plan__zone--beverage:focus-visible {
-  background: #F49BA5;
-}
-
-.joy-careers-plan__zone--floor:hover,
-.joy-careers-plan__zone--floor:focus-visible {
-  background: #FBF5EA;
-}
-
-.joy-careers-plan__zone:focus-visible {
-  outline-offset: -6px;
-}
-
-.joy-careers-plan__zone > svg {
+.joy-careers-plan__icon {
   position: absolute;
-  top: clamp(0.85rem, 1.8vw, 1.3rem);
-  left: clamp(0.85rem, 1.8vw, 1.3rem);
-  width: clamp(1.6rem, 2.6vw, 2.2rem);
-  height: clamp(1.6rem, 2.6vw, 2.2rem);
-  stroke-width: 2.2;
-}
-
-.joy-careers-plan__zone > img {
-  position: absolute;
-  top: -16%;
-  right: -12%;
-  width: 76%;
-  height: auto;
-  pointer-events: none;
-  transition: transform 260ms ease;
-}
-
-.joy-careers-plan__zone--dimsum:hover > img {
-  transform: rotate(-8deg);
+  top: clamp(1rem, 1.8vw, 1.35rem);
+  right: clamp(1rem, 1.8vw, 1.35rem);
+  width: clamp(1.8rem, 2.8vw, 2.4rem);
+  height: clamp(1.8rem, 2.8vw, 2.4rem);
 }
 
 .joy-careers-plan__zone strong {
-  position: relative;
+  padding-right: 0.5rem;
   font-family: 'SN Pro', sans-serif;
   font-size: clamp(1.05rem, 1.8vw, 1.55rem);
   font-weight: 820;
@@ -216,8 +183,7 @@
   line-height: 1;
 }
 
-.joy-careers-plan__zone > span:last-child {
-  position: relative;
+.joy-careers-plan__zone > span {
   width: fit-content;
   max-width: 100%;
   padding: 3px 9px;
@@ -227,34 +193,17 @@
   font-size: clamp(0.7rem, 1vw, 0.8rem);
   font-weight: 700;
   line-height: 1.3;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
-.joy-careers-plan__zone--floor > span:last-child {
+.joy-careers-plan__zone--floor > span {
+  background: #FFCC29;
+}
+
+.joy-careers-plan__zone:hover > span,
+.joy-careers-plan__zone:focus-visible > span {
   background: #1D552B;
   color: #F1E8D7;
-}
-
-.joy-careers-plan__tables {
-  position: absolute;
-  inset: clamp(0.85rem, 1.8vw, 1.3rem) clamp(0.85rem, 1.8vw, 1.3rem) auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(0.6rem, 1.4vw, 1.1rem);
-  justify-items: center;
-}
-
-.joy-careers-plan__tables i {
-  display: block;
-  width: clamp(1.9rem, 3.6vw, 3rem);
-  aspect-ratio: 1;
-  border: 3px solid var(--joy-careers-ink);
-  border-radius: 50%;
-  background: #FFCC29;
-  box-shadow: 0 0 0 5px #F1E8D7, 0 0 0 7px rgb(43 31 23 / 30%);
-}
-
-.joy-careers-plan__zone--floor:hover .joy-careers-plan__tables i {
-  box-shadow: 0 0 0 5px #FBF5EA, 0 0 0 7px rgb(43 31 23 / 30%);
 }
 
 .joy-careers-plan figcaption {
@@ -267,14 +216,16 @@
 
 /* ---------- Roles ---------- */
 
+/* Section rhythm: hero (pattern) > roles (plain) > team (pattern) >
+   apply (plain). Padding matches the shared page sections. */
 .joy-careers-roles {
   scroll-margin-top: 96px;
-  padding: clamp(4.5rem, 8vw, 7rem) 0;
-  background-color: #F1E8D7;
-  background-image:
-    linear-gradient(rgb(43 31 23 / 5%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(43 31 23 / 5%) 1px, transparent 1px);
-  background-size: 60px 60px;
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
+  background: #F1E8D7;
+}
+
+.joy-careers-roles__heading .joy-section-kicker {
+  color: #1D552B;
 }
 
 .joy-careers-roles__heading {
@@ -291,13 +242,13 @@
   margin: 0;
   color: #1D552B;
   font-family: 'SN Pro', sans-serif;
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: clamp(3rem, 5vw, 5.5rem);
   font-weight: 830;
   letter-spacing: -0.04em;
   line-height: 0.92;
 }
 
-.joy-careers-roles__heading p {
+.joy-careers-roles__heading h2 + p {
   margin: 1rem 0 0;
   color: #6F655C;
   font-size: clamp(1rem, 1.45vw, 1.18rem);
@@ -352,9 +303,9 @@
   align-items: stretch;
   padding: clamp(1.4rem, 3vw, 2.4rem);
   border: 3px solid var(--joy-careers-ink);
-  border-radius: clamp(1.4rem, 2.6vw, 2.2rem);
+  border-radius: clamp(1.6rem, 3vw, 2.5rem);
   background: #F1E8D7;
-  box-shadow: 0 10px 0 var(--joy-careers-ink);
+  box-shadow: 0 16px 0 var(--joy-careers-ink);
 }
 
 .joy-careers-role--kitchen {
@@ -380,8 +331,8 @@
 }
 
 .joy-careers-role__station svg {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.35rem;
+  height: 1.35rem;
   flex: none;
 }
 
@@ -427,21 +378,17 @@
   line-height: 1.45;
 }
 
-.joy-careers-role__tasks svg,
-.joy-careers-who svg,
-.joy-careers-apply__checklist svg {
-  width: 1.4rem;
-  height: 1.4rem;
+/* Material Symbols rounded check, no circle. */
+.joy-careers-tick {
+  width: 1.45rem;
+  height: 1.45rem;
   flex: none;
-  padding: 3px;
-  border: 2px solid var(--joy-careers-ink);
-  border-radius: 50%;
-  background: #F1E8D7;
-  stroke-width: 3.2;
+  margin-top: -0.05rem;
+  color: #1D552B;
 }
 
-.joy-careers-role--service .joy-careers-role__tasks svg {
-  background: #FFCC29;
+.joy-careers-role--barista .joy-careers-tick {
+  color: var(--joy-careers-ink);
 }
 
 .joy-careers-role__pay {
@@ -451,7 +398,7 @@
   padding: 1.25rem;
   border: 2px solid var(--joy-careers-ink);
   border-radius: 1.2rem;
-  background: #FBF5EA;
+  background: #F1E8D7;
 }
 
 .joy-careers-role__pay-label {
@@ -511,7 +458,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
   background: #ED7E8B;
 }
 
@@ -527,19 +474,28 @@
   opacity: 0.18;
 }
 
-.joy-careers-team__card {
+.joy-careers-team__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(2.5rem, 6vw, 5.5rem);
-  padding: clamp(2rem, 5vw, 4rem);
+  align-items: stretch;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.joy-careers-team__grid > .joy-section-reveal {
+  display: flex;
+}
+
+.joy-careers-team__card {
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3.25rem);
   border: 3px solid var(--joy-careers-ink);
-  border-radius: clamp(1.8rem, 4vw, 3rem);
+  border-radius: clamp(1.6rem, 3vw, 2.5rem);
   background: #F1E8D7;
-  box-shadow: 0 18px 0 var(--joy-careers-ink);
+  box-shadow: 0 16px 0 var(--joy-careers-ink);
 }
 
 .joy-careers-team h2 {
-  font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+  font-size: clamp(2.2rem, 3.6vw, 3.4rem);
 }
 
 .joy-careers-perks {
@@ -587,10 +543,6 @@
 .joy-careers-who li {
   font-size: 1.08rem;
   font-weight: 650;
-}
-
-.joy-careers-who svg {
-  background: #FFCC29;
 }
 
 .joy-careers-who__note {
@@ -737,7 +689,7 @@
 @media (max-width: 900px) {
   .joy-careers-hero__grid,
   .joy-careers-apply__inner,
-  .joy-careers-team__card {
+  .joy-careers-team__grid {
     grid-template-columns: 1fr;
   }
 
@@ -777,13 +729,16 @@
   }
 
   /* Phones: kitchen rooms side by side, then the drinks counter, then the
-     floor across the full width so its tables have room. */
+     floor across the full width. */
+  .joy-careers-plan {
+    --plan-pad: 8px;
+    --plan-room-radius: 18px;
+  }
+
   .joy-careers-plan__board {
     aspect-ratio: auto;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 150px 112px 170px;
-    gap: 6px;
-    padding: 6px;
+    grid-template-rows: 150px 112px 150px;
   }
 
   .joy-careers-plan__zone--hot {
@@ -796,45 +751,32 @@
 
   .joy-careers-plan__zone--beverage {
     grid-column: 1 / 3;
-    border-bottom-left-radius: 10px;
-  }
-
-  .joy-careers-plan__zone--beverage > svg {
-    right: 0.75rem;
-    left: auto;
   }
 
   .joy-careers-plan__zone--floor {
     grid-row: 3;
     grid-column: 1 / 3;
-    border-bottom-left-radius: clamp(1.4rem, 3.4vw, 2.5rem);
   }
 
   .joy-careers-plan__zone {
-    padding: 0.75rem;
+    padding: 0.9rem;
   }
 
-  .joy-careers-plan__zone > svg {
-    top: 0.75rem;
-    left: 0.75rem;
+  .joy-careers-plan__icon {
+    top: 0.9rem;
+    right: 0.9rem;
   }
 
-  .joy-careers-plan__tables {
-    inset: 0.75rem 0.75rem auto;
-  }
-
-  .joy-careers-plan__zone > span:last-child {
+  .joy-careers-plan__zone > span {
     padding: 2px 7px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .joy-careers-plan__zone > img,
   .joy-careers-contact {
     transition: none;
   }
 
-  .joy-careers-plan__zone--dimsum:hover > img,
   .joy-careers-contact:hover {
     transform: none;
   }
