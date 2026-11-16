@@ -7,7 +7,8 @@ declare global {
 export type ConversionEvent =
   | 'get_directions_click'
   | 'whatsapp_click'
-  | 'menu_page_view';
+  | 'menu_page_view'
+  | 'careers_apply_click';
 
 /**
  * Pushes a conversion event into the Google Tag Manager data layer

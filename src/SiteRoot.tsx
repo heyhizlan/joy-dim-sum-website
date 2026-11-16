@@ -4,6 +4,7 @@ import { normalizePathname } from './lib/seo';
 import { outlets } from './lib/siteData';
 import LandingPage from './pages/LandingPage';
 import FaqPage from './pages/FaqPage';
+import CareersPage from './pages/CareersPage';
 import LocationsIndexPage from './pages/LocationsIndexPage';
 import MenuPage from './pages/MenuPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -78,6 +79,9 @@ export default function SiteRoot({
       break;
     case '/faqs/':
       page = <FaqPage />;
+      break;
+    case '/careers/':
+      page = <CareersPage />;
       break;
     default:
       page = <NotFoundPage />;
