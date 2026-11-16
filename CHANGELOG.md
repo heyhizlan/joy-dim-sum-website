@@ -4,6 +4,38 @@ All notable changes to the JOY Dim Sum website are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-11-16
+
+This release adds a careers page for the Kiara Bay outlet, linked from the
+navigation and footer, with the full page available in English, Chinese and
+Malay.
+
+### Added
+
+- **Careers page at `/careers/`.** Lists the three open roles: kitchen crew
+  (dim sum counter and hot kitchen), service crew (front of house) and barista
+  (beverage counter), with tasks, pay and an apply button for each.
+- **Station plan in the hero.** A top-down sketch of the outlet's four
+  stations; each one links to the role that works there.
+- **Full-time / Part-time toggle.** Kitchen crew RM2,000 – RM3,500 a month
+  (full-time only for now); service crew and barista from RM2,000 a month
+  full-time or RM10 – RM12 an hour part-time.
+- **EN / 中文 / BM language switch.** The choice is remembered and written to
+  `?lang=` so a shared link opens in the same language.
+- **Apply on WhatsApp** to Sherene or Cammy with a prefilled message in the
+  chosen language, or by email to hello.joydimsum@gmail.com.
+- **`careers_apply_click` data-layer event** on every apply link. GTM needs a
+  matching Custom Event trigger before it reaches GA4.
+- Metadata, breadcrumbs structured data and sitemap entry for `/careers/`.
+
+### Changed
+
+- **Careers link in the primary nav with a pink Hiring badge** (a pink dot
+  between 821px and 1040px, where the bar is tight), in the mobile menu, and in
+  the footer's Explore list with a "We're hiring" tag.
+- Nav links and the Find Location button no longer wrap onto two lines at
+  tablet widths.
+
 ## [1.5.2] - 2026-08-27
 
 This release adds a dedicated, responsive full-menu viewer, refreshes the Loh

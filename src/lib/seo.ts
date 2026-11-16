@@ -6,6 +6,7 @@ export const prerenderRoutes = [
   '/locations/kiara-bay-kepong/',
   '/menu/',
   '/faqs/',
+  '/careers/',
 ] as const;
 
 export type SiteRoute = (typeof prerenderRoutes)[number];
@@ -68,6 +69,15 @@ const routeMeta: Record<SiteRoute, RouteMeta> = {
     canonical: `${SITE_URL}/faqs/`,
     ogImage: shareImage,
     ogImageAlt: 'JOY Dim Sum food and brand artwork for frequently asked questions',
+  },
+  '/careers/': {
+    path: '/careers/',
+    title: 'Careers at JOY Dim Sum | Jobs in Kepong, Kuala Lumpur',
+    description:
+      'JOY Dim Sum Kiara Bay is hiring kitchen crew, service crew and baristas. Full-time from RM2,000 a month, part-time RM10 to RM12 an hour. Apply on WhatsApp.',
+    canonical: `${SITE_URL}/careers/`,
+    ogImage: shareImage,
+    ogImageAlt: shareImageAlt,
   },
 };
 
@@ -226,6 +236,19 @@ export function getStructuredData(pathname: string) {
             acceptedAnswer: { '@type': 'Answer', text },
           })),
         },
+      ],
+    };
+  }
+
+  if (path === '/careers/') {
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        webPage(meta, 'Careers at JOY Dim Sum'),
+        breadcrumbs([
+          { name: 'Home', url: `${SITE_URL}/` },
+          { name: 'Careers', url: meta.canonical },
+        ]),
       ],
     };
   }

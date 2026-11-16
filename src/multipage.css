@@ -1141,3 +1141,74 @@
     width: 100%;
   }
 }
+
+/* "Careers / Hiring" highlight in the primary nav and footer. */
+
+.joy-nav__link--hiring {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.joy-hiring-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border: 2px solid #2B1F17;
+  border-radius: 999px;
+  background: #ED7E8B;
+  color: #2B1F17;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.joy-mobile-nav__links .joy-hiring-badge {
+  margin-left: 4px;
+  color: #2B1F17;
+  font-family: 'Cal Sans Text UI', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+.joy-footer__navigation .joy-footer__hiring {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFCC29;
+  font-weight: 700;
+}
+
+.joy-footer__navigation .joy-hiring-badge {
+  border-color: #FFCC29;
+}
+
+.joy-nav__link,
+.joy-nav__cta {
+  white-space: nowrap;
+}
+
+/* Tablet widths: six links plus the CTA only just fit, so the badge shrinks
+   to a pink dot and the links tighten up. */
+@media (min-width: 821px) and (max-width: 1040px) {
+  .joy-nav__bar {
+    gap: 18px;
+  }
+
+  .joy-nav__brand {
+    width: 156px;
+  }
+
+  .joy-nav__links {
+    gap: 16px;
+  }
+
+  .joy-nav__links .joy-hiring-badge {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+  }
+}

@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Kiara Bay', href: '/locations/kiara-bay-kepong/' },
   { label: 'Story', href: '/#about' },
   { label: 'News', href: '/#instagram' },
+  { label: 'Careers', href: '/careers/', hiring: true },
 ];
 
 export default function Navigation({
@@ -79,8 +80,13 @@ export default function Navigation({
 
             <div className="joy-nav__links">
               {navLinks.map((link) => (
-                <a key={link.label} className="joy-nav__link" href={link.href}>
+                <a
+                  key={link.label}
+                  className={`joy-nav__link${link.hiring ? ' joy-nav__link--hiring' : ''}`}
+                  href={link.href}
+                >
                   {link.label}
+                  {link.hiring && <span className="joy-hiring-badge">Hiring</span>}
                 </a>
               ))}
             </div>
@@ -125,6 +131,7 @@ export default function Navigation({
                 >
                   <span>0{index + 1}</span>
                   {link.label}
+                  {link.hiring && <span className="joy-hiring-badge">Hiring</span>}
                 </motion.a>
               ))}
             </div>

@@ -49,6 +49,10 @@ export default function Footer() {
                   {link.label}
                 </a>
               ))}
+              <a className="joy-footer__detail joy-footer__hiring" href="/careers/">
+                Careers
+                <span className="joy-hiring-badge">We're hiring</span>
+              </a>
             </nav>
 
             <div className="joy-footer__outlets">
