@@ -3,9 +3,11 @@ import { motion, useReducedMotion } from 'framer-motion';
 
 type SectionRevealProps = {
   children: ReactNode;
+  /** Seconds to wait after entering view, to stagger neighbours. */
+  delay?: number;
 };
 
-export default function SectionReveal({ children }: SectionRevealProps) {
+export default function SectionReveal({ children, delay = 0 }: SectionRevealProps) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -14,7 +16,7 @@ export default function SectionReveal({ children }: SectionRevealProps) {
       initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 42 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: reduceMotion ? 0 : delay }}
     >
       {children}
     </motion.div>

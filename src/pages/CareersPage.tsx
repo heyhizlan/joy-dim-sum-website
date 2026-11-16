@@ -3,10 +3,6 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowDownRight,
   BookOpen,
-  Check,
-  Coffee,
-  CookingPot,
-  HandPlatter,
   Mail,
   ShieldCheck,
   Smile,
@@ -14,6 +10,8 @@ import {
   Utensils,
 } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
+import SectionReveal from '../components/SectionReveal';
+import MaterialIcon, { type MaterialIconName } from '../components/MaterialIcon';
 import Footer from '../sections/Footer';
 import Navigation from '../sections/Navigation';
 import { WhatsAppIcon } from '../lib/SocialIcons';
@@ -32,16 +30,19 @@ import {
   type RoleId,
   type Shift,
 } from '../lib/careersContent';
-import siewMai from '../assets/seo/joy-dim-sum-siew-mai-kuala-lumpur.webp';
 import '../careers.css';
 
 const STORAGE_KEY = 'joy-careers-lang';
 
-const roleIcons: Record<RoleId, typeof CookingPot> = {
-  kitchen: CookingPot,
-  service: HandPlatter,
-  barista: Coffee,
+const roleIcons: Record<RoleId, MaterialIconName> = {
+  kitchen: 'cooking',
+  service: 'roomService',
+  barista: 'localCafe',
 };
+
+function Tick() {
+  return <MaterialIcon name="check" className="joy-careers-tick" />;
+}
 
 const perkIcons = [Utensils, ShieldCheck, BookOpen, Smile, Sprout];
 
@@ -137,33 +138,27 @@ function LanguageSwitch({
 
 function StationPlan({ copy }: { copy: CareersCopy }) {
   const roles = copy.roles.items;
+  const zones: Array<{ key: string; icon: MaterialIconName; name: string; role: string; href: string }> = [
+    { key: 'hot', icon: 'skillet', name: copy.plan.hot, role: roles.kitchen.title, href: '#role-kitchen' },
+    { key: 'dimsum', icon: 'cooking', name: copy.plan.dimsum, role: roles.kitchen.title, href: '#role-kitchen' },
+    { key: 'beverage', icon: 'localCafe', name: copy.plan.beverage, role: roles.barista.title, href: '#role-barista' },
+    { key: 'floor', icon: 'roomService', name: copy.plan.floor, role: roles.service.title, href: '#role-service' },
+  ];
+
   return (
     <figure className="joy-careers-plan">
       <nav className="joy-careers-plan__board" aria-label={copy.plan.label}>
-        <a className="joy-careers-plan__zone joy-careers-plan__zone--hot" href="#role-kitchen">
-          <CookingPot aria-hidden="true" />
-          <strong>{copy.plan.hot}</strong>
-          <span>{roles.kitchen.title}</span>
-        </a>
-        <a className="joy-careers-plan__zone joy-careers-plan__zone--dimsum" href="#role-kitchen">
-          <img src={siewMai} alt="" width="1184" height="1070" aria-hidden="true" />
-          <strong>{copy.plan.dimsum}</strong>
-          <span>{roles.kitchen.title}</span>
-        </a>
-        <a className="joy-careers-plan__zone joy-careers-plan__zone--beverage" href="#role-barista">
-          <Coffee aria-hidden="true" />
-          <strong>{copy.plan.beverage}</strong>
-          <span>{roles.barista.title}</span>
-        </a>
-        <a className="joy-careers-plan__zone joy-careers-plan__zone--floor" href="#role-service">
-          <span className="joy-careers-plan__tables" aria-hidden="true">
-            {Array.from({ length: 6 }, (_, index) => (
-              <i key={index} />
-            ))}
-          </span>
-          <strong>{copy.plan.floor}</strong>
-          <span>{roles.service.title}</span>
-        </a>
+        {zones.map((zone) => (
+          <a
+            key={zone.key}
+            className={`joy-careers-plan__zone joy-careers-plan__zone--${zone.key}`}
+            href={zone.href}
+          >
+            <MaterialIcon name={zone.icon} className="joy-careers-plan__icon" />
+            <strong>{zone.name}</strong>
+            <span>{zone.role}</span>
+          </a>
+        ))}
       </nav>
       <figcaption>{copy.plan.caption}</figcaption>
     </figure>
@@ -217,7 +212,6 @@ function RoleCard({
 }) {
   const reduceMotion = useReducedMotion();
   const item = copy.roles.items[role];
-  const Icon = roleIcons[role];
   const pay = payFor(role, shift, copy);
   // Kitchen is full-time only, so its button always applies for full-time.
   const applyShift: Shift = pay ? shift : 'full';
@@ -230,7 +224,7 @@ function RoleCard({
     <article className={`joy-careers-role joy-careers-role--${role}`} id={`role-${role}`} aria-labelledby={`role-${role}-title`}>
       <div className="joy-careers-role__intro">
         <p className="joy-careers-role__station">
-          <Icon aria-hidden="true" />
+          <MaterialIcon name={roleIcons[role]} />
           {item.station}
         </p>
         <h3 id={`role-${role}-title`}>{item.title}</h3>
@@ -240,7 +234,7 @@ function RoleCard({
       <ul className="joy-careers-role__tasks">
         {item.tasks.map((task) => (
           <li key={task}>
-            <Check aria-hidden="true" />
+            <Tick />
             {task}
           </li>
         ))}
@@ -336,24 +330,31 @@ export default function CareersPage() {
                 </div>
               </div>
 
-              <StationPlan copy={copy} />
+              <SectionReveal delay={0.15}>
+                <StationPlan copy={copy} />
+              </SectionReveal>
             </div>
           </div>
         </section>
 
         <section className="joy-careers-roles" id="open-roles" aria-labelledby="open-roles-title">
           <div className="joy-section-shell">
+            <SectionReveal>
             <div className="joy-careers-roles__heading">
               <div>
+                <p className="joy-section-kicker">{copy.roles.kicker}</p>
                 <h2 id="open-roles-title">{copy.roles.heading}</h2>
                 <p>{copy.roles.intro}</p>
               </div>
               <ShiftToggle shift={shift} onChange={setShift} copy={copy} />
             </div>
+            </SectionReveal>
 
             <div className="joy-careers-roles__list">
               {roleOrder.map((role) => (
-                <RoleCard key={role} role={role} shift={shift} copy={copy} lang={lang} />
+                <SectionReveal key={role}>
+                  <RoleCard role={role} shift={shift} copy={copy} lang={lang} />
+                </SectionReveal>
               ))}
             </div>
           </div>
@@ -361,8 +362,9 @@ export default function CareersPage() {
 
         <section className="joy-careers-team" aria-labelledby="perks-title">
           <div className="joy-section-shell">
-            <div className="joy-careers-team__card">
-              <div>
+            <div className="joy-careers-team__grid">
+              <SectionReveal>
+              <div className="joy-careers-team__card">
                 <h2 id="perks-title">{copy.perks.heading}</h2>
                 <ul className="joy-careers-perks">
                   {copy.perks.items.map((perk, index) => {
@@ -378,23 +380,27 @@ export default function CareersPage() {
                   })}
                 </ul>
               </div>
-              <div>
+              </SectionReveal>
+              <SectionReveal delay={0.12}>
+              <div className="joy-careers-team__card">
                 <h2 id="who-title">{copy.who.heading}</h2>
                 <ul className="joy-careers-who">
                   {copy.who.items.map((item) => (
                     <li key={item}>
-                      <Check aria-hidden="true" />
+                      <Tick />
                       {item}
                     </li>
                   ))}
                 </ul>
                 <p className="joy-careers-who__note">{copy.who.note}</p>
               </div>
+              </SectionReveal>
             </div>
           </div>
         </section>
 
-        <section className="joy-page-links joy-careers-apply" id="apply" aria-labelledby="apply-title">
+        <SectionReveal>
+        <section className="joy-page-links joy-page-links--solid joy-careers-apply" id="apply" aria-labelledby="apply-title">
           <div className="joy-section-shell joy-careers-apply__inner">
             <div>
               <p className="joy-section-kicker">{copy.apply.kicker}</p>
@@ -403,7 +409,7 @@ export default function CareersPage() {
               <ul className="joy-careers-apply__checklist">
                 {copy.apply.checklist.map((item) => (
                   <li key={item}>
-                    <Check aria-hidden="true" />
+                    <Tick />
                     {item}
                   </li>
                 ))}
@@ -444,8 +450,11 @@ export default function CareersPage() {
             </div>
           </div>
         </section>
+        </SectionReveal>
       </main>
-      <Footer />
+      <SectionReveal>
+        <Footer />
+      </SectionReveal>
     </div>
   );
 }
