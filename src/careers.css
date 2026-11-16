@@ -71,6 +71,11 @@
   display: block;
 }
 
+.joy-careers-hero__exclamation {
+  font-style: italic;
+  font-synthesis: style;
+}
+
 .joy-careers-lang {
   display: inline-flex;
   padding: 4px;
@@ -138,6 +143,7 @@
   border-radius: var(--plan-room-radius);
   color: var(--joy-careers-ink);
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .joy-careers-plan__zone--hot {
@@ -306,14 +312,13 @@
   border-radius: clamp(1.6rem, 3vw, 2.5rem);
   background: #F1E8D7;
   box-shadow: 0 16px 0 var(--joy-careers-ink);
+  color: var(--joy-careers-ink);
+  transition: background-color 180ms ease;
 }
 
-.joy-careers-role--kitchen {
+.joy-careers-role:hover,
+.joy-careers-role:focus-within {
   background: #FFCC29;
-}
-
-.joy-careers-role--barista {
-  background: #ED7E8B;
 }
 
 .joy-careers-role:target {
@@ -385,10 +390,6 @@
   flex: none;
   margin-top: -0.05rem;
   color: #1D552B;
-}
-
-.joy-careers-role--barista .joy-careers-tick {
-  color: var(--joy-careers-ink);
 }
 
 .joy-careers-role__pay {
@@ -496,6 +497,7 @@
 
 .joy-careers-team h2 {
   font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+  text-transform: uppercase;
 }
 
 .joy-careers-perks {
@@ -773,6 +775,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .joy-careers-role,
   .joy-careers-contact {
     transition: none;
   }

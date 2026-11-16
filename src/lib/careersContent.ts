@@ -2,7 +2,7 @@
 // Keep the tone casual and local, the way the team actually talks to people,
 // not HR-speak. Pay figures come from the client brief (Aug 2026).
 
-export const careerLanguages = ['en', 'zh', 'ms'] as const;
+export const careerLanguages = ['en', 'ms', 'zh'] as const;
 export type CareerLanguage = (typeof careerLanguages)[number];
 
 export type RoleId = 'kitchen' | 'service' | 'barista';

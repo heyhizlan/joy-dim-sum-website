@@ -309,7 +309,10 @@ export default function CareersPage() {
                 <p className="joy-section-kicker">{copy.hero.kicker}</p>
                 <h1 id="careers-title">
                   <span>{copy.hero.title[0]}</span>
-                  <span>{copy.hero.title[1]}</span>
+                  <span>
+                    {copy.hero.title[1].slice(0, -1)}
+                    <i className="joy-careers-hero__exclamation">{copy.hero.title[1].slice(-1)}</i>
+                  </span>
                 </h1>
                 <p>{copy.hero.lede}</p>
                 <div className="joy-page-hero__actions">
