@@ -4,6 +4,26 @@ All notable changes to the JOY Dim Sum website are documented here.
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.2] - 2026-11-22
+
+GA4 tracking restored after it went quiet from 11 Nov.
+
+### Fixed
+
+- **Google Analytics is back.** The direct GA4 tag (`G-N644GDSP1K`, property
+  550830226) is back in the page head on every route. It was removed on
+  10 Nov when tracking moved to Google Tag Manager, but no GA4 tag was ever
+  published in the GTM container, so Analytics recorded zero visitors.
+- **Conversion events** (`whatsapp_click`, `get_directions_click`,
+  `menu_page_view`, `careers_apply_click`) are sent straight to GA4 again via
+  `gtag`, instead of into the GTM data layer.
+
+### Notes
+
+- The GTM container (`GTM-W9XQJS82`) stays installed for other tags. Do not add
+  a GA4 tag inside it, or every visit is counted twice.
+- Data from 11 Nov until this deploy is not recoverable in GA4.
+
 ## [1.6.1] - 2026-11-16
 
 A visual QA pass on the careers page so it matches the rest of the site.
